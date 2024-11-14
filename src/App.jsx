@@ -28,7 +28,9 @@ function App() {
       <div className='w-full block'>
         <Header />
         <main >
-         <span className='mt-48 pt-48 text-2xl'><br /> Welcome To TechieBlog</span>  <Outlet />
+         {/* <span className='mt-48 pt-48 text-2xl'><br />
+          Welcome To TechieBlog</span>  */}
+           <Outlet />
         </main>
         <Footer />
       </div>
