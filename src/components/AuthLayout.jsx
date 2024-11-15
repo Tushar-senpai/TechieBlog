@@ -1,17 +1,20 @@
 import React ,{useEffect , useState} from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { Alert } from "@mui/material";
 
 export default function Protected({children, authentication = true}) {
 
     const navigate = useNavigate()
     const [loader , setLoader] =useState(true)
     const authStatus = useSelector(state => state.auth.status)
+    const [alert, setAlert] = useState(null); // State for alerts
 
     useEffect(() => {
 
         // TODO : make it more easy later
         if(authentication && authStatus !== authentication){
+            
             navigate("/login")
         }else if(!authentication && authStatus !== authentication){
             navigate("/")

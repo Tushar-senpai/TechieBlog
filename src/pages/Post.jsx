@@ -36,7 +36,7 @@ export default function Post() {
     <div className="py-4">
       <Container>
         <div className="w-full flex mb-4 relative border rounded-xl p-5">
-          <div>
+          <div className="w-full">
             <img
               src={appwriteService.getFilePreview(post.featuredImage)}
               alt={post.title}
@@ -44,12 +44,12 @@ export default function Post() {
             />
           </div>
 
-          <div className="m-4 pl-4 pb-4">
+          <div className="m-4 pl-4 pb-4 text-left">
             <div className="w-full mb-6">
               <h1 className="text-2xl font-bold">{post.title}</h1>
             </div>
-            <div className="w-full browser-css">{parse(post.content)}</div>
-            <div className="w-full browser-css">
+            <div className="pb-3 browser-css">{parse(post.content)}</div>
+            <div className="w-full browser-css p-3">
               {isAuthor && (
                 <div className="absolute bottom-6 flex space-x-6">
                   <Link to={`/edit-post/${post.$id}`}>
