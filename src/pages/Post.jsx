@@ -4,6 +4,7 @@ import appwriteService from "../appwrite/config";
 import { Button, Container } from "../components";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
+import Swal from 'sweetalert2';
 
 export default function Post() {
   const [post, setPost] = useState(null);
@@ -24,12 +25,31 @@ export default function Post() {
   }, [slug, navigate]);
 
   const deletePost = () => {
-    appwriteService.deletePost(post.$id).then((status) => {
-      if (status) {
-        appwriteService.deleteFile(post.featuredImage);
-        navigate("/");
+
+    // Display SweetAlert confirmation dialog
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will delete this post!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Delete the Post!',
+  }).then((result) => {
+      if (result.isConfirmed) {
+        appwriteService.deletePost(post.$id).then((status) => {
+          if (status) {
+            appwriteService.deleteFile(post.featuredImage);
+            Swal.fire('Deleted Successfully!', 'Post have been deleted successfully.', 'success');
+             setTimeout(() => {
+                  navigate("/")
+            }, 1000);
+            // navigate("/");
+          }
+        });
       }
-    });
+  });
+
   };
 
   return post ? (
