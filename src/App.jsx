@@ -5,6 +5,8 @@ import authService from './appwrite/auth'
 import { login,logout } from './store/authSlice'
 import { Footer, Header } from './components'
 import { Outlet } from 'react-router-dom'
+import { ErrorBoundary } from 'react-error-boundary'
+import SomethingWentWrong from './components/errors/SomethingWentWrong.jsx'
 
 function App() {
 
@@ -23,19 +25,23 @@ function App() {
     .finally(() => setLoading(false))
   },[]) 
 
-  return !loading ? (
-    <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
-      <div className='w-full block'>
-        <Header />
-        <main >
-         {/* <span className='mt-48 pt-48 text-2xl'><br />
-          Welcome To TechieBlog</span>  */}
-           <Outlet />
-        </main>
-        <Footer />
+  return (
+    <ErrorBoundary fallback={<SomethingWentWrong />}>
+      {!loading ? (
+      <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
+        <div className='w-full block'>
+          <Header />
+          <main >
+          {/* <span className='mt-48 pt-48 text-2xl'><br />
+            Welcome To TechieBlog</span>  */}
+            <Outlet />
+          </main>
+          <Footer />
+        </div>
       </div>
-    </div>
-  ) :null 
+      ) :null}
+    </ErrorBoundary>
+  )
 }
 
 export default App

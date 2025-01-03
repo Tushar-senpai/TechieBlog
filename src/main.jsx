@@ -14,6 +14,7 @@ import './index.css'
 import { Provider } from 'react-redux'
 import store from './store/store.js'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+
 import Home from './pages/Home.jsx'
 import { AuthLayout, Login } from './components/index.js'
 
@@ -23,6 +24,7 @@ import EditPost from "./pages/EditPost.jsx";
 import Post from "./pages/Post.jsx";
 import AllPosts from "./pages/AllPosts.jsx";
 import SearchedBlogs from './pages/SearchedBlogs.jsx'
+import Error404 from './components/errors/Error404.jsx'
 
 const router = createBrowserRouter([
   {
@@ -83,15 +85,19 @@ const router = createBrowserRouter([
         {
             path: "search/:slug",
             element: <SearchedBlogs />,
+        },
+        {
+            path: "*",
+            element: <Error404 />,
         }
     ],
 },
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
-  </React.StrictMode>,
+    <React.StrictMode>
+        <Provider store={store}>
+        <RouterProvider router={router} />
+        </Provider>
+    </React.StrictMode>,
 )
