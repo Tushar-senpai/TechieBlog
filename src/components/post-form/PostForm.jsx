@@ -1,12 +1,13 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import {Button , Input , Select , RTE} from '../index'
 import appwriteService from "../../appwrite/config"
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { ClipLoader } from 'react-spinners'
 
 export default function PostForm({post}) {
-
+    const [loading , setLoading] = useState(false);
     const {register , handleSubmit ,watch, setValue, control , getValues} = useForm({
         defaultValues : {
             title : post?.title || '',
@@ -20,6 +21,7 @@ export default function PostForm({post}) {
     const userData = useSelector((state) => state.auth.userData)
 
     const submit = async (data) => {
+        setLoading(true);
         if(post){
             const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
 
@@ -46,7 +48,8 @@ export default function PostForm({post}) {
              });
 
              if(dbPost){
-                navigate(`/post/${dbPost.$id}`)
+                setLoading(false);
+                navigate(`/post/${dbPost.$id}`, {replace: true});
              }
             }
         }
@@ -124,7 +127,9 @@ export default function PostForm({post}) {
                 </div>
                
                 <Button type="submit"  bgColor={post ? "bg-green-500" : undefined} className="w-full mt-8">
-                    {post ? "Update" : "Submit"}
+                    {loading ? (
+                        <ClipLoader color="#fff" size={18} />
+                    ) : post ? "Update" : "Post"}
                 </Button>
             </div>
         </form>
