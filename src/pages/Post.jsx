@@ -5,6 +5,7 @@ import { Button, Container } from "../components";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
 import Swal from 'sweetalert2';
+import Loading from "../components/loaders/Loading";
 
 export default function Post() {
   const [post, setPost] = useState(null);
@@ -18,7 +19,9 @@ export default function Post() {
   useEffect(() => {
     if (slug) {
       appwriteService.getPost(slug).then((post) => {
-        if (post) setPost(post);
+        if (post) {
+          setPost(post);
+        }
         else navigate("/");
       });
     } else navigate("/");
@@ -52,10 +55,11 @@ export default function Post() {
 
   };
 
-  return post ? (
+  return (
     <div className="py-4">
       <Container>
-        <div className="w-full flex mb-4 relative border rounded-xl p-5">
+        {post ? (
+          <div className="w-full flex mb-4 relative border rounded-xl p-5">
           <div className="w-full">
             <img
               src={appwriteService.getFilePreview(post.featuredImage)}
@@ -88,7 +92,10 @@ export default function Post() {
             </div>
           </div>
         </div>
+        ) : (
+          <Loading />
+        )}
       </Container>
     </div>
-  ) : null;
+  );
 }

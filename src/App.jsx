@@ -1,4 +1,4 @@
-import React , {useEffect , useState } from 'react'
+import React , {Suspense, useEffect , useState } from 'react'
 import {useDispatch} from 'react-redux'
 import './App.css'
 import authService from './appwrite/auth'
@@ -7,6 +7,7 @@ import { Footer, Header } from './components'
 import { Outlet } from 'react-router-dom'
 import { ErrorBoundary } from 'react-error-boundary'
 import SomethingWentWrong from './components/errors/SomethingWentWrong.jsx'
+import Loading from './components/loaders/Loading.jsx'
 
 function App() {
 
@@ -34,12 +35,14 @@ function App() {
           <main >
           {/* <span className='mt-48 pt-48 text-2xl'><br />
             Welcome To TechieBlog</span>  */}
-            <Outlet />
+            <Suspense fallback={<Loading />}>
+              <Outlet />
+            </Suspense>
           </main>
           <Footer />
         </div>
       </div>
-      ) :null}
+      ) :<Loading />}
     </ErrorBoundary>
   )
 }
