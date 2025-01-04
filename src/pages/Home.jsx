@@ -1,16 +1,35 @@
 import React, { useEffect, useState } from "react";
 import appwriteService from "../appwrite/config";
-
+import { Container , PostCard } from '../components'
+import Loading from '../components/loaders/Loading.jsx'
+// import { getPostsFromDatabase } from '../appwrite/config.js';
 function Home() {
   const [posts, setPosts] = useState([]);
+const [loading ,setLoading] = useState(true)
+useEffect(() => {
+  const fetchPosts = async () => {
+    try {
+      // Fetch posts from the Appwrite service
+      const response = await appwriteService.getPosts();
 
-  useEffect(() => {
-    appwriteService.getPosts().then((posts) => {
-      if (posts) {
-        setPosts(posts.documents);
+      if (response) {
+        // Assuming `response.documents` contains the posts
+        const sortedPosts = response.documents
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sort by `createdAt` descending
+          .slice(0, 6); // Limit to 6 posts
+
+        setPosts(sortedPosts);
       }
-    });
-  }, []);
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchPosts();
+}, []);
+
 
   if (posts.length === 0) {
     return (
@@ -65,17 +84,21 @@ function Home() {
         <h1 className="text-4xl font-extrabold text-orange-600 mb-8 animate-slide-in">
           Latest Posts
         </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className='w-full py-8'>
+        <Container>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className='flex flex-wrap'>
           {posts.map((post) => (
-            <div
-              key={post.$id}
-              className="transform hover:scale-105 transition duration-300 ease-in-out shadow-lg rounded-lg overflow-hidden bg-white p-4 animate-zoom-in"
-            >
-              <h3 className="text-lg font-bold text-gray-900">{post.title}</h3>
-              <p className="text-gray-700 mt-2">{post.content}</p>
+            <div key={post.$id} className='p-2 w-1/4'>
+              <PostCard {...post} />
             </div>
           ))}
         </div>
+      )}
+    </Container>
+    </div>
 
         <div className="mt-16 animate-fade-in-delayed">
           <h2 className="text-3xl font-bold text-gray-900">Join the Community</h2>
