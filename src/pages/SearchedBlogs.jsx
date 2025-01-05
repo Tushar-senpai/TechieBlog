@@ -27,7 +27,7 @@ function SearchedBlogs() {
     return (
         <div className='w-full py-8'>
         <Container>
-            {posts ? (
+            {posts.length ? (
                 <div className='flex flex-wrap'> 
                 {posts.map((post) => (
                     <div key={post.$id} className='p-2 w-1/4'> 
