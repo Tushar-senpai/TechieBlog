@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Logo from "../Logo";
+import Searchbar from "./Searchbar.jsx"
 function Header() {
   const authStatus = useSelector((state) => state.auth.status);
 
@@ -48,6 +49,8 @@ function Header() {
               </div>
             </Link>
           </div>
+
+          {authStatus && <Searchbar />}
 
           <ul className="flex ml-auto space-x-4">
             {navItems.map((item) =>
