@@ -78,7 +78,9 @@ export default function PostForm({post}) {
     },[watch,slugTransform , setValue]);
 
   return (
-   <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
+    <>
+    <h1 className='text-2xl text-black'>Add Your Post here</h1>
+       <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
             <div className="w-2/3 px-2">
                 <Input
                     label="Title :"
@@ -133,6 +135,9 @@ export default function PostForm({post}) {
                 </Button>
             </div>
         </form>
+
+        </>
+
   )
 }
 

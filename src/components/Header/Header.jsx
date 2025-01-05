@@ -3,7 +3,7 @@ import { Container, LogoutBtn } from "../index";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import Logo from "../Logo";
 function Header() {
   const authStatus = useSelector((state) => state.auth.status);
 
@@ -44,11 +44,7 @@ function Header() {
           <div className="mr-4 animate-fade-in">
             <Link to="/">
               <div>
-                <img
-                  src="src/assets/logo1.jpg"
-                  alt="Logo"
-                  className="w-[120px] h-auto object-contain transition-transform duration-500 hover:scale-110"
-                />
+               <Logo width={50} />
               </div>
             </Link>
           </div>
