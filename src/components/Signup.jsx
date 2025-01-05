@@ -101,16 +101,20 @@ function Signup() {
                 }
               })}
             />
-            <Input
+           <Input
               label="Password : "
               type="password"
-              placeholder="Enter Your Password "
-              {
-                ...register("password", {
-                  required: true,
-                })
-              }
+              placeholder="Enter Your Password"
+              {...register("password", {
+                required: true,
+                validate: {
+                  // Updated to require at least 8 characters, one letter, one number, and one special character
+                  pattern: (value) => /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/.test(value) ||
+                    "Password must be at least 8 characters long, contain at least one letter, one number, and one special character.",
+                }
+              })}
             />
+
             <Button
               type="submit"
               className="w-full"
