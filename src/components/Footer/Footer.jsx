@@ -78,7 +78,7 @@ function Footer() {
           </div>
         </div>
       </div>
-      <p className="text-sm font-semibold text-center mt-4">&copy; Copyright 2024. All Rights Reserved by TechieBlog.</p>
+      <p className="text-sm font-semibold text-center mt-4">&copy; Copyright {new Date().getFullYear()}. All Rights Reserved by TechieBlog.</p>
     </footer>
   )
 }
