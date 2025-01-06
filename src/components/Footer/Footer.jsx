@@ -63,16 +63,16 @@ function Footer() {
           </div>
 
           <div className="flex justify-center md:justify-start items-center space-x-4 mt-6 md:mt-0">
-            <a href="#" className="text-gray-400 hover:text-white">
+            <a href="#" className="text-gray-400 hover:text-[#1876f2d1]">
               <i className="fab fa-facebook-f"></i>
             </a>
-            <a href="#" className="text-gray-400 hover:text-white">
-              <i className="fab fa-twitter"></i>
+            <a href="#" className="text-gray-400 hover:text-[#0F1419]">
+              <i className="fa-brands fa-x-twitter"></i>
             </a>
-            <a href="#" className="text-gray-400 hover:text-white">
+            <a href="#" className="text-gray-400 hover:text-[#0077B5]">
               <i className="fab fa-linkedin-in"></i>
             </a>
-            <a href="#" className="text-gray-400 hover:text-white">
+            <a href="#" className="text-gray-400 hover:text-[#E1306C]">
               <i className="fab fa-instagram"></i>
             </a>
           </div>

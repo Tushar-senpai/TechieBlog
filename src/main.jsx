@@ -1,3 +1,4 @@
+import '@fortawesome/fontawesome-free/css/all.min.css';  // Add this line
 import React, { lazy } from 'react'
 // import { StrictMode } from 'react'
 // import { createRoot } from 'react-dom/client'
