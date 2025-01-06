@@ -27,33 +27,30 @@ export default function Post() {
     } else navigate("/");
   }, [slug, navigate]);
 
-  const deletePost = () => {
+  const deletePost = async () => {
+    const result = await Swal.fire({
+        title: 'Are you sure?',
+        text: 'You will delete this post!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Delete the Post!',
+    });
 
-    // Display SweetAlert confirmation dialog
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'You will delete this post!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, Delete the Post!',
-  }).then((result) => {
-      if (result.isConfirmed) {
-        appwriteService.deletePost(post.$id).then((status) => {
-          if (status) {
-            appwriteService.deleteFile(post.featuredImage);
-            Swal.fire('Deleted Successfully!', 'Post have been deleted successfully.', 'success');
-             setTimeout(() => {
-                  navigate("/")
+    if (result.isConfirmed) {
+        const status = await appwriteService.deletePost(post.$id);
+        if (status) {
+            const fileDeleted = await appwriteService.deleteFile(post.featuredImage);
+            if (fileDeleted) {
+              await Swal.fire('Deleted Successfully!', 'Post have been deleted successfully.', 'success');
+            }
+            setTimeout(() => {
+                navigate("/");
             }, 1000);
-            // navigate("/");
-          }
-        });
-      }
-  });
-
-  };
+        }
+    }
+};
 
   return (
     <div className="py-4">
