@@ -9,14 +9,14 @@ function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <div className="flex items-center">
-              <Logo  />
+              <Logo />
             </div>
             {/* <div className='flex items-center'>
                 LOGO
             </div> */}
-            
+
           </div>
-          
+
           <div>
             <h3 className="text-xs text-black font-bold uppercase mb-4">Company</h3>
             <ul className="space-y-3">
