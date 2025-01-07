@@ -29,66 +29,71 @@ export default function Post() {
 
   const deletePost = async () => {
     const result = await Swal.fire({
-        title: 'Are you sure?',
-        text: 'You will delete this post!',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, Delete the Post!',
+      title: 'Are you sure?',
+      text: 'You will delete this post!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Delete the Post!',
     });
 
     if (result.isConfirmed) {
-        const status = await appwriteService.deletePost(post.$id);
-        if (status) {
-            const fileDeleted = await appwriteService.deleteFile(post.featuredImage);
-            if (fileDeleted) {
-              await Swal.fire('Deleted Successfully!', 'Post have been deleted successfully.', 'success');
-            }
-            setTimeout(() => {
-                navigate("/");
-            }, 1000);
+      const status = await appwriteService.deletePost(post.$id);
+      if (status) {
+        const fileDeleted = await appwriteService.deleteFile(post.featuredImage);
+        if (fileDeleted) {
+          await Swal.fire('Deleted Successfully!', 'Post have been deleted successfully.', 'success');
         }
+        setTimeout(() => {
+          navigate("/");
+        }, 1000);
+      }
     }
-};
+  };
 
   return (
     <div className="py-4">
       <Container>
         {post ? (
-          <div className="w-full flex mb-4 relative border rounded-xl p-5">
-          <div className="w-full">
-            <img
-              src={appwriteService.getFilePreview(post.featuredImage)}
-              alt={post.title}
-              className="rounded-xl"
-            />
-          </div>
+          <div className="w-full overflow-hidden rounded-xl border bg-white shadow-sm transition-all hover:shadow-lg">
+            <div className="flex flex-col lg:flex-row">
+              <div className="lg:w-2/5">
+                <img
+                  src={appwriteService.getFilePreview(post.featuredImage)}
+                  alt={post.title}
+                  className="h-[300px] w-full object-cover lg:h-full"
+                />
+              </div>
 
-          <div className="m-4 pl-4 pb-4 text-left">
-            <div className="w-full mb-6">
-              <h1 className="text-2xl font-bold">{post.title}</h1>
-            </div>
-            <div className="pb-3 browser-css">{parse(post.content)}</div>
-            <div className="w-full browser-css p-3">
-              {isAuthor && (
-                <div className="absolute bottom-6 flex space-x-6">
-                  <Link to={`/edit-post/${post.$id}`}>
-                    <Button bgColor="bg-green-500">Edit</Button>
-                  </Link>
-
-                  <Button
-                    bgColor="bg-red-500"
-                    className="mr-40"
-                    onClick={deletePost}
-                  >
-                    Delete
-                  </Button>
+              <div className="flex-1 p-6 lg:p-8 flex flex-col">
+                <div className="flex-1">
+                  <h1 className="text-2xl font-bold tracking-tight text-gray-900 lg:text-3xl mb-4">
+                    {post.title}
+                  </h1>
+                  <div className="prose prose-gray max-w-none">
+                    {parse(post.content)}
+                  </div> 
                 </div>
-              )}
+
+                {isAuthor && (
+                  <div className="mt-8 flex items-center justify-center gap-4 pt-4 border-t">
+                    <Link to={`/edit-post/${post.$id}`}>
+                      <button className="px-6 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition-colors">
+                        Edit
+                      </button>
+                    </Link>
+                    <button
+                      onClick={deletePost}
+                      className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
         ) : (
           <Loading />
         )}
