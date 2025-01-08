@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import appwriteService from "../appwrite/config";
 import { Container , PostCard } from '../components'
 import Loading from '../components/loaders/Loading.jsx'
+import { Link } from "react-router-dom";
+import LoginIcon from '@mui/icons-material/Login';
 // import { getPostsFromDatabase } from '../appwrite/config.js';
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -41,6 +43,10 @@ useEffect(() => {
           <p className="text-gray-700 mt-4 text-lg md:text-xl animate-fade-in-delayed">
             Your hub for the latest in technology and innovation.
           </p>
+          <Link 
+          to={"/signup"}
+          className="bg-orange-600 text-white font-semibold py-3 px-4 rounded-lg shadow-md mt-6 inline-flex items-center gap-2 text-lg"
+          ><span>Get Started</span><LoginIcon /></Link>
         </div>
 
         <div className="mt-8 max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-8 animate-fade-up">
