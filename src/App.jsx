@@ -30,9 +30,9 @@ function App() {
     <ErrorBoundary fallback={<SomethingWentWrong />}>
       {!loading ? (
         <div className='min-h-screen flex flex-wrap content-between bg-white'>
-          <div className='w-full block'>
+          <div className='w-full flex flex-col min-h-screen'>
             <Header />
-            <main >
+            <main className='flex-grow'>
               {/* <span className='mt-48 pt-48 text-2xl'><br />
             Welcome To TechieBlog</span>  */}
               <Suspense fallback={<Loading />}>
