@@ -12,6 +12,8 @@ import AuthLayout from './AuthLayout'
 import Button from './Button'
 import Input from './Input'
 import Select from './Select'
+import ForgotPassword from './ForgotPassword'
+import ResetPassword from './ResetPassword'
 
 export {
     Header,
@@ -28,4 +30,6 @@ export {
     Button,
     Input,
     Select,
+    ForgotPassword,
+    ResetPassword
 }
