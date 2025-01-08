@@ -32,25 +32,32 @@ Link :- https://techie-blogs.vercel.app/
 1. Clone the repository:
    ```bash
    git clone https://github.com/SumitGorai01/TechieBlog.git
-
 2. Navigate into the project directory:
 
     ```bash
     cd TechieBlog
-
 3. Install the dependencies:
 
     ```bash
     npm install
-
 4. Set up Appwrite:
-    
-    1. Install Appwrite if you haven’t already
-    2. Create an Appwrite project.
-    3. Set up your database and collections for blog posts, users, and comments.
-    4. Generate an API key and configure Appwrite SDK in your project.
+If you don’t have an Appwrite account, follow these steps:
+    1. Register for an account on the [Appwrite website]().
+    2. Verify your email address.
+    3. Log in to your Appwrite account.
+    4. Create a new project in Appwrite to organize your resources.
+    5. Set up a new database in the project to store data.
+    6. Create a new collection within the database to organize data documents.
+    7. Add necessary permissions and document security settings for the created collection.
+    8. Set up storage and create a bucket in Appwrite to store files.
+    9. Add necessary permissions and document security settings for the storage bucket.
+    10. Generate an API key and configure Appwrite SDK in your project.
 
-5. Configure environment variables for Appwrite:
+5. Set up TinyMCE:
+    1. Simply create an account on [TinyMCE website](https://www.tiny.cloud/).
+    2. Get your API key.
+
+6. Configure environment variables for:
 
     Create a .env file in the root directory and replace the following with .env.sample 
 
@@ -60,13 +67,13 @@ Link :- https://techie-blogs.vercel.app/
     VITE_APPWRITE_DATABASE_ID = ""
     VITE_APPWRITE_COLLECTION_ID = ""
     VITE_APPWRITE_BUCKET_ID = ""
-    
-6. Start the application:
+    VITE_API_KEY = ""
+7. Start the application:
     
     ```bash
-    npm start
-
- 7. The app should now be running at http://localhost:3000 (or another specified port).
+    npm run dev
+    ```
+8. The app should now be running at http://localhost:5173 (or another specified port).
 
 ## Usage
 Once the app is running, you can:
