@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login as authLogin } from "../store/authSlice";
 import { Button, Input, Logo } from "./index";
@@ -21,7 +21,7 @@ function Login() {
           icon: "success",
           title: "Login Successful!",
           text: "Redirecting to the Dashboard page...",
-          timer: 3000, // Auto-close after 2 seconds
+          timer: 3000,
           showConfirmButton: false,
         });
 
@@ -30,7 +30,6 @@ function Login() {
         if (userData) {
           dispatch(authLogin(userData));
 
-          // Redirect to home page after showing SweetAlert
           setTimeout(() => {
             navigate("/");
           }, 2000);
@@ -83,17 +82,30 @@ function Login() {
               })}
             />
 
-            <Input
-              label="Password : "
-              type="password"
-              placeholder="Enter Your Password"
-              {...register("password", {
-                required: true,
-              })}
-            />
-            <Button type="submit" className="w-full">
-              Sign in
-            </Button>
+            <div className="space-y-2">
+              <Input
+                label="Password : "
+                type="password"
+                placeholder="Enter Your Password"
+                {...register("password", {
+                  required: true,
+                })}
+              />
+              <div className="text-right">
+                <Link
+                  to="/forgot-password"
+                  className="text-sm text-primary hover:underline"
+                >
+                  Forgot Password?
+                </Link>
+              </div>
+            </div>
+
+            <div className="mt-8">
+              <Button type="submit" className="w-full">
+                Sign in
+              </Button>
+            </div>
           </div>
         </form>
       </div>
