@@ -1,13 +1,13 @@
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import React, { lazy, Suspense } from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
-import { Provider } from 'react-redux'
-import store from './store/store.js'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import React, { lazy, Suspense } from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App.jsx';
+import './index.css';
+import { Provider } from 'react-redux';
+import store from './store/store.js';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
-// lazy loading
+// Lazy loading components
 const AuthLayout = lazy(() => import('./components/index.js').then(module => ({ default: module.AuthLayout })));
 const Login = lazy(() => import('./components/index.js').then(module => ({ default: module.Login })));
 const Error404 = lazy(() => import('./components/errors/Error404.jsx'));
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
                 ),
             },
             {
-                path: "/reset-password/:token",
+                path: "/reset-password",  // Updated path for Appwrite password reset
                 element: (
                     <AuthLayout authentication={false}>
                         <ResetPassword />
@@ -66,7 +66,6 @@ const router = createBrowserRouter([
                 path: "/all-posts",
                 element: (
                     <AuthLayout authentication>
-                        {" "}
                         <AllPosts />
                     </AuthLayout>
                 ),
@@ -75,7 +74,6 @@ const router = createBrowserRouter([
                 path: "/add-post",
                 element: (
                     <AuthLayout authentication>
-                        {" "}
                         <AddPost />
                     </AuthLayout>
                 ),
@@ -84,7 +82,6 @@ const router = createBrowserRouter([
                 path: "/edit-post/:slug",
                 element: (
                     <AuthLayout authentication>
-                        {" "}
                         <EditPost />
                     </AuthLayout>
                 ),
@@ -94,7 +91,7 @@ const router = createBrowserRouter([
                 element: <Post />,
             },
             {
-                path: "search/:slug",
+                path: "/search/:slug",
                 element: <SearchedBlogs />,
             },
             {
@@ -103,7 +100,7 @@ const router = createBrowserRouter([
             }
         ],
     },
-])
+]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
@@ -113,4 +110,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             </Suspense>
         </Provider>
     </React.StrictMode>,
-)
+);
