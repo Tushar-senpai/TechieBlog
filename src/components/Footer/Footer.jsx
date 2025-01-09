@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Linkedin, Instagram, ArrowUp, Mail, MapPin, Phone } from 'lucide-react';
 import Logo from '../Logo';
+import ContributorsLink from '../contributors/contributorsLink';
 
 const Footer = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -54,6 +55,10 @@ const Footer = () => {
                   <Instagram className="w-5 h-5 text-gray-600 group-hover:text-[#E1306C]" />
                 </div>
               </a>
+            </div>
+            <div>
+              <h3 className="text-lg font-bold">Contributors</h3>
+              <ContributorsLink />
             </div>
           </div>
 
