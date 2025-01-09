@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import appwriteService from "../appwrite/config";
-import { Container , PostCard } from '../components'
+import { Container , PostCard , Testimonials } from '../components'
 import Loading from '../components/loaders/Loading.jsx'
 import { Link } from "react-router-dom";
 import LoginIcon from '@mui/icons-material/Login';
@@ -80,6 +80,7 @@ useEffect(() => {
             className="mx-auto w-full max-w-md animate-bounce-slow"
           />
         </div>
+        <Testimonials />
       </div>
     );
   }
@@ -105,6 +106,7 @@ useEffect(() => {
       )}
     </Container>
     </div>
+    
 
         <div className="mt-16 animate-fade-in-delayed">
           <h2 className="text-3xl font-bold text-gray-900">Join the Community</h2>
