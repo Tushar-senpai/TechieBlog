@@ -19,6 +19,7 @@
     "@tinymce/tinymce-react": "^5.1.1",
     "appwrite": "^16.0.2",
     "html-react-parser": "^5.1.18",
+    "lucide-react": "^0.469.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-error-boundary": "^5.0.0",
