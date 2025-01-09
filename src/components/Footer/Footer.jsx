@@ -36,22 +36,22 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               <a href="#" className="group">
-                <div className="bg-white p-2 rounded-lg shadow-md group-hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1">
-                  <Facebook className="w-5 h-5 text-gray-600 group-hover:text-[#1876f2]" />
+                <div className="bg-white p-2 rounded-lg shadow-md border border-black group-hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1">
+                  <Facebook className="w-5 h-5 text-gray-600 group-hover:text-[#1876f2] " />
                 </div>
               </a>
               <a href="#" className="group">
-                <div className="bg-white p-2 rounded-lg shadow-md group-hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1">
+                <div className="bg-white p-2 rounded-lg shadow-md border border-black group-hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1">
                   <Twitter className="w-5 h-5 text-gray-600 group-hover:text-[#0F1419]" />
                 </div>
               </a>
               <a href="#" className="group">
-                <div className="bg-white p-2 rounded-lg shadow-md group-hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1">
+                <div className="bg-white p-2 rounded-lg shadow-md border border-black group-hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1">
                   <Linkedin className="w-5 h-5 text-gray-600 group-hover:text-[#0077B5]" />
                 </div>
               </a>
               <a href="#" className="group">
-                <div className="bg-white p-2 rounded-lg shadow-md group-hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1">
+                <div className="bg-white p-2 rounded-lg shadow-md border border-black group-hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1">
                   <Instagram className="w-5 h-5 text-gray-600 group-hover:text-[#E1306C]" />
                 </div>
               </a>
