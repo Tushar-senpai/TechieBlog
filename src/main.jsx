@@ -20,6 +20,7 @@ const AllPosts = lazy(() => import('./pages/AllPosts.jsx'));
 const SearchedBlogs = lazy(() => import('./pages/SearchedBlogs.jsx'));
 const ForgotPassword = lazy(() => import('./components/ForgotPassword.jsx'));
 const ResetPassword = lazy(() => import('./components/ResetPassword.jsx'));
+const Contributors = lazy(() => import('./pages/Contributors.jsx'));
 
 const router = createBrowserRouter([
     {
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
             {
                 path: "/search/:slug",
                 element: <SearchedBlogs />,
+            },
+            {
+                path: "/contributors",
+                element: <Contributors />,
             },
             {
                 path: "*",
