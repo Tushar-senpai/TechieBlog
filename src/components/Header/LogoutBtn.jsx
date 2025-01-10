@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
 import authService from '../../appwrite/auth';
@@ -36,7 +35,9 @@ function LogoutBtn() {
 
     return (
         <button
-            className="inline-block px-6 py-2 duration-200 hover:bg-blue-100 rounded-full"
+            className="inline-block px-6 py-2 text-orange-600 dark:text-orange-400 font-semibold 
+            bg-yellow-100 dark:bg-gray-800 hover:bg-orange-200 dark:hover:bg-gray-700 
+            rounded-full shadow-md hover:scale-105"
             onClick={logoutHandler}
         >
             Logout

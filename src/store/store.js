@@ -1,10 +1,12 @@
-import {configureStore} from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import authSlice from './authSlice'
+import themeSlice from './themeSlice'
 
 const store = configureStore({
-    reducer:{
-       auth : authSlice,
-    }
+  reducer: {
+    auth: authSlice,
+    theme: themeSlice
+  }
 });
 // Get the button element
 const scrollToTopButton = document.getElementById("scrollToTop");

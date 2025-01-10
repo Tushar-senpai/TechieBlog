@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getContributors } from '../components/contributors/contribution.js';
 import { useWindowSize } from 'react-use';
 import Confetti from 'react-confetti';
@@ -10,7 +10,7 @@ function Contributors() {
 
     const getData = async () => {
         const res = await getContributors({});
-        if(res) {
+        if (res) {
             setData(res);
         }
     }
@@ -24,7 +24,7 @@ function Contributors() {
     }, []);
 
     return (
-        <div className="container mx-auto px-4 py-8 bg-gradient-to-b from-orange-50 to-red-100 min-h-screen relative">
+        <div className="container mx-auto px-4 py-8 bg-gradient-to-b from-orange-50 to-red-100 dark:bg-gradient-to-r dark:from-gray-800 dark:via-gray-900 dark:to-black min-h-screen relative transition-colors duration-300">
             {showConfetti && (
                 <Confetti
                     width={width}

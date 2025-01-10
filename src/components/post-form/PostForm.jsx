@@ -81,7 +81,8 @@ export default function PostForm({ post }) {
     return (
         <div>
             <div className="max-w-4xl mx-auto">
-                <div className="p-6 bg-white rounded-xl shadow-xl border border-gray-200 transition-all duration-300 hover:shadow-2xl shadow-orange-500/20">
+                <div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 
+        transition-all duration-300 hover:shadow-2xl shadow-orange-500/20 dark:shadow-orange-400/10">
                     <h1 className="text-4xl font-extrabold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent mb-10 text-center">
                         Add Your Post Here
                     </h1>
@@ -90,35 +91,59 @@ export default function PostForm({ post }) {
                             <Input
                                 label="Title"
                                 placeholder="Enter your post title"
-                                className="mb-4 p-4 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all hover:border-orange-300 backdrop-blur-sm bg-white/70 shadow-sm text-gray-900"
+                                className="mb-4 p-4 w-full border border-gray-300 dark:border-gray-600 rounded-lg 
+                        focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all 
+                        hover:border-orange-300 backdrop-blur-sm bg-white/70 dark:bg-gray-800/70 
+                        shadow-sm text-gray-900 dark:text-gray-100"
                                 {...register("title", { required: true })}
                             />
                             <Input
                                 label="Slug"
                                 placeholder="Enter post slug"
-                                className="mb-4 p-4 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all hover:border-orange-300 backdrop-blur-sm bg-white/70 shadow-sm text-gray-900"
+                                className="mb-4 p-4 w-full border border-gray-300 dark:border-gray-600 rounded-lg 
+                        focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all 
+                        hover:border-orange-300 backdrop-blur-sm bg-white/70 dark:bg-gray-800/70 
+                        shadow-sm text-gray-900 dark:text-gray-100"
                                 {...register("slug", { required: true })}
                                 onInput={(e) => {
                                     setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true })
                                 }}
                             />
                             <div className="space-y-2">
-                                <label className="block text-sm font-medium text-gray-700">Content</label>
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors duration-300">
+                                    Content
+                                </label>
                                 <RTE
                                     label=""
                                     name="content"
                                     control={control}
                                     defaultValue={getValues("content")}
-                                    className="border border-gray-300 rounded-lg shadow-sm hover:shadow-md transition-all backdrop-blur-sm bg-white/70 text-gray-900"
+                                    className="border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm 
+        hover:shadow-md transition-all backdrop-blur-sm bg-white/70 dark:bg-gray-800/70 
+        text-gray-900 dark:text-gray-100 
+        hover:border-orange-300 dark:hover:border-orange-500
+        focus:ring-2 focus:ring-orange-500 dark:focus:ring-orange-400
+        focus:border-transparent transition-colors duration-300"
                                 />
                             </div>
                         </div>
                         <div className="w-full space-y-6">
                             <div className="space-y-2 group">
-                                <label className="block text-sm font-medium text-gray-700">Featured Image</label>
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors duration-300">
+                                    Featured Image
+                                </label>
                                 <Input
                                     type="file"
-                                    className="mb-4 p-3 w-full border border-gray-300 rounded-lg file:mr-4 file:py-2.5 file:px-4 file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-orange-700 hover:file:bg-orange-100 file:transition-colors file:cursor-pointer group-hover:border-orange-300 backdrop-blur-sm bg-white/70 shadow-sm"
+                                    className="mb-4 p-3 w-full border border-gray-300 dark:border-gray-600 rounded-lg 
+        file:mr-4 file:py-2.5 file:px-4 file:border-0 file:text-sm file:font-semibold 
+        file:bg-orange-50 dark:file:bg-gray-700 
+        file:text-orange-700 dark:file:text-orange-400 
+        hover:file:bg-orange-100 dark:hover:file:bg-gray-600
+        file:transition-colors file:cursor-pointer 
+        group-hover:border-orange-300 dark:group-hover:border-orange-500 
+        backdrop-blur-sm bg-white/70 dark:bg-gray-800/70 
+        text-gray-900 dark:text-gray-100 
+        transition-all duration-300"
                                     accept="image/png, image/jpg, image/jpeg, image/gif"
                                     {...register("image", { required: !post })}
                                 />
@@ -133,18 +158,26 @@ export default function PostForm({ post }) {
                                 </div>
                             )}
                             <div className="space-y-2">
-                                <label className="block text-sm font-medium text-gray-700">Status</label>
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Status</label>
                                 <Select
                                     options={["active", "inactive"]}
                                     label="Status"
-                                    className="mb-4 p-4 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent hover:border-orange-300 transition-all backdrop-blur-sm bg-white/70 shadow-sm text-gray-900"
+                                    className="mb-4 p-4 w-full border border-gray-300 dark:border-gray-600 
+        rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent 
+        hover:border-orange-300 transition-all backdrop-blur-sm 
+        bg-white/70 dark:bg-gray-800/70 shadow-sm 
+        text-gray-900 dark:text-gray-100"
                                     {...register("status", { required: true })}
                                 />
                             </div>
                             <Button
                                 type="submit"
-                                bgColor={post ? "bg-green-500" : "bg-orange-500"}
-                                className="w-full py-4 px-6 rounded-lg text-white font-semibold text-lg hover:opacity-90 hover:shadow-lg active:scale-98 transition-all backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+                                bgColor={post ? "bg-green-500 dark:bg-green-600" : "bg-orange-500 dark:bg-orange-600"}
+                                className="w-full py-4 px-6 rounded-lg text-white font-semibold text-lg 
+    hover:opacity-90 hover:shadow-lg active:scale-98 transition-all 
+    backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-offset-2 
+    focus:ring-orange-500 dark:focus:ring-orange-400 
+    dark:focus:ring-offset-gray-900"
                             >
                                 {loading ? (
                                     <div className="flex items-center justify-center gap-3">
