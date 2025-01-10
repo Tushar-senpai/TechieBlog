@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Container, LogoutBtn } from "../index";
+
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -45,8 +46,7 @@ function Header() {
     },
   ];
 
-  const handleNavigation = (slug) => {
-    navigate(slug);
+  const handleNavigation = () => {
     setIsMenuOpen(false);
   };
 
@@ -77,6 +77,7 @@ function Header() {
                   </button>
                 </li>
               ) : null
+
             )}
             <li className="animate-fade-in-delayed">
               <button
@@ -107,18 +108,24 @@ function Header() {
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="mt-4 py-2">
-              <ul className="mt-4 space-y-2 text-lg flex flex-col items-center">
-                {navItems.map((item) =>
-                  item.active ? (
-                    <li key={item.name}>
-                      <button
-                        className="w-full text-left px-6 py-2 text-orange-600 font-semibold hover:bg-orange-200 rounded-lg transition-colors"
-                        onClick={() => handleNavigation(item.slug)}
-                      >
-                        {item.name}
-                      </button>
-                    </li>
-                  ) : null
+              <ul className="mt-4 space-y-6 text-lg flex flex-col items-center">
+                {navItems.map(
+                  (item) =>
+                    item.active && (
+                      <li key={item.name}>
+                        <NavLink
+                          className={({ isActive }) =>
+                            `${
+                              isActive && "bg-orange-300"
+                            } w-full text-left px-6 py-2 text-orange-800 font-semibold hover:bg-orange-200 rounded-lg transition-colors`
+                          }
+                          to={item.slug}
+                          onClick={() => handleNavigation()}
+                        >
+                          {item.name}
+                        </NavLink>
+                      </li>
+                    )
                 )}
                 {authStatus && (
                   <li className="pt-2 border-t border-orange-200 text-red-500 font-semibold">
