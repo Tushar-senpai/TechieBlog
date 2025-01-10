@@ -58,7 +58,7 @@ const Footer = () => {
             </div>
             <div>
               <h3 className="text-lg font-bold">Contributors</h3>
-              <ContributorsLink />
+              <ContributorsLink w={10} />
             </div>
           </div>
 
