@@ -56,10 +56,6 @@ const Footer = () => {
                 </div>
               </a>
             </div>
-            <div>
-              <h3 className="text-lg font-bold">Contributors</h3>
-              <ContributorsLink />
-            </div>
           </div>
 
           {/* Quick Links Section */}
@@ -115,6 +111,10 @@ const Footer = () => {
                 <span>support@techieblog.com</span>
               </li>
             </ul>
+            <div className='mt-3'>
+              <h3 className="text-lg font-bold">Contributors</h3>
+              <ContributorsLink classes="w-10 h-10" />
+            </div>
           </div>
         </div>
 
