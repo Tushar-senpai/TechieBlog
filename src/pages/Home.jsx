@@ -84,9 +84,9 @@ function Home() {
         <Testimonials />
         <section className="mb-10">
           <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">Meet the Contributors</h2>
-          <p className="text-gray-700 mt-2 mb-6">Meet the brilliant minds who brought this project to life!</p>
-          <div className="hidden md:block"><ContributorsLink w={20} /></div>
-          <div className="block md:hidden"><ContributorsLink w={12} /></div>
+          <p className="text-gray-700 mt-2 mb-6 mx-6">Meet the brilliant minds who brought this project to life!</p>
+          <div className="hidden md:block"><ContributorsLink classes="w-20 h-20" /></div>
+          <div className="block md:hidden"><ContributorsLink classes="w-12 h-12" /></div>
         </section>
       </div>
     );
