@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import LoginIcon from '@mui/icons-material/Login';
 import ContributorsLink from "../components/contributors/contributorsLink.jsx";
 // import { getPostsFromDatabase } from '../appwrite/config.js';
+import img from '../assets/tech-blog-illustration.png'
 function Home() {
   const [posts, setPosts] = useState([]);
   const [loading ,setLoading] = useState(true)
@@ -76,7 +77,7 @@ function Home() {
 
         <div className="mt-12 animate-fade-in-delayed">
           <img
-            src="/src/assets/tech-blog-illustration.png"
+            src={img}
             alt="Tech Blog Illustration"
             className="mx-auto w-full max-w-md animate-bounce-slow"
           />
