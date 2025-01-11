@@ -27,14 +27,14 @@ const Footer = () => {
   return (
     <footer className="relative bg-gradient-to-r from-yellow-200 via-orange-200 to-red-200">
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 text-center md:text-left">
           {/* Brand Section */}
           <div className="space-y-6">
             <Logo />
             <p className="text-gray-600">
               Empowering developers and tech enthusiasts with the latest insights and knowledge.
             </p>
-            <div className="flex space-x-4">
+            <div className="flex justify-center md:justify-start space-x-4">
               <a href="#" className="group">
                 <div className="bg-white p-2 rounded-lg shadow-md border border-black group-hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1">
                   <Facebook className="w-5 h-5 text-gray-600 group-hover:text-[#1876f2]" />
@@ -106,15 +106,15 @@ const Footer = () => {
           <div className="space-y-6">
             <h3 className="text-lg font-bold">Contact Info</h3>
             <ul className="space-y-4">
-              <li className="flex items-center space-x-3 text-gray-600">
+              <li className="flex items-center justify-center md:justify-start space-x-3 text-gray-600">
                 <MapPin className="w-5 h-5 text-blue-500" />
                 <span>123 Tech Street, Digital City</span>
               </li>
-              <li className="flex items-center space-x-3 text-gray-600">
+              <li className="flex items-center justify-center md:justify-start space-x-3 text-gray-600">
                 <Phone className="w-5 h-5 text-blue-500" />
                 <span>+1 (555) 123-4567</span>
               </li>
-              <li className="flex items-center space-x-3 text-gray-600">
+              <li className="flex items-center justify-center md:justify-start space-x-3 text-gray-600">
                 <Mail className="w-5 h-5 text-blue-500" />
                 <span><a href="mailto:support@techieblog.com" className="hover:underline">support@techieblog.com</a></span>
               </li>
