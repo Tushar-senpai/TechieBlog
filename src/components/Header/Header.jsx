@@ -1,22 +1,14 @@
 import { useState } from "react";
 import { Container, LogoutBtn } from "../index";
-
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { toggleTheme } from "../../store/themeSlice";
+import { Link, NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Logo from "../Logo";
 import Searchbar from "./Searchbar.jsx";
-import MenuIcon from '@mui/icons-material/Menu';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
+import MenuIcon from "@mui/icons-material/Menu";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const authStatus = useSelector((state) => state.auth.status);
-  const navigate = useNavigate();
-  const darkMode = useSelector((state) => state.theme.darkMode);
-  const dispatch = useDispatch();
 
   const navItems = [
     {
@@ -51,7 +43,7 @@ function Header() {
   };
 
   return (
-    <header className="py-3 shadow bg-gradient-to-r from-yellow-100 via-orange-100 to-red-100 dark:bg-gradient-to-r dark:from-gray-800 dark:via-gray-900 dark:to-black transition duration-300 animate-slide-down">
+    <header className="py-3 shadow bg-gradient-to-r from-yellow-100 via-orange-100 to-red-100 transition duration-300 animate-slide-down">
       <Container>
         <nav className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
@@ -66,27 +58,24 @@ function Header() {
 
           {/* Desktop Navigation */}
           <ul className="hidden md:flex ml-auto space-x-4">
-            {navItems.map((item) =>
-              item.active ? (
-                <li key={item.name} className="animate-fade-in-delayed">
-                  <button
-                    className="inline-block px-6 py-2 text-orange-600 dark:text-orange-400 font-semibold bg-yellow-100 dark:bg-gray-800 hover:bg-orange-200 dark:hover:bg-gray-700 rounded-full shadow-md transition-transform duration-300 hover:scale-105"
-                    onClick={() => handleNavigation(item.slug)}
-                  >
-                    {item.name}
-                  </button>
-                </li>
-              ) : null
-
+            {navItems.map(
+              (item) =>
+                item.active && (
+                  <li key={item.name} className="animate-fade-in-delayed">
+                    <NavLink
+                      className={({ isActive }) =>
+                        `${
+                          isActive && "bg-yellow-100 shadow-md"
+                        } inline-block px-6 py-2 text-orange-600 font-semibold  hover:bg-orange-200 rounded-full transition-transform duration-300 hover:scale-105`
+                      }
+                      to={item.slug}
+                      onClick={() => handleNavigation()}
+                    >
+                      {item.name}
+                    </NavLink>
+                  </li>
+                )
             )}
-            <li className="animate-fade-in-delayed">
-              <button
-                onClick={() => dispatch(toggleTheme())}
-                className="inline-block px-6 py-2 text-orange-600 dark:text-orange-400 font-semibold bg-yellow-100 dark:bg-gray-800 hover:bg-orange-200 dark:hover:bg-gray-700 rounded-full shadow-md transition-transform duration-300 hover:scale-105"
-              >
-                {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
-              </button>
-            </li>
             {authStatus && (
               <li className="animate-fade-in-delayed">
                 <LogoutBtn />

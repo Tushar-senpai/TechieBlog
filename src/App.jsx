@@ -1,5 +1,5 @@
-import { Suspense, useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { Suspense, useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import './App.css'
 import authService from './appwrite/auth'
 import { login, logout } from './store/authSlice'
@@ -13,7 +13,6 @@ function App() {
 
   const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
-  const darkMode = useSelector((state) => state.theme.darkMode)
 
   useEffect(() => {
     authService.getCurrentUser()
@@ -27,18 +26,10 @@ function App() {
       .finally(() => setLoading(false))
   }, [])
 
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-  }, [darkMode]);
-
   return (
     <ErrorBoundary fallback={<SomethingWentWrong />}>
       {!loading ? (
-        <div className='min-h-screen flex flex-wrap content-between bg-gradient-to-b from-yellow-50 via-orange-50 to-red-50 dark:bg-gradient-to-r dark:from-gray-800 dark:via-gray-900 dark:to-black text-gray-900 dark:text-gray-100 transition-colors duration-300'>
+        <div className='min-h-screen flex flex-wrap content-between bg-white'>
           <div className='w-full flex flex-col min-h-screen'>
             <Header />
             <main className='flex-grow'>
