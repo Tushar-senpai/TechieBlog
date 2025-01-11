@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Linkedin, Instagram, ArrowUp, Mail, MapPin, Phone } from 'lucide-react';
+import { Facebook, Linkedin, Instagram, ArrowUp, Mail, MapPin, Phone } from 'lucide-react';
 import Logo from '../Logo';
 import ContributorsLink from '../contributors/contributorsLink';
 
@@ -37,12 +37,20 @@ const Footer = () => {
             <div className="flex space-x-4">
               <a href="#" className="group">
                 <div className="bg-white p-2 rounded-lg shadow-md border border-black group-hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1">
-                  <Facebook className="w-5 h-5 text-gray-600 group-hover:text-[#1876f2] " />
+                  <Facebook className="w-5 h-5 text-gray-600 group-hover:text-[#1876f2]" />
                 </div>
               </a>
               <a href="#" className="group">
                 <div className="bg-white p-2 rounded-lg shadow-md border border-black group-hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1">
-                  <Twitter className="w-5 h-5 text-gray-600 group-hover:text-[#0F1419]" />
+                  {/* Updated Twitter (X) Icon */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-5 h-5 text-gray-600 group-hover:text-[#0F1419]"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
                 </div>
               </a>
               <a href="#" className="group">
@@ -111,7 +119,7 @@ const Footer = () => {
                 <span>support@techieblog.com</span>
               </li>
             </ul>
-            <div className='mt-3'>
+            <div className="mt-3">
               <h3 className="text-lg font-bold">Contributors</h3>
               <ContributorsLink classes="w-10 h-10" />
             </div>
