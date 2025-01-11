@@ -1,21 +1,22 @@
 import React, { useId } from "react";
 
-const Input = React.forwardRef(function Input({
-    label,
-    type = "text",
-    className = "",
-    ...props
-}, ref) {
-
-    const id = useId()
+const Input = React.forwardRef(function Input(
+  { label, type = "text", className = "", ...props },
+  ref
+) {
+  const id = useId();
 
   return (
     <div className="w-full">
       {label && (
         <label
-          className="inline-block mb-1"
+          className="inline-block mb-1 text-left"
           htmlFor={id}
-          style={{ paddingLeft: '0px', marginRight: '350px', display: 'inline-block', textAlign: 'left' }} 
+          style={{
+            paddingLeft: "0px",
+            marginBottom: "4px",
+            display: "block",
+          }}
         >
           {label}
         </label>
@@ -28,7 +29,7 @@ const Input = React.forwardRef(function Input({
         id={id}
       />
     </div>
-  )
+  );
 });
 
 export default Input;
