@@ -84,6 +84,19 @@ export class AuthService{
             throw error;
         }
     }
+    
+    async changePassword(oldPassword, newPassword) {
+        try {
+            return this.account.updatePassword(
+                newPassword, 
+                oldPassword
+            );
+        } catch (error) {
+            console.log("Appwrite service :: changePassword :: error", error);
+            throw error;
+            
+        }
+    }
 }
 
 const authService = new AuthService();

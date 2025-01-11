@@ -21,6 +21,8 @@ const SearchedBlogs = lazy(() => import('./pages/SearchedBlogs.jsx'));
 const ForgotPassword = lazy(() => import('./components/ForgotPassword.jsx'));
 const ResetPassword = lazy(() => import('./components/ResetPassword.jsx'));
 const Contributors = lazy(() => import('./pages/Contributors.jsx'));
+const Settings = lazy(() => import('./pages/Settings.jsx'));
+const ChangePassword = lazy(() => import('./pages/ChangePassword.jsx'));
 
 const router = createBrowserRouter([
     {
@@ -86,6 +88,20 @@ const router = createBrowserRouter([
                         <EditPost />
                     </AuthLayout>
                 ),
+            }, {
+                path: "/settings",
+                element: (
+                    <AuthLayout authentication>
+                        <Settings />
+                    </AuthLayout>
+                )
+            }, {
+                path: "/change-password",
+                element: (
+                    <AuthLayout authentication>
+                        <ChangePassword />
+                    </AuthLayout>
+                )
             },
             {
                 path: "/post/:slug",

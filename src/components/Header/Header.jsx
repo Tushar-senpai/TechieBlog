@@ -5,10 +5,13 @@ import { useSelector } from "react-redux";
 import Logo from "../Logo";
 import Searchbar from "./Searchbar.jsx";
 import MenuIcon from "@mui/icons-material/Menu";
+import BasicMenu from "./Menu.jsx";
+import { Avatar } from "@mui/material";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const authStatus = useSelector((state) => state.auth.status);
+  const username = useSelector((state) => state.auth.userData);
 
   const navItems = [
     {
@@ -77,9 +80,7 @@ function Header() {
                 )
             )}
             {authStatus && (
-              <li className="animate-fade-in-delayed">
-                <LogoutBtn />
-              </li>
+              <BasicMenu />
             )}
           </ul>
 
@@ -89,7 +90,21 @@ function Header() {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
-            <MenuIcon fontSize="large" className="text-orange-600" />
+            {authStatus ? (
+              <Avatar
+              sx={{
+                bgcolor: "#ea580c",
+                transition: "transform 0.2s",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                },
+              }}
+            >
+              {username.name.charAt(0).toUpperCase()}
+            </Avatar>
+            ) : (
+              <MenuIcon fontSize="large" className="text-orange-600" />
+            )}
           </button>
         </nav>
 
@@ -117,9 +132,16 @@ function Header() {
                     )
                 )}
                 {authStatus && (
-                  <li className="pt-2 border-t border-orange-200 text-red-500 font-semibold">
-                    <LogoutBtn />
-                  </li>
+                  <div>
+                    <NavLink to={'/settings'} onClick={() => handleNavigation()}>
+                      <li className="w-full text-left px-6 py-2 text-orange-800 font-semibold hover:bg-orange-200 rounded-lg transition-colors">
+                        Settings
+                      </li>
+                    </NavLink>
+                    <li className="pt-2 border-t border-orange-200 text-red-500 font-semibold">
+                      <LogoutBtn />
+                    </li>
+                  </div>
                 )}
               </ul>
             </div>
