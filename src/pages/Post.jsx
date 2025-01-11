@@ -56,36 +56,40 @@ export default function Post() {
     <div className="py-4">
       <Container>
         {post ? (
-          <div className="w-full overflow-hidden rounded-xl border bg-white shadow-sm transition-all hover:shadow-lg">
+          <div className="w-full overflow-hidden rounded-xl border bg-white dark:bg-gradient-to-r dark:from-gray-800 dark:via-gray-900 dark:to-black shadow-sm transition-all hover:shadow-lg">
             <div className="flex flex-col lg:flex-row">
               <div className="lg:w-2/5">
                 <img
                   src={appwriteService.getFilePreview(post.featuredImage)}
                   alt={post.title}
-                  className="h-[300px] w-full object-cover lg:h-full"
+                  className="h-[300px] w-full object-cover lg:h-full rounded-lg aspect-video"
                 />
               </div>
 
               <div className="flex-1 p-6 lg:p-8 flex flex-col">
                 <div className="flex-1">
-                  <h1 className="text-2xl font-bold tracking-tight text-gray-900 lg:text-3xl mb-4">
+                  <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
                     {post.title}
                   </h1>
-                  <div className="prose prose-gray max-w-none">
+                  <div className="browser-css text-gray-700 dark:text-gray-300">
                     {parse(post.content)}
-                  </div> 
+                  </div>
                 </div>
 
                 {isAuthor && (
                   <div className="mt-8 flex items-center justify-center gap-4 pt-4 border-t">
                     <Link to={`/edit-post/${post.$id}`}>
-                      <button className="px-6 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition-colors">
+                      <button className="px-6 py-2 bg-green-500 dark:bg-green-600 text-white 
+                      rounded-lg hover:bg-green-600 dark:hover:bg-green-700 
+                      transition-colors duration-300">
                         Edit
                       </button>
                     </Link>
                     <button
                       onClick={deletePost}
-                      className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                      className="px-6 py-2 bg-red-500 dark:bg-red-600 text-white 
+                      rounded-lg hover:bg-red-600 dark:hover:bg-red-700 
+                      transition-colors duration-300"
                     >
                       Delete
                     </button>
