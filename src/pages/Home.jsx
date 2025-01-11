@@ -76,7 +76,7 @@ function Home() {
 
         <div className="mt-12 animate-fade-in-delayed">
           <img
-            src="/assets/tech-blog-illustration.svg"
+            src="/src/assets/tech-blog-illustration.png"
             alt="Tech Blog Illustration"
             className="mx-auto w-full max-w-md animate-bounce-slow"
           />
