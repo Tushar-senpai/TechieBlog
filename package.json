@@ -18,6 +18,8 @@
     "@reduxjs/toolkit": "^2.3.0",
     "@tinymce/tinymce-react": "^5.1.1",
     "appwrite": "^16.0.2",
+    "data-fns": "^1.1.0",
+    "date-fns": "^4.1.0",
     "html-react-parser": "^5.1.18",
     "lucide-react": "^0.469.0",
     "react": "^18.3.1",
