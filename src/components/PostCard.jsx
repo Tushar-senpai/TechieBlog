@@ -4,12 +4,25 @@ import { Link } from "react-router-dom";
 
 function PostCard({ $id, title, featuredImage }) {
   return (
-    <Link to={`/post/${$id}`}>
-      <div className="w-full bg-gray-100 rounded-xl p-4 min-h-60">
-        <div className="w-full justify-center mb-4">
-          <img src={appwriteService.getFilePreview(featuredImage)} alt={title} className="rounded-xl w-[18vw] h-[13vw]" />
+    <Link 
+      to={`/post/${$id}`} 
+      className="block transition-transform duration-300 hover:scale-105"
+    >
+      <div className="w-[300px] h-[250px]">
+      <div className="bg-white rounded-xl shadow-md overflow-hidden h-full">
+        <div className="aspect-video relative overflow-hidden">
+          <img 
+            src={appwriteService.getFilePreview(featuredImage)} 
+            alt={title} 
+            className="object-contain w-full h-full rounded-t-xl"
+          />
         </div>
-        <h2 className="text-xl font-bold absolute mb-4">{title}</h2>
+        <div className="p-4">
+          <h2 className="text-lg md:text-xl font-semibold line-clamp-2 text-gray-800 truncate">
+            {title}
+          </h2>
+        </div>
+      </div>
       </div>
     </Link>
   );
