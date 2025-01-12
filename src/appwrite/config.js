@@ -110,6 +110,22 @@ export class Service {
         }
     }
 
+    async getPostsByUser(userId) {
+        try {
+            return await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
+                [
+                    Query.equal("userId", userId),
+                    Query.orderDesc("$createdAt")
+                ]
+            )
+        } catch (error) {
+            console.log("Appwrite service : : getPostsByUser :: error ", error);
+            return false;
+        }
+    }
+
     //file upload
     async uploadFile(file) {
         try {

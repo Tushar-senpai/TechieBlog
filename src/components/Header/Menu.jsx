@@ -37,10 +37,12 @@ export default function BasicMenu() {
           </div>
           <div className="border-t border-gray-200"></div>
           <div>
-            <div className="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer" onClick={toggleMenu}>
-              <User size={18} className="mr-3" />
-              Profile
-            </div>
+            <Link to="/profile">
+              <div className="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer" onClick={toggleMenu}>
+                <User size={18} className="mr-3" />
+                Profile
+              </div>
+            </Link>
             <Link to="/settings">
               <div className="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer" onClick={toggleMenu}>
                 <Settings size={18} className="mr-3" />
