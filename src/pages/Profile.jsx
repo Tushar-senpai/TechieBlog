@@ -98,7 +98,7 @@ function Profile() {
                             blogs.map((post) => (
                                 <div 
                                     key={post.$id} 
-                                    className={`p-2 w-full md:w-1/2 lg:w-1/3 ${
+                                    className={`p-2 w-full md:w-1/2 lg:w-1/3 place-items-center ${
                                         post.status === 'inactive' ? "opacity-50" : ""
                                     }`}
                                 >
