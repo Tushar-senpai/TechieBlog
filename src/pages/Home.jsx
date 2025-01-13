@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import LoginIcon from '@mui/icons-material/Login';
 import ContributorsLink from "../components/contributors/contributorsLink.jsx";
 // import { getPostsFromDatabase } from '../appwrite/config.js';
+import img from '../assets/tech-blog-illustration.png'
 function Home() {
   const [posts, setPosts] = useState([]);
   const [loading ,setLoading] = useState(true)
@@ -76,7 +77,7 @@ function Home() {
 
         <div className="mt-12 animate-fade-in-delayed">
           <img
-            src="/assets/tech-blog-illustration.svg"
+            src={img}
             alt="Tech Blog Illustration"
             className="mx-auto w-full max-w-md animate-bounce-slow"
           />
@@ -103,9 +104,9 @@ function Home() {
       {loading ? (
         <Loading />
       ) : (
-        <div className='flex flex-wrap'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 place-items-center'>
           {posts.map((post) => (
-            <div key={post.$id} className='p-2 w-1/4'>
+            <div key={post.$id}>
               <PostCard {...post} />
             </div>
           ))}
