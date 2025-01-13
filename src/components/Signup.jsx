@@ -84,7 +84,8 @@ function Signup() {
         <form onSubmit={handleSubmit(create)} className="mt-8">
           <div className='space-y-5'>
             <Input
-              className="hover-input dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600"
+
+              className="hover-input focus:border-blue-500 focus:ring-2 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 focus:ring-blue-500 transition-all duration-300 transform hover:scale-105"
               label={<strong className="dark:text-gray-300">Full Name:</strong>}
               placeholder="Enter your full Name"
               {...register("name", {
@@ -92,7 +93,7 @@ function Signup() {
               })}
             />
             <Input
-              className="hover-input dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600"
+              className="hover-input focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 transition-all duration-300 transform hover:scale-105"
               label={<strong className="dark:text-gray-300">Email:</strong>}
               placeholder="Enter your email"
               type="email"
@@ -105,7 +106,7 @@ function Signup() {
               })}
             />
             <Input
-              className="hover-input dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600"
+              className="hover-input focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 transition-all duration-300 transform hover:scale-105"
               label={<strong className="dark:text-gray-300">Password:</strong>}
               type="password"
               placeholder="Enter Your Password"
