@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import './App.css'
 import authService from './appwrite/auth'
 import { login, logout } from './store/authSlice'
@@ -8,11 +8,13 @@ import { Outlet } from 'react-router-dom'
 import { ErrorBoundary } from 'react-error-boundary'
 import SomethingWentWrong from './components/errors/SomethingWentWrong.jsx'
 import Loading from './components/loaders/Loading.jsx'
+import MobileNavbar from './components/Header/MobileNavbar.jsx'
 
 function App() {
 
   const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
+  const authStatus = useSelector((state) => state.auth.status)
 
   useEffect(() => {
     authService.getCurrentUser()
@@ -40,6 +42,7 @@ function App() {
               </Suspense>
             </main>
             <Footer />
+            { authStatus && <MobileNavbar /> }
           </div>
         </div>
       ) : <Loading />}

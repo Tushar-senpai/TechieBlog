@@ -12,7 +12,7 @@ export default function BasicMenu() {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <div className="relative">
+    <div className="relative ml-3 md:ml-0">
       <button
         onClick={toggleMenu}
         className="p-0 min-w-auto"
