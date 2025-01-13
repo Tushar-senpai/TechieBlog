@@ -74,33 +74,23 @@ function Header() {
                   </li>
                 )
             )}
-            {authStatus && (
-              <BasicMenu />
-            )}
+            
           </ul>
 
+          {authStatus && (
+              <BasicMenu />
+          )}
+
           {/* Mobile Menu Button */}
-          <button
+          { !authStatus && (
+            <button
             className="md:hidden p-1 ml-2 rounded-lg transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
-            {authStatus ? (
-              <Avatar
-              sx={{
-                bgcolor: "#ea580c",
-                transition: "transform 0.2s",
-                "&:hover": {
-                  transform: "scale(1.05)",
-                },
-              }}
-            >
-              {username.name.charAt(0).toUpperCase()}
-            </Avatar>
-            ) : (
-              <MenuIcon fontSize="large" className="text-orange-600" />
-            )}
+            <MenuIcon fontSize="large" className="text-orange-600" />
           </button>
+          )}
         </nav>
 
         {/* Mobile Menu */}
@@ -125,18 +115,6 @@ function Header() {
                         </NavLink>
                       </li>
                     )
-                )}
-                {authStatus && (
-                  <div>
-                    <NavLink to={'/settings'} onClick={() => handleNavigation()}>
-                      <li className="w-full text-left px-6 py-2 text-orange-800 font-semibold hover:bg-orange-200 rounded-lg transition-colors">
-                        Settings
-                      </li>
-                    </NavLink>
-                    <li className="pt-2 border-t border-orange-200 text-red-500 font-semibold">
-                      <LogoutBtn />
-                    </li>
-                  </div>
                 )}
               </ul>
             </div>
