@@ -84,7 +84,7 @@ function Signup() {
         >
           <div className='space-y-5'>
             <Input
-              className="hover-input"
+              className="hover-input focus:border-blue-500 focus:ring-2 focus:ring-blue-500 transition-all duration-300 transform hover:scale-105"
               label={<strong>Full Name:</strong>}
               placeholder="Enter your full Name"
               {...register("name", {
@@ -92,7 +92,7 @@ function Signup() {
               })}
             />
             <Input
-              className="hover-input"
+              className="hover-input focus:border-blue-500 focus:ring-2 focus:ring-blue-500 transition-all duration-300 transform hover:scale-105"
               label={<strong>Email:</strong>}
               placeholder="Enter your email"
               type="email"
@@ -104,7 +104,7 @@ function Signup() {
               })}
             />
             <Input
-              className="hover-input"
+              className="hover-input focus:border-blue-500 focus:ring-2 focus:ring-blue-500 transition-all duration-300 transform hover:scale-105"
               label={<strong>Password:</strong>}
               type="password"
               placeholder="Enter Your Password "
