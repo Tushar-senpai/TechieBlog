@@ -37,54 +37,78 @@ const Testimonials = () => {
   const handleMouseLeave = () => setIsHovered(false);
 
   return (
-    <section className="py-16 bg-gradient-to-r from-yellow-50 via-orange-50 to-pink-50">
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-16 bg-gradient-to-r from-yellow-50 via-orange-50 to-pink-50 dark:from-gray-800 dark:via-gray-900 dark:to-black">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-4">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl mb-4">
             What Our Readers Say
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-gray-600 dark:text-gray-400">
             Join thousands of tech enthusiasts who trust TechieBlog for their daily dose of tech insights
           </p>
         </div>
-
-        <Carousel
-          showArrows={true}
-          autoPlay={!isHovered}
-          infiniteLoop={true}
-          showThumbs={false}
-        >
-          {testimonials.map((testimonial) => (
-            <div
-              key={testimonial.id}
-              className="testimonial-card"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className="testimonial-inner">
-                <div className="testimonial-front">
-                  <img src={testimonial.image} alt={testimonial.name} className="w-44 h-44 rounded-full mx-auto" />
-                  <h4 className="font-semibold text-2xl text-gray-900 mt-10 text-center">{testimonial.name}</h4>
-                  <p className="text-gray-500">{testimonial.role}</p>
+    <div className="w-full max-w-6xl mx-auto px-4">
+      <Carousel
+        showArrows={true}
+        autoPlay={!isHovered}
+        infiniteLoop={true}
+        showThumbs={false}
+        showStatus={false}
+        className="dark:bg-gray-900"
+      >
+        {testimonials.map((testimonial) => (
+          <div
+            key={testimonial.id}
+            className="p-8"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div className="backdrop-blur-sm bg-white/70 dark:bg-gray-800/70 p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                {/* Left side - Image and basic info */}
+                <div className="text-center">
+                  {testimonial.image ? (
+                    <img 
+                      src={testimonial.image} 
+                      alt={testimonial.name} 
+                      className="w-44 h-44 rounded-full mx-auto object-cover"
+                    />
+                  ) : (
+                    <UserCircle className="w-44 h-44 text-gray-400 dark:text-gray-500 mx-auto" />
+                  )}
+                  <h4 className="font-semibold text-2xl text-gray-900 dark:text-gray-100 mt-4">
+                    {testimonial.name}
+                  </h4>
+                  <p className="text-gray-500 dark:text-gray-400">{testimonial.role}</p>
                   <div className="flex justify-center mt-2">
                     {[...Array(testimonial.rating)].map((_, index) => (
-                      <svg key={index} className="w-6 h-6 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                      <svg
+                        key={index}
+                        className="w-6 h-6 text-orange-500 dark:text-orange-400"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     ))}
                   </div>
                 </div>
-                <div className="testimonial-back">
+
+                {/* Right side - Quote and content */}
+                <div>
                   <div className="flex items-center mb-4">
-                    <Quote className="w-8 h-8 text-orange-500 mr-2" />
+                    <Quote className="w-8 h-8 text-orange-500 dark:text-orange-400 mr-2" />
                   </div>
-                  <p className="text-gray-600 mb-6 text-2xl">{testimonial.content}</p>
-                  
+                  <p className="text-gray-600 dark:text-gray-300 text-lg md:text-xl">
+                    "{testimonial.content}"
+                  </p>
                 </div>
               </div>
             </div>
-          ))}
-        </Carousel>
+          </div>
+        ))}
+      </Carousel>
+    </div>
       </div>
     </section>
   );
