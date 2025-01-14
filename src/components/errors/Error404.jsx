@@ -1,6 +1,4 @@
-import React from "react";
-
-const Error404 = () => {
+function Error404() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1c1b5a] via-[#0f122c] to-[#0f0d1f] text-white relative overflow-hidden">
       {/* Particles */}
