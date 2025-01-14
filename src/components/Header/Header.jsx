@@ -124,6 +124,14 @@ function Header() {
                       </li>
                     )
                 )}
+                <li className="animate-fade-in-delayed">
+                  <button
+                    onClick={() => dispatch(toggleTheme())}
+                    className="inline-block px-6 mr-3 py-2 text-orange-600 dark:text-orange-400 font-semibold bg-yellow-100 dark:bg-gray-800 hover:bg-orange-200 dark:hover:bg-gray-700 rounded-full shadow-md transition-transform duration-300 hover:scale-105"
+                  >
+                    {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
+                  </button>
+                </li>
               </ul>
             </div>
           </div>
