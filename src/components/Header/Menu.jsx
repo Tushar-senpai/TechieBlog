@@ -17,7 +17,7 @@ const ThemeToggle = () => {
         relative inline-flex items-center justify-center
         w-12 h-6 rounded-full transition-colors duration-200 ease-in-out
         focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2
-        ${isDarkMode ? "bg-gray-700" : "bg-orange-200"}
+        ${isDarkMode ? "bg-orange-700" : "bg-orange-200"}
       `}
       aria-label="Toggle theme"
     >
