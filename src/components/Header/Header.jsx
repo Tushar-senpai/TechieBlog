@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Container } from "../index";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { LogIn, UserPlus, Files, FileEdit, HelpCircle } from "lucide-react";
 import Logo from "../Logo";
 import Searchbar from "./Searchbar.jsx";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -21,26 +22,31 @@ function Header() {
       name: "Login",
       slug: "/login",
       active: !authStatus,
+      icon: LogIn,
     },
     {
       name: "Signup",
       slug: "/signup",
       active: !authStatus,
+      icon: UserPlus,
     },
     {
       name: "All Posts",
       slug: "/all-posts",
       active: authStatus,
+      icon: Files,
     },
     {
       name: "Add Post",
       slug: "/add-post",
       active: authStatus,
+      icon: FileEdit,
     },
     {
       name: "FAQ",
       slug: "/faq",
       active: true,
+      icon: HelpCircle,
     },
   ];
 
@@ -71,11 +77,12 @@ function Header() {
                     <NavLink
                       className={({ isActive }) =>
                         `${isActive && "bg-yellow-100 dark:bg-gray-800 shadow-md "
-                        } inline-block px-6 py-2 text-orange-600 font-semibold  hover:bg-orange-200 rounded-full transition-transform duration-300 hover:scale-105 dark:text-orange-400 dark:hover:bg-gray-700`
+                        } inline-flex items-center gap-2 px-6 py-2 text-orange-600 font-semibold hover:bg-orange-200 rounded-full transition-transform duration-300 hover:scale-105 dark:text-orange-400 dark:hover:bg-gray-700`
                       }
                       to={item.slug}
                       onClick={() => handleNavigation()}
                     >
+                      <item.icon size={20} />
                       {item.name}
                     </NavLink>
                   </li>
@@ -119,11 +126,12 @@ function Header() {
                         <NavLink
                           className={({ isActive }) =>
                             `${isActive && "bg-orange-300"
-                            } w-full text-left px-6 py-2 text-orange-800 font-semibold hover:bg-orange-200 rounded-lg transition-colors`
+                            } w-full inline-flex items-center gap-2 px-6 py-2 text-orange-800 font-semibold hover:bg-orange-200 rounded-lg transition-colors`
                           }
                           to={item.slug}
                           onClick={() => handleNavigation()}
                         >
+                          <item.icon size={20} />
                           {item.name}
                         </NavLink>
                       </li>
