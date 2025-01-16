@@ -92,3 +92,24 @@
 .testimonial-back {
   transform: rotateY(180deg);
 }
+
+.faq-page {
+  padding: 20px;
+}
+
+.faq-item {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.faq-item:hover {
+  background-color: rgba(255, 165, 0, 0.1); /* Light orange background on hover */
+}
+
+.faq-item h2 {
+  margin-bottom: 10px;
+}
+
+.faq-item p {
+  margin-top: 10px;
+}

@@ -37,6 +37,11 @@ function Header() {
       slug: "/add-post",
       active: authStatus,
     },
+    {
+      name: "FAQ",
+      slug: "/faq",
+      active: true,
+    },
   ];
 
   const handleNavigation = () => {
