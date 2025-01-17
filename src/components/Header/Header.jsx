@@ -76,7 +76,9 @@ function Header() {
                   <li key={item.name} className="animate-fade-in-delayed">
                     <NavLink
                       className={({ isActive }) =>
-                        `${isActive && "bg-yellow-100 dark:bg-gray-800 shadow-md "
+                        `${
+                          isActive &&
+                          "bg-yellow-100 dark:bg-gray-800 shadow-md "
                         } inline-flex items-center gap-2 px-6 py-2 text-orange-600 font-semibold hover:bg-orange-200 rounded-full transition-transform duration-300 hover:scale-105 dark:text-orange-400 dark:hover:bg-gray-700`
                       }
                       to={item.slug}
@@ -88,19 +90,19 @@ function Header() {
                   </li>
                 )
             )}
-            <li className="animate-fade-in-delayed">
-              <button
-                onClick={() => dispatch(toggleTheme())}
-                className="inline-block px-6 mr-3 py-2 text-orange-600 dark:text-orange-400 font-semibold bg-yellow-100 dark:bg-gray-800 hover:bg-orange-200 dark:hover:bg-gray-700 rounded-full shadow-md transition-transform duration-300 hover:scale-105"
-              >
-                {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
-              </button>
-            </li>
+            {!authStatus && (
+              <li className="animate-fade-in-delayed">
+                <button
+                  onClick={() => dispatch(toggleTheme())}
+                  className="inline-block px-6 mr-3 py-2 text-orange-600 dark:text-orange-400 font-semibold bg-yellow-100 dark:bg-gray-800 hover:bg-orange-200 dark:hover:bg-gray-700 rounded-full shadow-md transition-transform duration-300 hover:scale-105"
+                >
+                  {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
+                </button>
+              </li>
+            )}
           </ul>
 
-          {authStatus && (
-            <BasicMenu />
-          )}
+          {authStatus && <BasicMenu />}
 
           {/* Mobile Menu Button */}
           {!authStatus && (
@@ -125,7 +127,8 @@ function Header() {
                       <li key={item.name}>
                         <NavLink
                           className={({ isActive }) =>
-                            `${isActive && "bg-orange-300"
+                            `${
+                              isActive && "bg-orange-300"
                             } w-full inline-flex items-center gap-2 px-6 py-2 text-orange-800 font-semibold hover:bg-orange-200 rounded-lg transition-colors`
                           }
                           to={item.slug}
