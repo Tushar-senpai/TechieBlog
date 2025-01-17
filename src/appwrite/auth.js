@@ -1,5 +1,7 @@
 import conf from "../conf/conf";
 import {Client, Account, ID} from 'appwrite'
+const baseLink = 'http://localhost:5173';
+
 
 export class AuthService{
     client = new Client();
@@ -13,30 +15,94 @@ export class AuthService{
         this.account = new Account(this.client);
     }
 
-    async createAccount({email, password, name}){
+    async updateVerification({id, secret}) {
         try {
-          const userAccount = await this.account.create(ID.unique(), email, password, name);
-            
-            if(userAccount) {
-                //call another method
-                return this.login({email, password});
-                
-            }            
-            else{
-                return userAccount;
-            }
+            return await this.account.updateVerification(id, secret);
         } catch (error) {
             throw error;
         }
     }
 
-    async login({email, password}){
-        try {
-          return await this.account.createEmailPasswordSession(email, password);
-        } catch (error) {
+
+    async createSession({email, password}){
+        try{
+            console.log(password, email)
+            const session = await this.account.createEmailPasswordSession(email, password);
+            console.log(session);
+            return session;
+        }catch(error){
             throw error;
         }
     }
+
+    async createVerification(){
+        try{
+            const link = await this.account.createVerification(`${baseLink}/verify-email`)
+            return link;
+        }catch(error){
+            throw error;
+        }
+    }
+
+    async createAccount({email, password, name}) {
+        try {
+            // Create the account
+            
+            const userAccount = await this.account.create(ID.unique(),  email, password, name);
+            console.log(userAccount)
+            // Create a temporary session to send verification email
+            const session  = await this.account.createEmailPasswordSession(email, password);
+            console.log(session);
+
+            // Now create verification linkbefore verify-email
+            await this.account.createVerification(`${baseLink}/verify-email`);
+            // Delete the session after sending verification email
+            const del =             await this.account.deleteSessions();
+            console.log(del);
+            
+            return userAccount;
+        } catch (error) {
+            try {
+                await this.account.deleteSessions();
+            } catch (sessionError) {
+                console.log("Error cleaning up session:", sessionError);
+            }
+            throw error;
+        }
+    }
+
+    async login({email, password}) {
+        try {
+            // First create session
+            const session = await this.account.createEmailPasswordSession(email, password);
+            console.log(session);
+            // Get user details
+            const user = await this.account.get();
+            console.log(user);
+
+            // Check if email is verified
+            if (!user.emailVerification) {
+                // Delete the session since email isn't verified
+                await this.account.deleteSessions();
+                throw new Error('Please verify your email before logging in. Check your inbox for the verification link.');
+            }
+            
+            return user;
+        } catch (error) {
+            // Clean up any session if there was an error
+            try {
+                await this.account.deleteSessions();
+            } catch (sessionError) {
+                console.log("Error cleaning up session:", sessionError);
+            }
+
+            if (error.code === 401) {
+                throw new Error('Invalid email or password');
+            }
+            throw error;
+        }
+    }
+
 
     async getCurrentUser(){
         try {

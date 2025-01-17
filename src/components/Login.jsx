@@ -16,18 +16,18 @@ function Login() {
       const session = await authService.login(data);
 
       if (session) {
-        Swal.fire({
-          icon: "success",
-          title: "Login Successful!",
-          text: "Redirecting to the Dashboard page...",
-          timer: 3000,
-          showConfirmButton: false,
-        });
-
         const userData = await authService.getCurrentUser();
 
         if (userData) {
           dispatch(authLogin(userData));
+
+          Swal.fire({
+            icon: "success",
+            title: "Login Successful!",
+            text: "Redirecting to the Dashboard page...",
+            timer: 3000,
+            showConfirmButton: false,
+          });
 
           setTimeout(() => {
             navigate("/");
