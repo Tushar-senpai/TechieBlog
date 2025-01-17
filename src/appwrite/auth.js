@@ -1,6 +1,6 @@
 import conf from "../conf/conf";
 import {Client, Account, ID} from 'appwrite'
-const baseLink = 'http://localhost:5173/'
+const baseLink = import.meta.env.VITE_APPWRITE_URL
 
 
 export class AuthService{
