@@ -26,6 +26,9 @@ const Settings = lazy(() => import('./pages/Settings.jsx'));
 const ChangePassword = lazy(() => import('./pages/ChangePassword.jsx'));
 const Profile = lazy(() => import('./pages/Profile.jsx'));
 const FAQ = lazy(() => import('./components/FAQ.jsx'));
+const Terms = lazy(() => import('./components/Terms.jsx'));
+
+
 const router = createBrowserRouter([
     {
         path: "/",
@@ -131,7 +134,11 @@ const router = createBrowserRouter([
             {
                 path: "*",
                 element: <Error404 />,
-            }
+            },
+            {
+                path: "/terms",
+                element: <Terms />,
+            },
         ],
     },
 ]);
