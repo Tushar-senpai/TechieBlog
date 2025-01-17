@@ -2,7 +2,6 @@ import conf from "../conf/conf";
 import {Client, Account, ID} from 'appwrite'
 const baseLink = import.meta.env.VITE_APPWRITE_URL
 
-
 export class AuthService{
     client = new Client();
     account;
@@ -15,76 +14,18 @@ export class AuthService{
         this.account = new Account(this.client);
     }
 
-    async updateVerification({id, secret}) {
+    async createAccount({email, password, name}){
         try {
-            // Create a temporary anonymous session for verification
-            const anonymous = await this.account.createAnonymousSession();
+          const userAccount = await this.account.create(ID.unique(), email, password, name);
             
-            // Update verification
-            const verify = await this.account.updateVerification(id, secret);
-            
-            // Cleanup anonymous session
-            await this.account.deleteSession('current');
-            
-            return verify;
-        } catch (error) {
-            throw error;
-        }
-    }
-
-
-    async createSession({email, password}){
-        try{
-            console.log(password, email)
-            const session = await this.account.createEmailPasswordSession(email, password);
-            console.log(session);
-            return session;
-        }catch(error){
-            throw error;
-        }
-    }
-
-    async createVerification(){
-        try{
-            const link = await this.account.createVerification(`${baseLink}/verify-email`)
-            return link;
-        }catch(error){
-            throw error;
-        }
-    }
-
-    async createAccount({email, password, name}) {
-        try {
-            // Create the account
-            const userAccount = await this.account.create(ID.unique(), email, password, name);
-            
-            // Create a temporary session to handle verification
-            const session = await this.account.createEmailPasswordSession(email, password);
-            
-            // Create verification link with active session
-            const verificationLink = await this.account.createVerification(`${baseLink}verify-email`);
-            
-            // Delete the temporary session
-            await this.account.deleteSession('current');
-            
-            return userAccount;
-        } catch (error) {
-            throw error;
-        }
-    }
-
-    async login({email, password}) {
-        try {
-            // First check if the user is verified
-            const session = await this.account.createEmailPasswordSession(email, password);
-            const user = await this.account.get();
-            
-            if (!user.emailVerification) {
-                await this.account.deleteSessions(); // Logout if not verified
-                throw new Error('Please verify your email before logging in. Check your inbox for the verification link.');
+            if(userAccount) {
+                //call another method
+                return this.login({email, password});
+                
+            }            
+            else{
+                return userAccount;
             }
-            
-            return session;
         } catch (error) {
             throw error;
         }
