@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
 import authService from '../../appwrite/auth';
 import { logout } from '../../store/authSlice';
+import { LogOut } from 'lucide-react';
 // import { useNavigate } from 'react-router-dom';
 
 function LogoutBtn() {
@@ -36,10 +37,10 @@ function LogoutBtn() {
 
     return (
         <button
-            className="inline-block px-6 py-2 duration-200 rounded-full w-full font-semibold md:text-lg"
+            className="flex justify-center items-center gap-2 px-6 py-2 duration-200 rounded-full w-full font-semibold md:text-lg"
             onClick={logoutHandler}
         >
-            Logout
+            <span>Logout</span> <LogOut size={20} />
         </button>
     );
 }

@@ -25,7 +25,9 @@ const Contributors = lazy(() => import('./pages/Contributors.jsx'));
 const Settings = lazy(() => import('./pages/Settings.jsx'));
 const ChangePassword = lazy(() => import('./pages/ChangePassword.jsx'));
 const Profile = lazy(() => import('./pages/Profile.jsx'));
-const Verify = lazy(() => import('./pages/Verify.jsx'));
+const FAQ = lazy(() => import('./components/FAQ.jsx'));
+const Terms = lazy(() => import('./components/Terms.jsx'));
+
 
 const router = createBrowserRouter([
     {
@@ -49,14 +51,6 @@ const router = createBrowserRouter([
                 element: (
                     <AuthLayout authentication={false}>
                         <Signup />
-                    </AuthLayout>
-                ),
-            },
-            {
-                path: "/verify-email",
-                element:(
-                    <AuthLayout authentication={false}>
-                        <Verify />
                     </AuthLayout>
                 ),
             },
@@ -134,9 +128,17 @@ const router = createBrowserRouter([
                 element: <Contributors />,
             },
             {
+                path: "/faq",
+                element: <FAQ />,
+            },
+            {
                 path: "*",
                 element: <Error404 />,
-            }
+            },
+            {
+                path: "/terms",
+                element: <Terms />,
+            },
         ],
     },
 ]);
