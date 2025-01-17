@@ -1,6 +1,6 @@
 import conf from "../conf/conf";
 import {Client, Account, ID} from 'appwrite'
-const baseLink = 'http://localhost:5173/'
+const baseLink = 'http://localhost:5173';
 
 
 export class AuthService{
@@ -17,16 +17,7 @@ export class AuthService{
 
     async updateVerification({id, secret}) {
         try {
-            // Create a temporary anonymous session for verification
-            const anonymous = await this.account.createAnonymousSession();
-            
-            // Update verification
-            const verify = await this.account.updateVerification(id, secret);
-            
-            // Cleanup anonymous session
-            await this.account.deleteSession('current');
-            
-            return verify;
+            return await this.account.updateVerification(id, secret);
         } catch (error) {
             throw error;
         }
@@ -56,47 +47,62 @@ export class AuthService{
     async createAccount({email, password, name}) {
         try {
             // Create the account
-            const userAccount = await this.account.create(ID.unique(), email, password, name);
             
-            // Create a temporary session to handle verification
-            const session = await this.account.createEmailPasswordSession(email, password);
-            
-            // Create verification link with active session
-            const verificationLink = await this.account.createVerification(`${baseLink}verify-email`);
-            
-            // Delete the temporary session
-            await this.account.deleteSession('current');
+            const userAccount = await this.account.create(ID.unique(),  email, password, name);
+            console.log(userAccount)
+            // Create a temporary session to send verification email
+            const session  = await this.account.createEmailPasswordSession(email, password);
+            console.log(session);
+
+            // Now create verification linkbefore verify-email
+            await this.account.createVerification(`${baseLink}/verify-email`);
+            // Delete the session after sending verification email
+            const del =             await this.account.deleteSessions();
+            console.log(del);
             
             return userAccount;
         } catch (error) {
+            try {
+                await this.account.deleteSessions();
+            } catch (sessionError) {
+                console.log("Error cleaning up session:", sessionError);
+            }
             throw error;
         }
     }
 
     async login({email, password}) {
         try {
-            // First check if the user is verified
+            // First create session
             const session = await this.account.createEmailPasswordSession(email, password);
+            console.log(session);
+            // Get user details
             const user = await this.account.get();
-            
+            console.log(user);
+
+            // Check if email is verified
             if (!user.emailVerification) {
-                await this.account.deleteSessions(); // Logout if not verified
+                // Delete the session since email isn't verified
+                await this.account.deleteSessions();
                 throw new Error('Please verify your email before logging in. Check your inbox for the verification link.');
             }
             
-            return session;
+            return user;
         } catch (error) {
+            // Clean up any session if there was an error
+            try {
+                await this.account.deleteSessions();
+            } catch (sessionError) {
+                console.log("Error cleaning up session:", sessionError);
+            }
+
+            if (error.code === 401) {
+                throw new Error('Invalid email or password');
+            }
             throw error;
         }
     }
 
-    async login({email, password}){
-        try {
-          return await this.account.createEmailPasswordSession(email, password);
-        } catch (error) {
-            throw error;
-        }
-    }
 
     async getCurrentUser(){
         try {

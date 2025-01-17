@@ -17,38 +17,26 @@ function Signup() {
   const create = async (data) => {
     setError("")
     try {
-      // const userData = await authService.createAccount(data);
-      // const session = await authService.createSession(data.email, data.password);
-      // const link = await authService.createVerification();
-
-      const userAccount = await authService.createAccount(data)
-      const verificationLink = await authService.createVerification()
-      //   Swal.fire({
-      //     icon: "success",
-      //     title: "Registration Successful!",
-      //     text: "Redirecting to the Dashboard page...",
-      //     timer: 3000, // Auto-close after 3 seconds
-      //     showConfirmButton: false,
-      //   });
-
-      if (userAccount && verificationLink) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Account Created Successfully!',
-          text: 'Please check your email to verify your account before logging in.',
-          confirmButtonText: 'OK',
-        }).then(() => {
-          navigate('/login')
-        })
-      }
+        const userAccount = await authService.createAccount(data)
+        console.log(userAccount);
+        if (userAccount) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Account Created Successfully!',
+                text: 'Please check your email to verify your account before logging in.',
+                confirmButtonText: 'OK',
+            }).then(() => {
+                navigate('/login')
+            })
+        }
     } catch (error) {
-      setError(error.message)
-      Swal.fire({
-        icon: "error",
-        title: "Registration Failed!",
-        text: error.message || "An error occurred during registration.",
-        confirmButtonText: "Try Again",
-      })
+        setError(error.message)
+        Swal.fire({
+            icon: "error",
+            title: "Registration Failed!",
+            text: error.message || "An error occurred during registration.",
+            confirmButtonText: "Try Again",
+        })
     }
   }
 

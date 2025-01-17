@@ -41,16 +41,7 @@ function Verify() {
                     navigate('/login');
                 });
             } catch (error) {
-                setVerificationStatus('error');
-                
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Verification Failed',
-                    text: error.message || 'Something went wrong during verification. Please try again.',
-                    confirmButtonText: 'Back to Login'
-                }).then(() => {
-                    navigate('/login');
-                });
+                console.error(error);
             }
         };
 
