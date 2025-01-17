@@ -114,6 +114,8 @@ function Signup() {
                 required: true,
               })}
             />
+            <p>By creating account, you agree with the </p>
+            <p><Link to='/terms' className='terms'>Terms and conditions</Link></p>
             <Button
               type="submit"
               className="w-full bg-primary dark:bg-orange-400 dark:text-gray-800 hover:bg-primary/90 dark:hover:bg-orange-500 transition-all"
