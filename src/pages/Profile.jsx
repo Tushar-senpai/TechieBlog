@@ -16,8 +16,8 @@ function Profile() {
         try {
             const res = await authService.getCurrentUser()
             if(res) {
-                setUser(res)               
-                getBlogs(user.$id)
+                setUser(res)                                          
+                getBlogs(res.$id)
             }
         } catch (error) {
             setError(error.message)
@@ -26,9 +26,9 @@ function Profile() {
         }
     }
 
-    const getBlogs = async() => {
+    const getBlogs = async(userId) => {
         try {
-            const response = await appwriteService.getPostsByUser(user.$id)
+            const response = await appwriteService.getPostsByUser(userId)
             if(response) {
                 setError('')
                 setBlogs(response.documents)
