@@ -1,18 +1,34 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
 import appwriteService from '../appwrite/config'
 import { Avatar, Skeleton } from '@mui/material'
 import PostCard from '../components/PostCard'
+import authService from '../appwrite/auth'
+import { CalendarDays, Mail } from 'lucide-react'
+import { format } from 'date-fns'
 
 function Profile() {
-    const user = useSelector(state => state.auth.userData)
+    const [user, setUser] = useState({})
     const [blogs, setBlogs] = useState([])
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(true)
 
-    const getBlogs = async() => {
+    const getUser = async() => {
         try {
-            const response = await appwriteService.getPostsByUser(user.$id)
+            const res = await authService.getCurrentUser()
+            if(res) {
+                setUser(res)                                          
+                getBlogs(res.$id)
+            }
+        } catch (error) {
+            setError(error.message)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    const getBlogs = async(userId) => {
+        try {
+            const response = await appwriteService.getPostsByUser(userId)
             if(response) {
                 setError('')
                 setBlogs(response.documents)
@@ -25,7 +41,7 @@ function Profile() {
     }
 
     useEffect(() => {
-        getBlogs()
+        getUser()
     }, [])
 
     const PostSkeleton = () => (
@@ -69,6 +85,18 @@ function Profile() {
                                 <h1 className="mt-4 text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
                                     {user.name}
                                 </h1>
+                                <div className="mt-3 space-y-2">
+                                    <div className="flex items-center text-gray-600 dark:text-gray-400">
+                                        <Mail className="w-4 h-4 mr-2" />
+                                        <span className="text-sm">{user.email}</span>
+                                    </div>
+                                    <div className="flex items-center text-gray-600 dark:text-gray-400">
+                                        <CalendarDays className="w-4 h-4 mr-2" />
+                                        <span className="text-sm">
+                                            Joined {format(new Date(user.$createdAt), 'MMMM yyyy')}
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         )}
                     </div>
