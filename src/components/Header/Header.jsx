@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Container } from "../index";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { LogIn, UserPlus, Files, FileEdit, HelpCircle, MessageSquare } from "lucide-react"; 
+import { LogIn, UserPlus, Files, FileEdit, HelpCircle, MessageSquare, Info} from "lucide-react"; 
 import Logo from "../Logo";
 import Searchbar from "./Searchbar.jsx";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -53,6 +53,12 @@ function Header() {
       slug: "/feedback",
       active: true,
       icon: MessageSquare,
+    },
+    {
+      name: "About Us",
+      slug: "/about-us",
+      active: true,
+      icon: Info,
     },
   ];
 
