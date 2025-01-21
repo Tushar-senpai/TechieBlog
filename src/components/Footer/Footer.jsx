@@ -32,16 +32,16 @@ const Footer = () => {
           <div className="space-y-6">
             <Logo />
             <p className="text-gray-600 dark:text-gray-400">
-              Empowering developers and tech enthusiasts with the latest insights and knowledge.
+              Bridging the gap between knowledge and action, TechieBlog fuels tech enthusiasts and developers with insights to thrive.
             </p>
             <div className="flex justify-center md:justify-start space-x-4">
               <a href="#" className="group">
-                <div className="bg-white p-2 rounded-lg shadow-md border border-black group-hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1 dark:bg-gray-800 dark:border-gray-700">
+                <div className="bg-white p-2 rounded-lg shadow-md border border-gray-300 group-hover:border-[#1876f2] group-hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1 dark:bg-gray-800 dark:border-gray-700">
                   <Facebook className="w-5 h-5 text-gray-600 group-hover:text-[#1876f2] dark:text-gray-400" />
                 </div>
               </a>
               <a href="#" className="group">
-                <div className="bg-white p-2 rounded-lg shadow-md border border-black group-hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1 dark:bg-gray-800 dark:border-gray-700">
+                <div className="bg-white p-2 rounded-lg shadow-md border border-gray-300 group-hover:border-[#0F1419] group-hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1 dark:bg-gray-800 dark:border-gray-700">
                   {/* Updated Twitter (X) Icon */}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -54,12 +54,13 @@ const Footer = () => {
                 </div>
               </a>
               <a href="#" className="group">
-                <div className="bg-white p-2 rounded-lg shadow-md border border-black group-hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1 dark:border-gray-700 dark:bg-gray-800">
+                <div className="bg-white p-2 rounded-lg shadow-md border  border-gray-300 group-hover:border-[#0077B5] group-hover:shadow-lg 
+                transition-all duration-300 transform group-hover:-translate-y-1 dark:border-gray-700 dark:bg-gray-800">
                   <Linkedin className="w-5 h-5 text-gray-600 group-hover:text-[#0077B5] dark:text-gray-400" />
                 </div>
               </a>
               <a href="#" className="group">
-                <div className="bg-white p-2 rounded-lg shadow-md border border-black group-hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1 dark:bg-gray-800 dark:border-gray-700">
+                <div className="bg-white p-2 rounded-lg shadow-md border border-gray-300 group-hover:border-[#E1306C] group-hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1 dark:bg-gray-800 dark:border-gray-700">
                   <Instagram className="w-5 h-5 text-gray-600 group-hover:text-[#E1306C] dark:text-gray-400" />
                 </div>
               </a>
@@ -92,7 +93,7 @@ const Footer = () => {
                 <li key={item}>
                   <Link
                     to={`/${item.toLowerCase().replace(' ', '-')}`}
-                    className="group flex items-center text-gray-600 hover:text-gray-900"
+                    className="group flex items-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
                   >
                     <span className="w-2 h-2 bg-blue-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                     {item}
@@ -106,16 +107,16 @@ const Footer = () => {
           <div className="space-y-6">
             <h3 className="text-lg dark:text-gray-200 font-bold">Contact Info</h3>
             <ul className="space-y-4">
-              <li className="flex items-center justify-center md:justify-start space-x-3 text-gray-600">
-                <MapPin className="w-5 h-5 text-blue-500" />
+              <li className="flex items-center justify-center md:justify-start space-x-3 text-gray-600 dark:text-gray-400">
+                <MapPin className="w-5 h-5 text-blue-500 dark:text-blue-400" />
                 <span>123 Tech Street, Digital City</span>
               </li>
-              <li className="flex items-center justify-center md:justify-start space-x-3 text-gray-600">
-                <Phone className="w-5 h-5 text-blue-500" />
+              <li className="flex items-center justify-center md:justify-start space-x-3 text-gray-600 dark:text-gray-400">
+                <Phone className="w-5 h-5 text-blue-500 dark:text-blue-400" />
                 <span>+1 (555) 123-4567</span>
               </li>
-              <li className="flex items-center justify-center md:justify-start space-x-3 text-gray-600">
-                <Mail className="w-5 h-5 text-blue-500" />
+              <li className="flex items-center justify-center md:justify-start space-x-3 text-gray-600 dark:text-gray-400">
+                <Mail className="w-5 h-5 text-blue-500 dark:text-blue-400" />
                 <span><a href="mailto:support@techieblog.com" className="hover:underline">support@techieblog.com</a></span>
               </li>
             </ul>
@@ -140,7 +141,7 @@ const Footer = () => {
 
         {/* Copyright Section */}
         <div className="mt-8">
-          <p className="text-center text-gray-600">
+          <p className="text-center text-gray-600 dark:text-gray-400">
             © Copyright {new Date().getFullYear()}. All Rights Reserved by TechieBlog.
           </p>
         </div>

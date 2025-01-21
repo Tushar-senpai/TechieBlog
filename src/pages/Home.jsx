@@ -101,7 +101,7 @@ justify-center animate-fade-in transition-colors duration-300">
         <Testimonials />
         <section className="mb-10">
           <h2 className="text-3xl md:text-4xl font-bold text-black dark:text-gray-200 my-6">Meet the Contributors</h2>
-          <p className="text-gray-700 mt-2 mb-6 mx-6">Meet the brilliant minds who brought this project to life!</p>
+          <p className="text-gray-700 dark:text-gray-400 mt-2 mb-6 mx-6">Meet the brilliant minds who brought this project to life!</p>
           <div className="hidden md:block"><ContributorsLink classes="w-20 h-20" /></div>
           <div className="block md:hidden"><ContributorsLink classes="w-12 h-12" /></div>
         </section>
