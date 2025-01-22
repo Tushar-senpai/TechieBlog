@@ -31,6 +31,7 @@ const FAQ = lazy(() => import('./components/FAQ.jsx'));
 const Terms = lazy(() => import('./components/Terms.jsx'));
 const FeedbackPage = lazy(() => import('./components/FeedbackPage.jsx'));
 const AboutUs = lazy(() => import('./components/AboutUs.jsx'));
+const ContactUs = lazy(() => import('./components/ContactUs.jsx'));
 
 const router = createBrowserRouter([
     {
@@ -141,6 +142,10 @@ const router = createBrowserRouter([
             {
                 path: "/about-us",
                 element: <AboutUs />
+            },
+            {
+                path: "/contact-us",
+                element: <ContactUs />
             },
             {
                 path: "*",
