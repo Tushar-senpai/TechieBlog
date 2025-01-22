@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import parse from "html-react-parser";
+// import parse from "html-react-parser";
 import Swal from 'sweetalert2';
 import { format, formatDistanceToNow } from "date-fns";
 import { ArrowLeft, Calendar, Clock, Share2, User } from "lucide-react";
@@ -10,6 +10,7 @@ import appwriteService from "../appwrite/config";
 import authService from "../appwrite/auth";
 import { Container } from "../components";
 import Loading from "../components/loaders/Loading";
+import MarkdownDisplay from "../components/MarkdownDisplay";
 
 export default function Post() {
   const [post, setPost] = useState(null);
@@ -17,7 +18,7 @@ export default function Post() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
-  
+
   useEffect(() => {
     async function fetchPost() {
       try {
@@ -32,7 +33,7 @@ export default function Post() {
         }
 
         setPost(fetchedPost);
-        
+
         const user = await authService.getUserById(fetchedPost.userId);
         if (user) {
           setAuthor(user);
@@ -140,9 +141,7 @@ export default function Post() {
             {post.title}
           </h1>
 
-          <div className="prose prose-lg prose-gray dark:prose-invert max-w-none mb-8">
-            {parse(post.content)}
-          </div>
+          <MarkdownDisplay content={post.content} />
 
           {isAuthor && (
             <div className="flex justify-center gap-4 pt-6 border-t border-gray-200 dark:border-gray-700">
