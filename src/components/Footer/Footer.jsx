@@ -142,6 +142,7 @@ const ImprovedFooter = () => {
             </div>
           </div>
         </div>
+
       </div>
 
       {/* Scroll to Top Button */}

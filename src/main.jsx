@@ -4,7 +4,9 @@ import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
 import { Provider } from 'react-redux';
-import store from './store/store.js';
+import { store } from './store/store.js';
+import { PersistGate } from "redux-persist/integration/react"
+import { persistStore } from "redux-persist"
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Loader from './components/loaders/Loading.jsx'
 
@@ -27,7 +29,8 @@ const ChangePassword = lazy(() => import('./pages/ChangePassword.jsx'));
 const Profile = lazy(() => import('./pages/Profile.jsx'));
 const FAQ = lazy(() => import('./components/FAQ.jsx'));
 const Terms = lazy(() => import('./components/Terms.jsx'));
-
+const FeedbackPage = lazy(() => import('./components/FeedbackPage.jsx'));
+const AboutUs = lazy(() => import('./components/AboutUs.jsx'));
 
 const router = createBrowserRouter([
     {
@@ -132,6 +135,14 @@ const router = createBrowserRouter([
                 element: <FAQ />,
             },
             {
+                path: "/feedback",
+                element: <FeedbackPage />
+            },
+            {
+                path: "/about-us",
+                element: <AboutUs />
+            },
+            {
                 path: "*",
                 element: <Error404 />,
             },
@@ -143,12 +154,16 @@ const router = createBrowserRouter([
     },
 ]);
 
+let persistor = persistStore(store);
+
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <Provider store={store}>
-            <Suspense fallback={<Loader />}>
-                <RouterProvider router={router} />
-            </Suspense>
+            <PersistGate persistor={persistor} >
+                <Suspense fallback={<Loader />}>
+                    <RouterProvider router={router} />
+                </Suspense>
+            </PersistGate>
         </Provider>
     </React.StrictMode>,
 );

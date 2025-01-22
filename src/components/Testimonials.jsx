@@ -67,14 +67,15 @@ const Testimonials = () => {
                   <h4 className="text-gray-700 dark:text-gray-300" >{testimonial.name}</h4>
                   <p className="text-gray-700 dark:text-gray-300">{testimonial.position}</p>
                   <p className="text-gray-700 dark:text-gray-300">{testimonial.content}</p>
-                </div>
-              
+                </div>       
               </div>
             </div>
-          ))}
-        </Carousel>
-      </div>
-    </section>
+          </div>
+        </div>
+      ))}
+    </Carousel>
+  </div>
+</section>
   );
 };
 
