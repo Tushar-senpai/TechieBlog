@@ -15,20 +15,20 @@ function FeedbackPage() {
   };
 
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 p-6'>
-      <div className='w-full max-w-md bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md'>
+    <div className='flex flex-col items-center justify-center min-h-screen p-6'>
+      <div className='w-full max-w-md bg-white bg-gradient-to-r dark:via-gray-800 dark:to-gray-900 dark:text-white p-8 rounded-lg shadow-md'>
         {submitted ? (
           <p className='text-orange-600 text-2xl'>Thank you for your feedback!</p>
         ) : (
           <form onSubmit={handleSubmit} className='space-y-4'>
-            <h1 className='text-3xl font-bold mb-6 text-gray-900 dark:text-gray-100' style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)' }}>Feedback</h1>
+            <h1 className='text-4xl font-bold mb-6 text-orange-600 dark:text-gray-100' style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)' }}>Feedback</h1>
             <input
               type='text'
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder='Your name...'
               required
-              className='w-full p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-gray-100'
+              className='w-full p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 dark:bg-gray-800 dark:text-gray-100'
             />
             <input
               type='email'
@@ -36,12 +36,12 @@ function FeedbackPage() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder='Your email...'
               required
-              className='w-full p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-gray-100'
+              className='w-full p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 dark:bg-gray-800 dark:text-gray-100'
             />
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className='w-full p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-gray-100'
+              className='w-full p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 dark:bg-gray-800 dark:text-gray-100'
             >
               <option value='general'>General</option>
               <option value='bug'>Bug Report</option>
@@ -52,7 +52,7 @@ function FeedbackPage() {
               onChange={(e) => setFeedback(e.target.value)}
               placeholder='Your feedback...'
               required
-              className='w-full h-32 p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-gray-100'
+              className='w-full h-32 p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 dark:bg-gray-800 dark:text-gray-100'
             />
             <div className='flex items-center space-x-4'>
               <span className='text-gray-900 dark:text-gray-100'>Rating:</span>
@@ -64,12 +64,12 @@ function FeedbackPage() {
                 max='5'
                 placeholder='1-5'
                 required
-                className='p-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-gray-100'
+                className='p-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 dark:bg-gray-800 dark:text-gray-100'
               />
             </div>
             <button
               type='submit'
-              className='btn-shadow w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
+              className='btn-shadow w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500'
             >
               Submit
             </button>
