@@ -79,6 +79,10 @@ function Header() {
   };
 
   return (
+
+    <>
+   
+
     <header className="py-3 shadow bg-gradient-to-r from-yellow-100 via-orange-100 to-red-100 dark:bg-gradient-to-r dark:from-gray-800 dark:via-gray-800 dark:to-black transition duration-300 animate-slide-down " >
       <Container>
         <nav className="flex items-center justify-between">
@@ -138,6 +142,7 @@ function Header() {
               <MenuIcon fontSize="large" className="text-orange-600" />
             </button>
           )}
+          
         </nav>
 
         {/* Mobile Menu */}
@@ -177,7 +182,14 @@ function Header() {
           </div>
         )}
       </Container>
+      
     </header>
+    <div className="relative">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-gray-400  dark:border-gray-400"></div>
+        </div>
+      </div>
+    </>
   );
 }
 

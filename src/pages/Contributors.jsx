@@ -55,7 +55,7 @@ function Contributors() {
                                 {item.contributions}
                             </span>
                         </div>
-                        <span className="mt-2 text-gray-700 font-medium group-hover:text-orange-500 transition-colors duration-200">
+                        <span className="mt-2 text-gray-700 dark:text-white font-medium group-hover:text-orange-500 transition-colors duration-200">
                             {item.login}
                         </span>
                     </a>

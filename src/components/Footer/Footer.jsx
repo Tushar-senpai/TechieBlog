@@ -26,6 +26,7 @@ const Footer = () => {
 
   return (
     <footer className="relative bg-gradient-to-r from-yellow-200 via-orange-200 to-red-200 dark:bg-gradient-to-r dark:from-gray-800 dark:via-gray-900 dark:to-black">
+              
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 text-center md:text-left">
           {/* Brand Section */}
@@ -130,7 +131,7 @@ const Footer = () => {
         {/* Divider with Animation */}
         <div className="relative mt-5">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-400  dark:border-gray-800"></div>
+            <div className="w-full border-t border-gray-400  dark:border-gray-400"></div>
           </div>
           <div className="relative flex justify-center">
             <div className="bg-gradient-to-r from-yellow-200 via-orange-200 to-red-200 px-4 dark:from-gray-800">
