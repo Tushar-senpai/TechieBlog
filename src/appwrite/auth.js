@@ -1,6 +1,5 @@
 import conf from "../conf/conf";
 import {Client, Account, ID} from 'appwrite'
-const baseLink = import.meta.env.VITE_APPWRITE_URL;
 
 export class AuthService{
     client = new Client();
@@ -14,92 +13,30 @@ export class AuthService{
         this.account = new Account(this.client);
     }
 
-    async updateVerification({id, secret}) {
+    async createAccount({email, password, name}){
         try {
-            return await this.account.updateVerification(id, secret);
-        } catch (error) {
-            throw error;
-        }
-    }
-    
-    async createSession({email, password}){
-        try{
-            const session = await this.account.createEmailPasswordSession(email, password);
-            return session;
-        }catch(error){
-            throw error;
-        }
-    }
-
-    
-    async createVerification(){
-        try{
-            const link = await this.account.createVerification(`${baseLink}/verify-email`)
-            return link;
-        }catch(error){
-            throw error;
-        }
-    }
-    
-    
-    async createAccount({email, password, name}) {
-        try {
-            // Create the account
+          const userAccount = await this.account.create(ID.unique(), email, password, name);
             
-            const userAccount = await this.account.create(ID.unique(),  email, password, name);
-            console.log(userAccount)
-            // Create a temporary session to send verification email
-            const session  = await this.account.createEmailPasswordSession(email, password);
-            console.log(session);
-
-            // Now create verification linkbefore verify-email
-            await this.account.createVerification(`${baseLink}/verify-email`);
-            // Delete the session after sending verification email
-            await this.account.deleteSessions();
-            return userAccount;
-        } catch (error) {
-            try {
-                await this.account.deleteSessions();
-            } catch (sessionError) {
-                console.log("Error cleaning up session:", sessionError);
+            if(userAccount) {
+                //call another method
+                return this.login({email, password});
+                
+            }            
+            else{
+                return userAccount;
             }
+        } catch (error) {
             throw error;
         }
     }
 
-
-    async login({email, password}) {
+    async login({email, password}){
         try {
-            // First create session
-            const session = await this.account.createEmailPasswordSession(email, password);
-            console.log(session);
-            // Get user details
-            const user = await this.account.get();
-            console.log(user);
-
-            // Check if email is verified
-            if (!user.emailVerification) {
-                // Delete the session since email isn't verified
-                await this.account.deleteSessions();
-                throw new Error('Please verify your email before logging in. Check your inbox for the verification link.');
-            }
-            
-            return user;
+          return await this.account.createEmailPasswordSession(email, password);
         } catch (error) {
-            // Clean up any session if there was an error
-            try {
-                await this.account.deleteSessions();
-            } catch (sessionError) {
-                console.log("Error cleaning up session:", sessionError);
-            }
-
-            if (error.code === 401) {
-                throw new Error('Invalid email or password');
-            }
             throw error;
         }
     }
-
 
     async getCurrentUser(){
         try {
