@@ -79,7 +79,7 @@ function Header() {
   };
 
   return (
-    <header className="py-3 shadow bg-gradient-to-r from-yellow-100 via-orange-100 to-red-100 dark:bg-gradient-to-r dark:from-gray-800 dark:via-gray-900 dark:to-black transition duration-300 animate-slide-down">
+    <header className="py-3 shadow bg-gradient-to-r from-yellow-100 via-orange-100 to-red-100 dark:bg-gradient-to-r dark:from-gray-800 dark:via-gray-800 dark:to-black transition duration-300 animate-slide-down " >
       <Container>
         <nav className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
@@ -93,7 +93,7 @@ function Header() {
           </div>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex ml-auto space-x-4">
+          <ul className="hidden md:flex ml-auto space-x-2 justify-center items-center">
             {navItems.map(
               (item) =>
                 item.active && (
@@ -102,13 +102,13 @@ function Header() {
                       className={({ isActive }) =>
                         `${
                           isActive &&
-                          "bg-yellow-100 dark:bg-gray-800 shadow-md "
-                        } inline-flex items-center gap-2 px-6 py-2 text-orange-600 font-semibold hover:bg-orange-200 rounded-full transition-transform duration-300 hover:scale-105 dark:text-orange-400 dark:hover:bg-gray-700`
+                          "bg-yellow-100 dark:bg-gray-600 shadow-md "
+                        } inline-flex items-center gap-2 px-5 py-2 text-orange-600 font-semibold hover:bg-orange-200 rounded-full transition-transform duration-300 hover:scale-105 dark:text-orange-400 dark:hover:bg-gray-700`
                       }
                       to={item.slug}
                       onClick={() => handleNavigation()}
                     >
-                      <item.icon size={20} />
+                      <item.icon size={18} />
                       {item.name}
                     </NavLink>
                   </li>
@@ -118,7 +118,7 @@ function Header() {
               <li className="animate-fade-in-delayed">
                 <button
                   onClick={() => dispatch(toggleTheme())}
-                  className="inline-block px-6 mr-3 py-2 text-orange-600 dark:text-orange-400 font-semibold bg-yellow-100 dark:bg-gray-800 hover:bg-orange-200 dark:hover:bg-gray-700 rounded-full shadow-md transition-transform duration-300 hover:scale-105"
+                  className="inline-block px-2 ml-16 py-2 text-orange-600 dark:text-orange-400 font-semibold bg-yellow-100 dark:bg-gray-800 hover:bg-orange-200 dark:hover:bg-gray-700 rounded-full shadow-md transition-transform duration-300 hover:scale-105"
                 >
                   {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
                 </button>
@@ -167,7 +167,7 @@ function Header() {
                 <li className="animate-fade-in-delayed">
                   <button
                     onClick={() => dispatch(toggleTheme())}
-                    className="inline-block px-6 mr-3 py-2 text-orange-600 dark:text-orange-400 font-semibold bg-yellow-100 dark:bg-gray-800 hover:bg-orange-200 dark:hover:bg-gray-700 rounded-full shadow-md transition-transform duration-300 hover:scale-105"
+                    className="inline-block px-2 mr-3 py-2 text-orange-600 dark:text-orange-400 font-semibold bg-yellow-100 dark:bg-gray-800 hover:bg-orange-200 dark:hover:bg-gray-700 rounded-full shadow-md transition-transform duration-300 hover:scale-105"
                   >
                     {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
                   </button>
