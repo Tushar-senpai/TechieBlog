@@ -71,7 +71,7 @@ const Footer = () => {
           <div className="space-y-6">
             <h3 className="text-lg dark:text-gray-200 font-bold">Company</h3>
             <ul className="space-y-4">
-              {['Features', 'Pricing', 'Affiliate Program'].map((item) => (
+              {['About Us', 'Feedback', 'Events'].map((item) => (
                 <li key={item}>
                   <Link
                     to={`/${item.toLowerCase().replace(' ', '-')}`}
@@ -89,7 +89,7 @@ const Footer = () => {
           <div className="space-y-6">
             <h3 className="text-lg dark:text-gray-200 font-bold">Support</h3>
             <ul className="space-y-4">
-              {['Account', 'Help', 'Contact Us'].map((item) => (
+              {['Account', 'Faq', 'Contact Us'].map((item) => (
                 <li key={item}>
                   <Link
                     to={`/${item.toLowerCase().replace(' ', '-')}`}
@@ -128,9 +128,9 @@ const Footer = () => {
         </div>
 
         {/* Divider with Animation */}
-        <div className="relative mt-16">
+        <div className="relative mt-5">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-300  dark:border-gray-800"></div>
+            <div className="w-full border-t border-gray-400  dark:border-gray-800"></div>
           </div>
           <div className="relative flex justify-center">
             <div className="bg-gradient-to-r from-yellow-200 via-orange-200 to-red-200 px-4 dark:from-gray-800">
@@ -150,11 +150,11 @@ const Footer = () => {
       {/* Enhanced Scroll to Top Button */}
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-[80px] right-[29px] p-3 rounded-full bg-blue-500 text-white shadow-lg hover:bg-blue-600 transition-all duration-300 transform hover:scale-110 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        className={`fixed bottom-[80px] right-[20px] p-2 rounded-full bg-blue-500 text-white shadow-md hover:bg-blue-600 transition-all duration-300 transform hover:scale-110 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         aria-label="Scroll to top"
       >
-        <ArrowUp className="w-6 h-6" />
+        <ArrowUp className="w-5 h-5" />
       </button>
     </footer>
   );
