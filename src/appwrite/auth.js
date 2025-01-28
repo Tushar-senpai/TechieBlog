@@ -1,6 +1,6 @@
 import conf from "../conf/conf";
 import {Client, Account, ID} from 'appwrite'
-const baseLink = import.meta.env.VITE_BASE_LINK;
+const baseLink = import.meta.env.VITE_APPWRITE_URL;
 
 export class AuthService{
     client = new Client();
