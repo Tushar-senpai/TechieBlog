@@ -14,99 +14,16 @@
     <div id="root"></div>
 
     <script type="module" src="/src/main.jsx"></script>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <style>
-      .circle {
-        height: 15px;
-        width: 15px;
-        border-radius: 24px;
-        background-color: black;
-        position: fixed;
-        top: 0;
-        left: 0;
-        pointer-events: none;
-        z-index: 99999999; /* so that it stays on top of all other elements */
-      }
-    </style>
-    <script>
-      const coords = { x: 0, y: 0 };
-      const circles = document.querySelectorAll(".circle");
-
-      const colors = [
-        "#f8ffed",
-        "#edf0c6",
-        "#ebdc9b",
-        "#f0c56f",
-        "#f8aa43",
-        "#fe8a18",
-        "#ff6505",
-        "#ff3429",
-      ];
-
-      circles.forEach(function (circle, index) {
-        circle.x = 0;
-        circle.y = 0;
-        circle.style.backgroundColor = colors[index % colors.length];
-      });
-
-      window.addEventListener("mousemove", function (e) {
-        coords.x = e.clientX;
-        coords.y = e.clientY;
-      });
-
-      function animateCircles() {
-        let x = coords.x;
-        let y = coords.y;
-
-        circles.forEach(function (circle, index) {
-          circle.style.left = x - 12 + "px";
-          circle.style.top = y - 12 + "px";
-
-          circle.style.scale = (circles.length - index) / circles.length;
-
-          circle.x = x;
-          circle.y = y;
-
-          const nextCircle = circles[index + 1] || circles[0];
-          x += (nextCircle.x - x) * 0.3;
-          y += (nextCircle.y - y) * 0.3;
-        });
-
-        requestAnimationFrame(animateCircles);
-      }
-
-      animateCircles();
-    </script>
-    <script>
+    
+    <!-- <script>
       window.chtlConfig = { chatbotId: "4463793629" };
-    </script>
+    </script> 
     <script
       async
       data-id="4463793629"
       id="chatling-embed-script"
       type="text/javascript"
       src="https://chatling.ai/js/embed.js"
-    ></script>
+    ></script> -->
   </body>
 </html>

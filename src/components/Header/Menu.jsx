@@ -80,14 +80,14 @@ export default function BasicMenu() {
               </div>
             </Link>
             {/* Theme Toggle Section */}
-            <div className="flex items-center justify-between px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-orange-200/50 dark:hover:bg-gray-800 transition duration-300">
+            {/* <div className="flex items-center justify-between px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-orange-200/50 dark:hover:bg-gray-800 transition duration-300">
               <div className="flex items-center">
-                {/* Using Moon icon as a static indicator */}
+                { Using Moon icon as a static indicator }
                 <Moon size={18} className="mr-3" />
                 Dark mode
               </div>
               <ThemeToggle />
-            </div>
+            </div> */}
             <Link to="/settings">
               <div
                 className="flex items-center px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-orange-200/50 dark:hover:bg-gray-800 transition duration-300 cursor-pointer"
