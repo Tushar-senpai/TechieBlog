@@ -33,6 +33,7 @@ const FeedbackPage = lazy(() => import('./components/FeedbackPage.jsx'));
 const AboutUs = lazy(() => import('./components/AboutUs.jsx'));
 const ContactUs = lazy(() => import('./components/ContactUs.jsx'));
 const Events = lazy(() => import('./components/Events.jsx'));
+const Verify = lazy(() => import('./pages/Verify.jsx'));
 
 const router = createBrowserRouter([
     {
@@ -48,6 +49,14 @@ const router = createBrowserRouter([
                 element: (
                     <AuthLayout authentication={false}>
                         <Login />
+                    </AuthLayout>
+                ),
+            },
+            {
+                path: "/verify-email",
+                element:(
+                    <AuthLayout authentication={false}>
+                        <Verify />
                     </AuthLayout>
                 ),
             },
