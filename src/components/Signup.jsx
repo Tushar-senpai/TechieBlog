@@ -17,47 +17,26 @@ function Signup() {
   const create = async (data) => {
     setError("")
     try {
-      const userData = await authService.createAccount(data)
-
-      //   Swal.fire({
-      //     icon: "success",
-      //     title: "Registration Successful!",
-      //     text: "Redirecting to the Dashboard page...",
-      //     timer: 3000, // Auto-close after 3 seconds
-      //     showConfirmButton: false,
-      //   });
-
-      if (userData) {
-        const userData = await authService.getCurrentUser()
-
-        if (userData) dispatch(login(userData));
-
-        // Show confirmation to log in or not
-        Swal.fire({
-          title: 'Account Created!',
-          text: 'Would you like to log in now?',
-          icon: 'question',
-          showCancelButton: true,
-          confirmButtonText: 'Yes, log in',
-          cancelButtonText: 'No, stay here',
-        }).then((result) => {
-          if (result.isConfirmed) {
-            // Navigate to the login page if confirmed
-            navigate('/login');
-          } else {
-            // You can navigate to a different page if needed or just stay on the current page
-            navigate('/');
-          }
-        });
-      }
+        const userAccount = await authService.createAccount(data)
+        console.log(userAccount);
+        if (userAccount) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Account Created Successfully!',
+                text: 'Please check your email to verify your account before logging in.',
+                confirmButtonText: 'OK',
+            }).then(() => {
+                navigate('/login')
+            })
+        }
     } catch (error) {
-      setError(error.message)
-      Swal.fire({
-        icon: "error",
-        title: "Registration Failed!",
-        text: error.message || "An error occurred during registration.",
-        confirmButtonText: "Try Again",
-      });
+        setError(error.message)
+        Swal.fire({
+            icon: "error",
+            title: "Registration Failed!",
+            text: error.message || "An error occurred during registration.",
+            confirmButtonText: "Try Again",
+        })
     }
   }
 
