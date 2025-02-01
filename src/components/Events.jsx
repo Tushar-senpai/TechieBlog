@@ -7,14 +7,14 @@ const Events = () => {
             date: "February 10, 2025",
             time: "10:00 AM - 12:00 PM",
             description: "Join us for an introductory session on HTML where you'll learn the basics of structuring a webpage and creating content.",
-            link: "#register"  
+            link: "/register"  
         },
         {
             title: "Workshop: Advanced CSS techniques",
             date: "March 15, 2025",
             time: "2:00 PM - 4:00 PM",
             description: "Dive deep into advanced CSS techniques, including animations, transitions, and responsive design best practices.",
-            link: "#register"
+            link: "/register"
         },
     ];
 
