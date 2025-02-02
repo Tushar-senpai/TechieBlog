@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 // import parse from "html-react-parser";
 import Swal from 'sweetalert2';
 import { format, formatDistanceToNow } from "date-fns";
-import { ArrowLeft, Calendar, Clock, Share2, User } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, Share2, User, Heart } from "lucide-react";
 
 import appwriteService from "../appwrite/config";
 import authService from "../appwrite/auth";
@@ -18,6 +18,16 @@ export default function Post() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
+  const [likes, setLikes] = useState(0);
+  const [isLiking, setIsLiking] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+
+  useEffect(() => {
+    if (post && userData) {
+      setIsLiked(post.likedBy?.includes(userData.$id));
+      setLikes(post.likedBy?.length || 0);
+    }
+  }, [post, userData]);
 
   useEffect(() => {
     async function fetchPost() {
@@ -89,6 +99,27 @@ export default function Post() {
     }
   };
 
+  const handleLike = async () => {
+    if (!userData) {
+      Swal.fire('Error', 'You need to be logged in to like a post', 'error');
+      return;
+    }
+
+    try {
+      setIsLiking(true);
+      const updatedPost = await appwriteService.addLikes(post.$id, userData.$id);
+      if (updatedPost) {
+        setPost(updatedPost);
+        setLikes(updatedPost.likedBy.length);
+        setIsLiked(updatedPost.likedBy.includes(userData.$id));
+      }
+    } catch (err) {
+      Swal.fire('Error', 'Failed to like the post', 'error');
+    } finally {
+      setIsLiking(false);
+    }
+  };
+
   if (!post) return <Loading />;
 
   const isAuthor = userData?.$id === post.userId;
@@ -135,6 +166,33 @@ export default function Post() {
             >
               <Share2 className="w-5 h-5" />
             </button>
+            {userData && (
+              <button
+                onClick={handleLike}
+                disabled={isLiking}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105 ${
+                  isLiking ? 'opacity-70 cursor-not-allowed' : ''
+                } ${
+                  isLiked
+                    ? 'bg-red-100 dark:bg-red-900/50 text-red-500'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-red-50 dark:hover:bg-red-900/30'
+                }`}
+                title="Like Post"
+              >
+                {isLiking ? (
+                  <div className="w-5 h-5 animate-spin rounded-full border-2 border-gray-300 border-t-red-500" />
+                ) : (
+                  <Heart
+                    className={`w-5 h-5 transition-colors duration-300 ${
+                      isLiked
+                        ? 'fill-red-500 stroke-red-500'
+                        : 'fill-none stroke-current hover:stroke-red-500'
+                    }`}
+                  />
+                )}
+                <span className="font-medium">{likes}</span>
+              </button>
+            )}
           </div>
 
           <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-8">
