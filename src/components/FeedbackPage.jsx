@@ -28,7 +28,7 @@ function FeedbackPage() {
               onChange={(e) => setName(e.target.value)}
               placeholder='Your name...'
               required
-              className='w-full p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 dark:bg-gray-800 dark:text-gray-100'
+              className='w-full p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 dark:bg-gray-800 dark:text-gray-100 hover:border-orange-500 hover:shadow-md focus:shadow-lg transition duration-300'
             />
             <input
               type='email'
@@ -36,12 +36,12 @@ function FeedbackPage() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder='Your email...'
               required
-              className='w-full p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 dark:bg-gray-800 dark:text-gray-100'
+              className='w-full p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 dark:bg-gray-800 dark:text-gray-100 hover:border-orange-500 hover:shadow-md focus:shadow-lg transition duration-300'
             />
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className='w-full p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 dark:bg-gray-800 dark:text-gray-100'
+              className='w-full p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 dark:bg-gray-800 dark:text-gray-100 hover:border-orange-500 hover:shadow-md focus:shadow-lg transition duration-300'
             >
               <option value='general'>General</option>
               <option value='bug'>Bug Report</option>
@@ -52,7 +52,7 @@ function FeedbackPage() {
               onChange={(e) => setFeedback(e.target.value)}
               placeholder='Your feedback...'
               required
-              className='w-full h-32 p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 dark:bg-gray-800 dark:text-gray-100'
+              className='w-full p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 dark:bg-gray-800 dark:text-gray-100 hover:border-orange-500 hover:shadow-md focus:shadow-lg transition duration-300'
             />
             <div className='flex items-center space-x-4'>
               <span className='text-gray-900 dark:text-gray-100'>Rating:</span>
@@ -64,7 +64,7 @@ function FeedbackPage() {
                 max='5'
                 placeholder='1-5'
                 required
-                className='p-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 dark:bg-gray-800 dark:text-gray-100'
+                className='w-full p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 dark:bg-gray-800 dark:text-gray-100 hover:border-orange-500 hover:shadow-md focus:shadow-lg transition duration-300'
               />
             </div>
             <button
