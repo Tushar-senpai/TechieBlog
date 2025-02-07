@@ -159,6 +159,27 @@ export class Service {
             fileId
         )
     }
+
+    //addlikes
+    async addLikes(id, userId) {
+        try {
+            const post = await this.getPost(id);
+            const likedBy = post.likedBy || [];
+            const updatedLikedBy = likedBy.includes(userId)
+                ? likedBy.filter(id => id !== userId)
+                : [...likedBy, userId];
+
+            return await this.databases.updateDocument(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
+                id,
+                { likedBy: updatedLikedBy }
+            );
+        } catch (error) {
+            console.log("Appwrite service : : addLikes :: error ", error);
+            return false;
+        }
+    }
 }
 
 const service = new Service()
