@@ -20,23 +20,27 @@ const Events = () => {
 
     return (
         <div className="p-4">
-            <h1 className='text-3xl font-bold mb-6 text-orange-600 dark:text-gray-100' style={{ textShadow: '2px 4px 4px rgba(0, 0, 0, 0.8)' }}>Upcoming Events/Webinars</h1>
-            <div className="ml-60 mr-60 mb-20">
+            <h1 className='text-3xl font-bold mb-6 text-orange-600 dark:text-gray-100 text-center' style={{ textShadow: '2px 4px 4px rgba(0, 0, 0, 0.8)' }}>Upcoming Events/Webinars</h1>
+            <div className="mx-4 sm:mx-8 md:mx-16 lg:mx-60 mb-20">
                 {events.map((event, index) => (
                     <div key={index} className="p-4 border rounded-lg shadow-lg bg-white dark:bg-gray-800 mb-10">
-                        <h2 className="text-2xl font-semibold mb-10">{event.title}</h2>
-                        <p className="text-gray-600 dark:text-gray-400 mb-8"><strong>Date:</strong> {event.date}</p>
-                        <p className="text-gray-600 dark:text-gray-400 mb-8"><strong>Time:</strong> {event.time}</p>
-                        <p className="mt-2 text-gray-700 dark:text-gray-300 mb-16">{event.description}</p>
-                        <button className="btn-shadow w-60 px-4 py-2 bg-orange-600 text-white font-semibold rounded-md shadow-sm hover:bg-orange-700 hover:text-shadow transition duration-300">
-                            <a href={event.link}>Register Now</a>
-                        </button>
+                        <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-10">{event.title}</h2>
+                        <p className="text-gray-600 dark:text-gray-400 mb-4 sm:mb-8"><strong>Date:</strong> {event.date}</p>
+                        <p className="text-gray-600 dark:text-gray-400 mb-4 sm:mb-8"><strong>Time:</strong> {event.time}</p>
+                        <p className="mt-2 text-gray-700 dark:text-gray-300 mb-8 sm:mb-16">{event.description}</p>
+                        <div className="flex justify-center">
+                            <button className="btn-shadow w-full sm:w-60 px-4 py-2 bg-orange-600 text-white font-semibold rounded-md shadow-sm hover:bg-orange-700 hover:text-shadow transition duration-300">
+                                <a href={event.link}>Register Now</a>
+                            </button>
+                        </div>
                     </div>
                 ))}
             </div>
-            <Link to="/add-event">
-            <button className="btn-shadow w-80 px-4 text-xl py-4 bg-orange-600 text-white font-semibold rounded-md shadow-sm hover:bg-orange-700 hover:text-shadow transition duration-300">Add Events/Webinars</button>
-            </Link>
+            <div className="flex justify-center">
+                <Link to="/add-event">
+                    <button className="btn-shadow w-full sm:w-80 px-4 text-lg sm:text-xl py-3 sm:py-4 bg-orange-600 text-white font-semibold rounded-md shadow-sm hover:bg-orange-700 hover:text-shadow transition duration-300">Add Events/Webinars</button>
+                </Link>
+            </div>
         </div>
     );
 }
