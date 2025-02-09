@@ -5,7 +5,6 @@ import Confetti from 'react-confetti';
 
 function Contributors() {
     const [data, setData] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('');
     const [showConfetti, setShowConfetti] = useState(true);
     const { width, height } = useWindowSize();
 
@@ -24,16 +23,8 @@ function Contributors() {
         return () => clearTimeout(timer);
     }, []);
 
-    const handleSearch = (e) => {
-        setSearchTerm(e.target.value);
-    };
-
-    const filteredData = data.filter((item) =>
-        item.login.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
     return (
-        <div className="container mx-auto px-4 py-8 bg-gradient-to-b from-orange-50 to-red-100 dark:bg-gradient-to-r dark:from-gray-800 dark:via-gray-900 dark:to-black min-h-screen relative text-gray-900 dark:text-gray-100">
+        <div className="container mx-auto px-4 py-8 bg-gradient-to-b from-orange-50 to-red-100 dark:bg-gradient-to-r dark:from-gray-800 dark:via-gray-900 dark:to-black min-h-screen relative">
             {showConfetti && (
                 <Confetti
                     width={width}
@@ -43,19 +34,10 @@ function Contributors() {
                     colors={['#f97316', '#ea580c', '#FFB800', '#FF3D00']} // Orange theme colors
                 />
             )}
-            <h1 className='text-4xl font-bold mb-6 text-orange-600 dark:text-gray-100' style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)' }}>Contributors</h1>
-            <p className="text-lg mb-8 text-center mx-auto" style={{ maxWidth: '412px' }}>Meet the brilliant minds who brought this project to life!</p>
-            <div className="flex justify-center mb-8">
-                <input
-                    type="text"
-                    placeholder="Search by name..."
-                    value={searchTerm}
-                    onChange={handleSearch}
-                    className="p-2 border-2 border-gray-300 rounded-md w-80 bg-white text-gray-900 dark:bg-gray-700 dark:text-gray-100"
-                />
-            </div>
-            <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                {filteredData.map((item) => (
+            <h1 className="text-4xl font-bold text-orange-600 mb-8 text-center">Contributors</h1>
+            <p className="text-lg mb-8 text-center">Meet the brilliant minds who brought this project to life!</p>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
+                {data.map((item) => (
                     <a
                         key={item.id}
                         href={item.html_url}
@@ -73,7 +55,7 @@ function Contributors() {
                                 {item.contributions}
                             </span>
                         </div>
-                        <span className="mt-2 text-gray-700 dark:text-gray-100 font-medium group-hover:text-orange-500 transition-colors duration-200">
+                        <span className="mt-2 text-gray-700 dark:text-white font-medium group-hover:text-orange-500 transition-colors duration-200">
                             {item.login}
                         </span>
                     </a>
