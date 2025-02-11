@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaChevronDown, FaChevronUp, FaBlog } from 'react-icons/fa';
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -27,7 +27,7 @@ const FAQ = () => {
     },
     {
       question: "How can I submit a post?",
-      answer: "First you need create your account. Then you can submit your post by clicking on the submit post button in the navbar. We welcome original, insightful content related to technology. Once your article is reviewed and approved, it will be published on our site."
+      answer: "First you need to create an account. Then you can submit your post by clicking on the submit post button in the navbar. We welcome original, insightful content related to technology. Once your article is reviewed and approved, it will be published on our site."
     },
     {
       question: "How do I subscribe to the blog?",
@@ -48,48 +48,62 @@ const FAQ = () => {
   };
 
   return (
-    <div className="faq-page min-h-screen p-6 sm:p-10 lg:p-20 bg-gradient-to-r from-yellow-50 via-orange-50 to-red-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="faq-page min-h-screen p-5 sm:p-10 lg:p-5 bg-gradient-to-r from-yellow-50 via-orange-50 to-red-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-center text-orange-600 dark:text-orange-500 mb-10">
         Frequently Asked Questions
       </h1>
-      <div className="faq-list space-y-6 max-w-4xl mx-auto">
-        {questions.map((item, index) => (
-          <div
-            key={index}
-            id={`faq-item-${index}`}
-            className={`faq-item p-5 rounded-lg shadow-lg transition-all ${
-              activeIndex === index
-                ? "bg-orange-50 dark:bg-orange-900 border-orange-500"
-                : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700"
-            }`}
-          >
+
+      {/* Container for Image & FAQ */}
+      <div className="flex flex-col md:flex-row items-center md:items-start max-w-6xl mx-auto gap-10">
+        
+        {/* Left Side - Image */}
+        <div className="hidden md:block md:w-1/3">
+          <img 
+src="https://upskillchess.com/wp-content/uploads/2022/03/FAQs.gif"                    alt="FAQ Illustration"
+            className="w-full h-auto rounded-lg shadow-lg"
+          />
+        </div>
+
+        {/* Right Side - FAQ List */}
+        <div className="md:w-2/3 space-y-6">
+          {questions.map((item, index) => (
             <div
-              className="flex justify-between items-center cursor-pointer"
-              onClick={() => toggleAnswer(index)}
-              aria-expanded={activeIndex === index}
-            >
-              <div className="flex items-center space-x-3">
-                <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200">
-                  {item.question}
-                </h2>
-              </div>
-              {activeIndex === index ? (
-                <FaChevronUp className="text-orange-500 transform transition-transform duration-300 rotate-180" />
-              ) : (
-                <FaChevronDown className="text-gray-400 dark:text-gray-500 transform transition-transform duration-300" />
-              )}
-            </div>
-            <div
-              className={`overflow-hidden transition-[max-height] duration-500 ease-in-out ${
-                activeIndex === index ? "max-h-[500px]" : "max-h-0"
+              key={index}
+              id={`faq-item-${index}`}
+              className={`faq-item p-5 rounded-lg shadow-lg transition-all ${
+                activeIndex === index
+                  ? "bg-orange-50 dark:bg-orange-900 border-orange-500"
+                  : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700"
               }`}
             >
-              <p className="mt-3 text-gray-700 dark:text-gray-300 text-left leading-relaxed">
-                {item.answer}
-              </p>
+              <div
+                className="flex justify-between items-center cursor-pointer"
+                onClick={() => toggleAnswer(index)}
+                aria-expanded={activeIndex === index}
+              >
+                <div className="flex items-center space-x-3">
+                  <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200">
+                    {item.question}
+                  </h2>
+                </div>
+                {activeIndex === index ? (
+                  <FaChevronUp className="text-orange-500 transform transition-transform duration-300 rotate-180" />
+                ) : (
+                  <FaChevronDown className="text-gray-400 dark:text-gray-500 transform transition-transform duration-300" />
+                )}
+              </div>
+              <div
+                className={`overflow-hidden transition-[max-height] duration-500 ease-in-out ${
+                  activeIndex === index ? "max-h-[500px]" : "max-h-0"
+                }`}
+              >
+                <p className="mt-3 text-gray-700 dark:text-gray-300 text-left leading-relaxed">
+                  {item.answer}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
