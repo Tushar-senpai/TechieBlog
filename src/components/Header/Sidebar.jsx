@@ -4,6 +4,7 @@ import { toggleTheme } from "../../store/themeSlice";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { LogIn, UserPlus, Files, FileEdit, HelpCircle, MessageSquare, Info, Phone, Calendar } from "lucide-react";
+import Logo from "../Logo";
 
 function Sidebar({ isOpen }) {
   const authStatus = useSelector((state) => state.auth.status);
@@ -28,7 +29,7 @@ function Sidebar({ isOpen }) {
         isOpen ? "translate-x-0" : "translate-x-full"
       } z-50`} // Added z-50 to ensure it stays on top
     >
-      <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4">TechieBlog</h2>
+      <h2 className="flex justify-center"><Logo width={50} /></h2>
       <ul className="space-y-4">
         {navItems.map(
           (item) =>
