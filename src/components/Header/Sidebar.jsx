@@ -24,7 +24,7 @@ function Sidebar({ isOpen }) {
 
   return (
     <aside
-      className={`fixed right-0 top-16 w-80 bg-orange-100 dark:bg-gray-900 min-h-screen p-4 shadow-lg transition-transform duration-300 ${
+      className={`fixed right-0 top-16 w-80 bg-gradient-to-t from-yellow-100 via-orange-100 to-red-100 dark:bg-gradient-to-t dark:from-gray-800 dark:via-gray-800 dark:to-black min-h-screen p-4 shadow-lg transition-transform duration-300 ${
         isOpen ? "translate-x-0" : "translate-x-full"
       } z-50`} // Added z-50 to ensure it stays on top
     >
@@ -51,14 +51,14 @@ function Sidebar({ isOpen }) {
       </ul>
 
       {/* Dark Mode Toggle */}
-      <div className="mt-8">
+      {/* <div className="mt-8">
         <button
           onClick={() => dispatch(toggleTheme())}
           className="w-full px-2 py-2 text-orange-600 dark:text-orange-400 font-semibold bg-yellow-100 dark:bg-gray-800 hover:bg-orange-200 dark:hover:bg-gray-700 rounded-full shadow-md transition-transform duration-300 hover:scale-105 flex items-center justify-center"
         >
           {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
         </button>
-      </div>
+      </div> */}
     </aside>
   );
 }
