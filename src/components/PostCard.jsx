@@ -33,7 +33,7 @@ function PostCard({ $id, title, featuredImage, $createdAt, userId }) {
           shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-lg
           hover:shadow-[0_8px_30px_rgba(255,165,0,0.3)] dark:hover:shadow-[0_8px_30px_rgba(255,165,0,0.15)]
           transition-all duration-300">
-          <div className="h-[200px] sm:h-[220px] md:h-[240px] relative overflow-hidden">
+          <div className=" h-[200px] sm:h-[220px] md:h-[240px] relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10"/>
             <img
               src={appwriteService.getFilePreview(featuredImage)}
