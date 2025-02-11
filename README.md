@@ -107,11 +107,11 @@ To contribute to the TechieBlog project, you need to set up your own Appwrite in
     - Click on Create Collection.
     - Name it (e.g., Comments) and configure permissions.
 
-![Overall Database](1.png)
-![Article Schema](2.png)
+![Overall Database](./public/images/1.png)
+![Article Schema](./public/images/2.png)
 
-![Comment Schema](3.png)
-![Permissions](4.png)
+![Comment Schema](./public/images/3.png)
+![Permissions](./public/images/4.png)
 
 4. Set Up Storage
     - In your project dashboard, go to the Storage section.
