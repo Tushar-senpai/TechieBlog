@@ -11,7 +11,7 @@ import authService from "../appwrite/auth";
 import { Container } from "../components";
 import Loading from "../components/loaders/Loading";
 import MarkdownDisplay from "../components/MarkdownDisplay";
-import commentService from "../appwrite/comment";
+import Comments from "./Comments";
 
 export default function Post() {
   const [post, setPost] = useState(null);
@@ -22,9 +22,6 @@ export default function Post() {
   const [likes, setLikes] = useState(0);
   const [isLiking, setIsLiking] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-  const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (post && userData) {
@@ -121,42 +118,6 @@ export default function Post() {
       Swal.fire('Error', 'Failed to like the post', 'error');
     } finally {
       setIsLiking(false);
-    }
-  };
-
-  const handleCommentSubmit = async (e) => {
-    e.preventDefault();
-    if (!userData) {
-      Swal.fire('Error', 'You need to be logged in to comment', 'error');
-      return;
-    }
-    if (!newComment.trim()) return;
-
-    setIsSubmitting(true);
-    try {
-      const commentData = {
-        commentBody: newComment.trim(),
-        article: post.$id,
-        commentBy: userData.$id,
-        commentedOn: new Date().toISOString()
-      };
-      console.log(commentData);
-
-      const comment = await commentService.createComment(commentData);
-      console.log(comment);
-      setComments(prev => [...prev, comment]);
-      setNewComment("");
-      Swal.fire({
-        title: 'Success!',
-        text: 'Comment posted successfully',
-        icon: 'success',
-        timer: 1500,
-        showConfirmButton: false,
-      });
-    } catch (err) {
-      Swal.fire('Error', 'Failed to post comment', 'error');
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -259,76 +220,7 @@ export default function Post() {
           )}
         </article>
 
-        <section className="max-w-4xl mx-auto mt-12">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
-            Comments
-          </h2>
-
-          {userData ? (
-            <form onSubmit={handleCommentSubmit} className="mb-8 transform transition-all duration-300">
-              <div className="flex flex-col gap-4">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center text-white font-semibold">
-                      {userData.name[0].toUpperCase()}
-                    </div>
-                  </div>
-                  <div className="flex-grow">
-                    <textarea
-                      value={newComment}
-                      onChange={(e) => setNewComment(e.target.value)}
-                      placeholder="Share your thoughts..."
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 
-                        bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 
-                        focus:ring-2 focus:ring-orange-500 focus:border-transparent
-                        placeholder-gray-500 dark:placeholder-gray-400
-                        transition-all duration-300 ease-in-out
-                        min-h-[120px] resize-y"
-                      rows="3"
-                    />
-                  </div>
-                </div>
-                <div className="flex justify-end">
-                  <button
-                    type="submit"
-                    disabled={isSubmitting || !newComment.trim()}
-                    className={`px-6 py-2.5 rounded-xl flex items-center gap-2 font-medium
-                      transform transition-all duration-300
-                      ${
-                        isSubmitting || !newComment.trim()
-                          ? 'bg-gray-200 dark:bg-gray-700 cursor-not-allowed opacity-60'
-                          : 'bg-orange-500 hover:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-700 text-white'
-                      }`}
-                  >
-                    {isSubmitting ? (
-                      <div className="w-5 h-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                    ) : (
-                      <>
-                        <Send className="w-4 h-4" />
-                        <span>Post Comment</span>
-                      </>
-                    )}
-                  </button>
-                </div>
-              </div>
-            </form>
-          ) : (
-            <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 text-center mb-8 
-              transform transition-all duration-300 hover:scale-[1.02]">
-              <p className="text-gray-600 dark:text-gray-400">
-                Please{" "}
-                <Link 
-                  to="/login" 
-                  className="text-orange-500 hover:text-orange-600 dark:hover:text-orange-400 
-                    font-medium hover:underline transition-colors duration-200"
-                >
-                  login
-                </Link>{" "}
-                to join the discussion
-              </p>
-            </div>
-          )}
-        </section>
+        <Comments post={post} userData={userData} />
       </Container>
     </div>
   );
