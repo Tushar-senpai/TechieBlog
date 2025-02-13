@@ -5,6 +5,7 @@ import authService from "../appwrite/auth";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
+import image from '../../public/images/Computer.svg'
 
 function Login() {
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ function Login() {
       <div class="min-h-screen flex fle-col items-center justify-center py-6 px-4">
         <div class="grid md:grid-cols-2 items-center gap-2 max-w-6xl w-full">
         <div class="max-md:mt-8">
-            <img src="https://readymadeui.com/login-image.webp" class="w-full aspect-[71/50] max-md:w-4/5 mx-auto block object-cover" alt="Dining Experience" />
+            <img src={image} class="w-full aspect-[71/50] max-md:w-4/5 mx-auto block object-cover" alt="Dining Experience" />
           </div>
           <div class="border border-gray-300 rounded-lg p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto">
             <form onSubmit={handleSubmit(login)}  class="space-y-4">
