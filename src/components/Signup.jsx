@@ -6,7 +6,7 @@ import { login } from '../store/authSlice'
 import { useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import Swal from "sweetalert2";
-import SignupImg from '../../public/images/signup.svg'
+import SignupImg from '../../public/images/signupimg.svg'
 
 function Signup() {
 
