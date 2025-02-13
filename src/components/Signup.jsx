@@ -6,8 +6,7 @@ import { login } from '../store/authSlice'
 import { useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import Swal from "sweetalert2";
-import SignupImg from '../../public/images/signupimg.svg'
-
+import image from '../../src/assets/Signupimg.svg'
 function Signup() {
 
   const navigate = useNavigate()
@@ -46,7 +45,7 @@ function Signup() {
     <div class="min-h-screen flex fle-col items-center justify-center py-2 px-4">
       <div class="grid md:grid-cols-2 items-center gap-6 max-w-6xl w-full">
       <div class="max-md:mt-5">
-          <img src={SignupImg} class="w-full aspect-[71/50] max-md:w-4/5 mx-auto block object-cover" alt="Dining Experience" />
+          <img src={image} class="w-full aspect-[71/50] max-md:w-4/5 mx-auto block object-cover" alt="Dining Experience" />
         </div>
         <div class="border border-gray-300 rounded-lg p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto">
         {error && <p className="text-red-600 dark:text-red-400 mt-8 text-center"> {error} </p>}

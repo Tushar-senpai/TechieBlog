@@ -5,7 +5,7 @@ import authService from "../appwrite/auth";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
-import image from '../../public/images/Computer.svg'
+import image from '../../src/assets/Computer.svg'
 
 function Login() {
   const navigate = useNavigate();
