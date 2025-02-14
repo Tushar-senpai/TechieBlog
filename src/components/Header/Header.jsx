@@ -129,6 +129,7 @@ function Header() {
                       </li>
                     )
                 )}
+
             </ul>
 
             <ul className="flex justify-end items-center space-x-5">
@@ -172,25 +173,28 @@ function Header() {
             <div className="md:hidden">
               <div className="mt-4 py-2">
                 <ul className="mt-4 space-y-6 text-lg flex flex-col items-center">
-                  {navItems.map(
-                    (item) =>
-                      item.active && (
-                        <li key={item.name}>
-                          <NavLink
-                            className={({ isActive }) =>
-                              `${
-                                isActive && "bg-orange-300"
-                              } w-full inline-flex items-center gap-2 px-6 py-2 text-orange-800 font-semibold hover:bg-orange-200 rounded-lg transition-colors`
-                            }
-                            to={item.slug}
-                            onClick={() => handleNavigation()}
-                          >
-                            <item.icon size={20} />
-                            {item.name}
-                          </NavLink>
-                        </li>
-                      )
-                  )}
+                {navItems.map((item, index) =>
+  item.active && (
+    <li
+      key={item.name}
+      className={`${index < 3 ? "md:hidden" : ""}`} // Hide the third item on small screens
+    >
+      <NavLink
+        className={({ isActive }) =>
+          `${isActive ? "bg-orange-300" : ""} 
+          w-full inline-flex items-center gap-2 px-6 py-2 text-orange-800 
+          font-semibold hover:bg-orange-200 rounded-lg transition-colors`
+        }
+        to={item.slug}
+        onClick={() => handleNavigation()}
+      >
+        <item.icon size={20} />
+        {item.name}
+      </NavLink>
+    </li>
+  )
+)}
+
                   <li className="animate-fade-in-delayed">
                     <button
                       onClick={() => dispatch(toggleTheme())}

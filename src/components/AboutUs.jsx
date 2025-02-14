@@ -1,74 +1,231 @@
 import React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Rocket, Users, BookOpen, Megaphone, HeartHandshake, Mail, Twitter, Facebook, Instagram } from 'lucide-react';
 
 const AboutUs = () => {
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+    };
+
+    const itemVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 100 } }
+    };
+
     return (
-        <div className="flex flex-col md:flex-row items-center md:items-start max-w-7xl mx-auto m-5 p-10 font-sans bg-gradient-to-r from-gray-50 to-gray-200 rounded-xl shadow-lg dark:from-gray-900 dark:to-gray-800 dark:text-white">
-            {/* Left Side - Animated GIF */}
-            <div className="hidden md:block md:w-1/3 mt-20">
-                <img 
-                    src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaTRpbWJrNW9zcnZkdXk5M2llc3l3eGIxdmdxZnp4NDFpdmRibzV0MCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/qgQUggAC3Pfv687qPC/giphy.gif" 
-                    alt="Tech GIF" 
-                    className="w-full rounded-lg shadow-md"
-                />
-            </div>
+        <div className="min-h-screen bg-gradient-to-br from-gray-50 via-orange-50 to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+            {/* Hero Section */}
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="mb-8"
+                >
+                    <motion.h1
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                        className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-rose-500 dark:from-orange-400 dark:to-rose-400 mb-6 leading-normal py-1"
+                    >
+                        About TechieBlog
+                    </motion.h1>
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.4 }}
+                        className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
+                    >
+                        Empowering the tech community through knowledge sharing and innovation
+                    </motion.p>
+                </motion.div>
 
-            {/* Right Side - Content */}
-            <div className="md:w-2/3 md:pl-10">
-                <h1 className='text-center md:text-left text-5xl font-bold text-orange-600 mb-6 pb-3 border-b-4 border-gray-500'>
-                    About TechieBlog
-                </h1>
-                <p className='text-lg leading-relaxed mb-6 text-justify'>
-                    Welcome to <span className="font-semibold text-orange-500">TechieBlog</span>, your ultimate destination for all things tech. 
-                    Our mission is to bring you the latest technology news, in-depth reviews, 
-                    and insightful tutorials with a strong focus on accuracy and innovation.
-                </p>
+                <motion.div
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className="grid md:grid-cols-3 gap-8 mt-16"
+                >
+                    {[
+                        { icon: Rocket, title: 'Innovation Driven', text: 'Pioneering tech insights since 2023' },
+                        { icon: Users, title: '500K+ Readers', text: 'Global community of tech enthusiasts' },
+                        { icon: BookOpen, title: '1K+ Articles', text: 'Curated tech knowledge base' },
+                    ].map((item, index) => (
+                        <motion.div
+                            key={index}
+                            variants={itemVariants}
+                            whileHover={{ scale: 1.05 }}
+                            className="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+                        >
+                            <item.icon className="w-12 h-12 text-orange-500 mx-auto mb-4" />
+                            <h3 className="text-xl font-semibold mb-2 dark:text-white">{item.title}</h3>
+                            <p className="text-gray-600 dark:text-gray-400">{item.text}</p>
+                        </motion.div>
+                    ))}
+                </motion.div>
+            </section>
 
-                <h2 className='text-center md:text-left text-3xl font-semibold mb-6 pb-3 border-b-4 border-gray-500'>
-                    Our Story
-                </h2>
-                <p className='text-lg leading-relaxed mb-6 text-justify'>
-                    Founded in <span className="font-bold text-orange-500">2023</span>, TechieBlog started as a passion project in a home office. 
-                    Our love for cutting-edge technology inspired us to create a platform where enthusiasts, 
-                    professionals, and learners can explore the world of tech together.
-                </p>
+            {/* Story Section */}
+            <section className="bg-white dark:bg-gray-800 py-20">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                        <motion.div
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            className="relative group"
+                        >
+                            <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 to-rose-400 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000" />
+                            <motion.div
+                                whileHover={{ scale: 1.02 }}
+                                className="relative bg-gray-100 dark:bg-gray-700 rounded-2xl p-8 h-full"
+                            >
+                                <img 
+                                    src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaTRpbWJrNW9zcnZkdXk5M2llc3l3eGIxdmdxZnp4NDFpdmRibzV0MCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/qgQUggAC3Pfv687qPC/giphy.gif"
+                                    alt="Tech Blog Innovation" 
+                                    className="w-full h-[400px] object-cover rounded-xl shadow-lg"
+                                />
+                            </motion.div>
+                        </motion.div>
 
-                <h2 className='text-center md:text-left text-3xl font-semibold mb-6 pb-3 border-b-4 border-gray-500'>
-                    Our Mission
-                </h2>
-                <p className='text-lg leading-relaxed mb-6 text-justify'>
-                    We aim to provide our audience with reliable and up-to-date tech content by focusing on:
-                </p>
-                <ul className='text-lg leading-relaxed mb-6 text-justify space-y-3'>
-                    <li><span className="font-bold text-orange-500">📘 Educate:</span> Empower readers with step-by-step tutorials and guides.</li>
-                    <li><span className="font-bold text-orange-500">📰 Inform:</span> Keep you updated with the latest trends and innovations.</li>
-                    <li><span className="font-bold text-orange-500">💡 Inspire:</span> Share breakthrough ideas and technological advancements.</li>
-                    <li><span className="font-bold text-orange-500">💬 Engage:</span> Foster a thriving community of tech enthusiasts.</li>
-                </ul>
+                        <motion.div
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="space-y-6"
+                        >
+                            <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-rose-500 dark:from-orange-400 dark:to-rose-400">
+                                Our Journey
+                            </h2>
+                            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                Born from a passion for technology in 2023, TechieBlog started as a small blog in a home office. 
+                                Today, we've grown into a trusted platform serving millions of readers worldwide, delivering 
+                                cutting-edge tech insights and fostering a global community of innovators.
+                            </p>
+                            <div className="flex items-center space-x-4">
+                                <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700" />
+                                <span className="text-sm text-gray-500 dark:text-gray-400">Milestones Achieved</span>
+                                <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700" />
+                            </div>
+                            <motion.div className="grid grid-cols-2 gap-4">
+                                {[
+                                    { value: '97%', label: 'Reader Satisfaction' },
+                                    { value: '50+', label: 'Expert Contributors' },
+                                ].map((item, index) => (
+                                    <motion.div
+                                        key={index}
+                                        whileHover={{ scale: 1.05 }}
+                                        className="p-4 bg-orange-50 dark:bg-gray-700 rounded-xl"
+                                    >
+                                        <span className="text-2xl font-bold text-orange-600 dark:text-orange-400">{item.value}</span>
+                                        <p className="text-gray-600 dark:text-gray-300 mt-1">{item.label}</p>
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
 
-                <h2 className='text-center md:text-left text-3xl font-semibold mb-6 pb-3 border-b-4 border-gray-500'>
-                    Connect With Us
-                </h2>
-                <p className='text-lg leading-relaxed mb-6 text-justify'>
-                    We’d love to hear from you! Get in touch with us through:
-                </p>
-                <ul className='text-lg leading-relaxed mb-6 text-justify space-y-3'>
-                    <li><span className="font-bold text-orange-500">📩 Newsletter:</span> Subscribe to receive the latest updates.</li>
-                    <li>
-                        <span className="font-bold text-orange-500">🌍 Social Media:</span> Follow us on 
-                        <a href="https://x.com/?lang=en" className='text-blue-600 hover:underline mx-1'>Twitter</a>, 
-                        <a href="https://www.facebook.com/" className='text-blue-600 hover:underline mx-1'>Facebook</a>, and 
-                        <a href="https://www.instagram.com/" className='text-blue-600 hover:underline mx-1'>Instagram</a>.
-                    </li>
-                    <li>
-                        <span className="font-bold text-orange-500">📞 Contact Us:</span> Reach out via our 
-                        <a href="#contact" className='text-blue-600 hover:underline ml-1'>Contact Page</a>.
-                    </li>
-                </ul>
+            {/* Values Section */}
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-16"
+                >
+                    <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-rose-500 dark:from-orange-400 dark:to-rose-400 mb-4">
+                        Our Core Values
+                    </h2>
+                    <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                        The principles that guide every article we publish
+                    </p>
+                </motion.div>
 
-                <p className='text-2xl font-semibold text-center md:text-left mt-8 text-orange-600'>
-                    "Empowering You with Tech Knowledge, One Post at a Time!"
-                </p>
-            </div>
+                <motion.div
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+                >
+                    {[
+                        { icon: Megaphone, title: 'Educate', color: 'text-orange-500' },
+                        { icon: BookOpen, title: 'Inform', color: 'text-rose-500' },
+                        { icon: HeartHandshake, title: 'Inspire', color: 'text-amber-500' },
+                        { icon: Users, title: 'Engage', color: 'text-emerald-500' },
+                    ].map((item, index) => (
+                        <motion.div
+                            key={index}
+                            variants={itemVariants}
+                            whileHover={{ scale: 1.05, rotate: 2 }}
+                            className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+                        >
+                            <item.icon className={`w-12 h-12 mx-auto mb-4 ${item.color}`} />
+                            <h3 className="text-xl font-semibold text-center mb-2 dark:text-white">{item.title}</h3>
+                            <p className="text-gray-600 dark:text-gray-400 text-center">
+                                {['Deep technical guides', 'Latest industry news', 'Innovation showcases', 'Community discussions'][index]}
+                            </p>
+                        </motion.div>
+                    ))}
+                </motion.div>
+            </section>
+
+            {/* CTA Section */}
+            <motion.section
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 dark:from-orange-900 dark:via-orange-800 dark:to-orange-900 py-20 relative overflow-hidden"
+            >
+                {/* Add subtle background pattern */}
+                <div className="absolute inset-0 bg-grid-white/[0.1] pointer-events-none" />
+                
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                    <motion.h2
+                        initial={{ y: 20, opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
+                        className="text-3xl font-bold text-white mb-6"
+                    >
+                        Join Our Tech Community
+                    </motion.h2>
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                        className="text-lg text-orange-50 mb-8 max-w-2xl mx-auto"
+                    >
+                        Stay updated with the latest tech trends and join discussions with like-minded professionals
+                    </motion.p>
+                    <motion.div
+                        className="flex justify-center space-x-6"
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                    >
+                        {[
+                            { icon: Twitter, link: 'https://twitter.com' },
+                            { icon: Facebook, link: 'https://facebook.com' },
+                            { icon: Instagram, link: 'https://instagram.com' },
+                        ].map((item, index) => (
+                            <motion.a
+                                key={index}
+                                variants={itemVariants}
+                                href={item.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-orange-300/20"
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                            >
+                                <item.icon className="w-6 h-6 text-white" />
+                            </motion.a>
+                        ))}
+                    </motion.div>
+                </div>
+            </motion.section>
         </div>
     );
 };
