@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Rocket, Users, BookOpen, Megaphone, HeartHandshake, Mail, Twitter, Facebook, Instagram } from 'lucide-react';
+import { Rocket, Users, BookOpen, Megaphone, HeartHandshake, Mail, Twitter, Facebook, Instagram , X} from 'lucide-react';
 
 const AboutUs = () => {
     const containerVariants = {
@@ -206,7 +206,7 @@ const AboutUs = () => {
                         whileInView="visible"
                     >
                         {[
-                            { icon: Twitter, link: 'https://twitter.com' },
+                            { icon:  X, link: 'https://twitter.com' },
                             { icon: Facebook, link: 'https://facebook.com' },
                             { icon: Instagram, link: 'https://instagram.com' },
                         ].map((item, index) => (
