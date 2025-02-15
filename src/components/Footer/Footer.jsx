@@ -161,7 +161,7 @@ const Footer = () => {
           }}
         >
           <div className="w-11 h-11 bg-white rounded-full flex items-center justify-center shadow-lg">
-            <FontAwesomeIcon icon={faArrowUp} className="text-orange-900 text-2xl" />
+            <FontAwesomeIcon icon={faArrowUp} className="text-orange-500 text-2xl" />
           </div>
         </div>
       </div>
