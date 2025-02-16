@@ -24,11 +24,18 @@ function Sidebar({ isOpen }) {
   if (!authStatus) return null; // Hide sidebar if user is not logged in
 
   return (
-    <aside
-      className={`fixed right-0 top-16 w-80 bg-gradient-to-t from-yellow-100 via-orange-100 to-red-100 dark:bg-gradient-to-t dark:from-gray-800 dark:via-gray-800 dark:to-black min-h-screen p-4 shadow-lg transition-transform duration-300 ${
-        isOpen ? "translate-x-0" : "translate-x-full"
-      } z-50`} // Added z-50 to ensure it stays on top
-    >
+<aside
+  className={`fixed 
+  top-[58%] sm:top-1/2 left-1/2 right-1/2 -translate-x-1/2 -translate-y-1/2 
+  w-11/12 sm:w-60 lg:w-80 md:w-60 h-auto max-h-[85vh] overflow-y-auto 
+  bg-gradient-to-t from-yellow-100 via-orange-100 to-red-100 
+  dark:bg-gradient-to-t dark:from-gray-800 dark:via-gray-800 dark:to-black 
+  p-4 shadow-lg transition-transform duration-300 
+  ${isOpen ? "scale-100 opacity-100" : "scale-0 opacity-0"} 
+  z-50 rounded-xl`}
+>
+
+  
       <h2 className="flex justify-center"><Logo width={50} /></h2>
       <ul className="space-y-4">
         {navItems.map(
