@@ -94,7 +94,13 @@ function Header() {
 
   return (
     <>
-      <header id="sticky-header" className="py-3 shadow bg-gradient-to-r from-yellow-100 via-orange-100 to-red-100 dark:bg-gradient-to-r dark:from-gray-800 dark:via-gray-800 dark:to-black transition duration-300 animate-slide-down ">
+      <header
+  id="sticky-header"
+  className="py-2 px-6 shadow-md bg-gradient-to-r from-yellow-100 via-orange-100 to-red-100 
+  dark:bg-gradient-to-r dark:from-gray-600 dark:via-gray-600 dark:to-gray-600 
+  transition duration-300 animate-slide-down border md:rounded-full rounded-3xl md:mx-10 my-3 sm:mx-2 "
+>
+
         <Container>
           <nav className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
@@ -148,7 +154,7 @@ function Header() {
               {/* Header */}
               {authStatus && (
                 <button
-                  className="text-orange-600 bg-yellow-100 dark:bg-gray-500 dark:text-orange-300 hover:bg-gray-200 dark:hover:bg-gray-700 p-2 rounded-full transition"
+                  className="text-orange-600 bg-yellow-100 dark:bg-gray-500 dark:text-orange-300 hover:bg-orange-200 dark:hover:bg-gray-700 p-2 rounded-full transition"
                   onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                 >
                   {isSidebarOpen ? <X size={28} /> : <Menu size={28} />}
