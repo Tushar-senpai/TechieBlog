@@ -68,7 +68,7 @@ const FAQ = () => {
           {questions.map((item, index) => (
             <div
               key={index}
-              id={faq-item-${index}}
+              id={`faq-item-${index}`}
               className={`faq-item p-5 rounded-lg shadow-lg transition-all duration-500 transform ${
                 activeIndex === index
                   ? "bg-orange-50 dark:bg-orange-900 border-orange-500 scale-105"
