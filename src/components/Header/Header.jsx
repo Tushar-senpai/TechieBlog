@@ -124,11 +124,12 @@ function Header() {
                             `${
                               isActive &&
                               "bg-yellow-100 dark:bg-gray-600 shadow-md "
-                            } inline-flex items-center gap-2 px-5 py-2 text-orange-600 font-semibold hover:bg-orange-200 rounded-full transition-transform duration-300 hover:scale-105 dark:text-orange-400 dark:hover:bg-gray-700`
+                            } relative group overflow-hidden inline-flex items-center gap-2 px-5 py-2 text-orange-600 font-semibold hover:bg-orange-200 rounded-full transition-transform duration-300 hover:scale-105 dark:text-orange-400 dark:hover:bg-gray-700`
                           }
                           to={item.slug}
                           onClick={() => handleNavigation()}
                         >
+                        <span className="absolute block rotate-45 bg-slate-100 h-32 w-3 left-0 bg-opacity-0 group-hover:bg-opacity-35 group-hover:animate-waving-hand"></span>
                           <item.icon size={18} />
                           {item.name}
                         </NavLink>
