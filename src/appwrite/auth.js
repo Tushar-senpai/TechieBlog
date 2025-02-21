@@ -1,17 +1,59 @@
 import conf from "../conf/conf";
-import {Client, Account, ID} from 'appwrite'
+import { Client, Account, Databases, ID ,Query } from "appwrite";
+
 const baseLink = import.meta.env.VITE_BASE_LINK;
 
-export class AuthService{
+export class AuthService {
     client = new Client();
     account;
-    
-    constructor(){
+    databases;
+
+    constructor() {
         this.client
             .setEndpoint(conf.appwriteUrl)
             .setProject(conf.appwriteProjectId);
-        
+
         this.account = new Account(this.client);
+        this.databases = new Databases(this.client); // ✅ Initialize Databases SDK
+    }
+
+    async createAccount({ email, password, name }) {
+        try {
+            // ✅ Step 1: Create User in Authentication
+            const userAccount = await this.account.create(ID.unique(), email, password, name);
+            console.log("User Account Created:", userAccount);
+
+            // ✅ Step 2: Store User Data in the Database
+            const userData = await this.databases.createDocument(
+                conf.appwriteDatabaseId,  // Replace with your actual Database ID
+                conf.appwriteUserCollectionId, // Replace with your actual Collection ID
+                ID.unique(), // Use unique ID for the document
+                {
+                    userId: userAccount.$id, // Store the User ID
+                    name: name,                    
+                }
+            );
+            console.log("User Data Stored in Database:", userData);
+
+            // ✅ Step 3: Send Verification Email
+            const session = await this.account.createEmailPasswordSession(email, password);
+            console.log("Temporary Session Created:", session);
+            
+            await this.account.createVerification(`${baseLink}/verify-email`);
+            
+            // ✅ Step 4: Clean Up Session
+            await this.account.deleteSessions();
+
+            return userAccount;
+        } catch (error) {
+            console.error("Error during account creation:", error);
+            try {
+                await this.account.deleteSessions();
+            } catch (sessionError) {
+                console.log("Error cleaning up session:", sessionError);
+            }
+            throw error;
+        }
     }
 
     async updateVerification({id, secret}) {
@@ -41,32 +83,6 @@ export class AuthService{
         }
     }
     
-   
-    async createAccount({email, password, name}) {
-        try {
-            // Create the account
-            
-            const userAccount = await this.account.create(ID.unique(),  email, password, name);
-            console.log(userAccount)
-            // Create a temporary session to send verification email
-            const session  = await this.account.createEmailPasswordSession(email, password);
-            console.log(session);
-
-            // Now create verification linkbefore verify-email
-            await this.account.createVerification(`${baseLink}/verify-email`);
-            // Delete the session after sending verification email
-            await this.account.deleteSessions();
-            return userAccount;
-        } catch (error) {
-            try {
-                await this.account.deleteSessions();
-            } catch (sessionError) {
-                console.log("Error cleaning up session:", sessionError);
-            }
-            throw error;
-        }
-    }
-
     async login({email, password}) {
         try {
             // First create session
@@ -166,6 +182,25 @@ export class AuthService{
             
         }
     }
+    async getUserNameById(userId) {
+        try {
+            const response = await this.databases.listDocuments(
+                conf.appwriteDatabaseId, // Your database ID
+                conf.appwriteUserCollectionId, // Your users collection ID
+                [Query.equal("userId", userId)] // Corrected syntax
+            );
+    
+            if (response.documents.length > 0) {
+                return response.documents[0].name; // Assuming 'name' field exists
+            } else {
+                return "Unknown User";
+            }
+        } catch (error) {
+            console.error("Error fetching user:", error);
+            return "Unknown User";
+        }
+    }
+    
 }
 
 const authService = new AuthService();
