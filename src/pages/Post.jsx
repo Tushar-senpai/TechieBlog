@@ -39,26 +39,33 @@ export default function Post() {
           navigate("/");
           return;
         }
-
+  
         const fetchedPost = await appwriteService.getPost(slug);
         if (!fetchedPost) {
           throw new Error("Post not found");
         }
-
+  
         setPost(fetchedPost);
-
-        const user = await authService.getUserById(fetchedPost.userId);
+  
+        // Fetch author name properly
+        const user = await authService.getUserNameById(fetchedPost.userId);
+        console.log("User:", user);
+        
         if (user) {
-          setAuthor(user);
+          setAuthor(user); // Only setting the name, not whole object
+        } else {
+          setAuthor("Unknown Author");
         }
+  
       } catch (err) {
-        throw err;
+        console.error("Error fetching post:", err);
       }
     }
-
+  
     fetchPost();
   }, [slug, navigate]);
-
+  
+  
   const saveForLater = async () => {
     try {
 
@@ -220,8 +227,8 @@ useEffect(() => {
             <div className="flex flex-wrap items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
               <div className="flex items-center gap-2">
                 <User className="w-4 h-4" />
-                <span>{author ? author.name : "Unknown Author"}</span>
-              </div>
+                <span>{author || "Unknown Author"}</span>
+                </div>
               <div className="hidden sm:block text-gray-400">•</div>
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4" />

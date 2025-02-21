@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from "react";
 import appwriteService from "../appwrite/config";
-import authService from "../appwrite/auth";
 import { Link } from "react-router-dom";
 import { User, Clock } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
+import authService from "../appwrite/auth"; // Import the function
 
 function PostCard({ $id, title, featuredImage, $createdAt, userId }) {
-  const [author, setAuthor] = useState(null);
+  const [authorName, setAuthorName] = useState("Loading...");
 
   useEffect(() => {
     const fetchAuthor = async () => {
       try {
         if (userId) {
-          const userData = await authService.getUserById(userId);
-          setAuthor(userData);
+          console.log("Fetching author name for user ID:", userId);
+          
+          const name = await authService.getUserNameById(userId);
+          setAuthorName(name);
         }
       } catch (error) {
-        console.error("Error fetching author:", error);
+        console.log("Error fetching author:", error);
+        setAuthorName("Unknown User");
       }
     };
 
@@ -24,14 +27,10 @@ function PostCard({ $id, title, featuredImage, $createdAt, userId }) {
   }, [userId]);
 
   return (
-    <Link
-      to={`/post/${$id}`}
-      className="block transform transition-all duration-300 hover:scale-[1.02] hover:z-10 w-full"
-    >
+    <Link to={`/post/${$id}`} className="block transform transition-all duration-300 hover:scale-[1.02] hover:z-10 w-full">
       <div className="w-[340px] h-[400px] mx-auto relative group">
         <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden h-full 
-          shadow-md dark:shadow-lg
-          hover:shadow-lg transition-all duration-300 m-2">
+          shadow-md dark:shadow-lg hover:shadow-lg transition-all duration-300 m-2">
           
           {/* Image Section */}
           <div className="h-[240px] relative overflow-hidden">
@@ -55,7 +54,7 @@ function PostCard({ $id, title, featuredImage, $createdAt, userId }) {
             <div className="flex justify-between items-center text-gray-700 dark:text-gray-300 text-sm">
               <div className="flex items-center gap-1">
                 <User className="w-4 h-4" />
-                <span className="truncate max-w-[120px]">{author?.name || "Loading..."}</span>
+                <span className="truncate max-w-[120px]">{authorName}</span>
               </div>
               <div className="flex items-center gap-1">
                 <Clock className="w-4 h-4" />

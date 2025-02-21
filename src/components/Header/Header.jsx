@@ -98,7 +98,7 @@ function Header() {
   id="sticky-header"
   className="py-2 px-6 shadow-md bg-gradient-to-r from-yellow-100 via-orange-100 to-red-100 
   dark:bg-gradient-to-r dark:from-gray-600 dark:via-gray-600 dark:to-gray-600 
-  transition duration-300 animate-slide-down border md:rounded-full rounded-3xl md:mx-10 my-3 sm:mx-2 "
+  transition duration-300 animate-slide-down border md:rounded-full md:mx-10 md:my-3  "
 >
 
         <Container>

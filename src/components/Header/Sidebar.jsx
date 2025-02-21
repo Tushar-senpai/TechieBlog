@@ -1,3 +1,4 @@
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from "../../store/themeSlice";
@@ -6,7 +7,7 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import { LogIn, UserPlus, Files, FileEdit, HelpCircle, MessageSquare, Info, Phone, Calendar } from "lucide-react";
 import Logo from "../Logo";
 
-function Sidebar({ isOpen }) {
+function Sidebar({ isOpen, setIsOpen }) {
   const authStatus = useSelector((state) => state.auth.status);
   const darkMode = useSelector((state) => state.theme.darkMode);
   const dispatch = useDispatch();
@@ -24,18 +25,16 @@ function Sidebar({ isOpen }) {
   if (!authStatus) return null; // Hide sidebar if user is not logged in
 
   return (
-<aside
-  className={`fixed 
-  top-[58%] sm:top-1/2 left-1/2 right-1/2 -translate-x-1/2 -translate-y-1/2 
-  w-11/12 sm:w-60 lg:w-80 md:w-60 h-auto max-h-[85vh] overflow-y-auto 
-  bg-gradient-to-t from-yellow-100 via-orange-100 to-red-100 
-  dark:bg-gradient-to-t dark:from-gray-800 dark:via-gray-800 dark:to-black 
-  p-4 shadow-lg transition-transform duration-300 
-  ${isOpen ? "scale-100 opacity-100" : "scale-0 opacity-0"} 
-  z-50 rounded-xl`}
->
-
-  
+    <aside
+      className={`fixed 
+      top-[58%] sm:top-1/2 left-1/2 right-1/2 -translate-x-1/2 -translate-y-1/2 
+      w-11/12 sm:w-60 lg:w-80 md:w-60 h-auto max-h-[85vh] overflow-y-auto 
+      bg-gradient-to-t from-yellow-100 via-orange-100 to-red-100 
+      dark:bg-gradient-to-t dark:from-gray-800 dark:via-gray-800 dark:to-black 
+      p-4 shadow-lg transition-transform duration-300 
+      ${isOpen ? "scale-100 opacity-100" : "scale-0 opacity-0"} 
+      z-50 rounded-xl`}
+    >
       <h2 className="flex justify-center"><Logo width={50} /></h2>
       <ul className="space-y-4">
         {navItems.map(
@@ -49,6 +48,7 @@ function Sidebar({ isOpen }) {
                     } flex items-center gap-2 px-5 py-2 text-orange-600 font-semibold hover:bg-orange-200 rounded-full transition-transform duration-300 hover:scale-105 dark:text-orange-400 dark:hover:bg-gray-700`
                   }
                   to={item.slug}
+                  onClick={() => setIsOpen(false)}
                 >
                   <item.icon size={18} />
                   {item.name}
