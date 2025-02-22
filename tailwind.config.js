@@ -17,7 +17,18 @@ export default {
         secondary: '#e68e37',
         dark: '#4B4B4B',
         light: '#FAF9F6'
-      }
+      },
+
+      keyframes:{
+        wave:{
+          "0%":{transform:'translateX(0px)',transform:"translateZ(45%)"},
+          "100%":{transform:'translateX(500px)'}
+        }
+      },
+
+      animation: {
+        'waving-hand': 'wave 2s linear infinite',
+      },
     },
   },
   darkMode: 'class',
