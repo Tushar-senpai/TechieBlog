@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 function FeedbackPage() {
   const [name, setName] = useState('');
@@ -10,30 +11,51 @@ function FeedbackPage() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Here you can handle the feedback submission, e.g., send it to your server
     setSubmitted(true);
   };
 
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen p-6'>
-      <div className='w-full max-w-4xl bg-white bg-gradient-to-r dark:via-gray-800 dark:to-gray-900 dark:text-white p-8 rounded-lg shadow-md flex flex-col md:flex-row'>
-        {/* Image container */}
+    <motion.div 
+      className='flex flex-col items-center justify-center min-h-screen p-6 bg-gray-100 dark:bg-gray-900'
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <motion.div 
+        className='w-full max-w-4xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white p-8 rounded-lg shadow-lg flex flex-col md:flex-row'
+        initial={{ scale: 0.9 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.3 }}
+        whileHover={{ scale: 1.02 }}
+      >
         <div className='w-full md:w-1/2 flex items-center justify-center p-4'>
-          <img src='https://www.pngkey.com/png/detail/83-839816_in1-solutions-feedback-feedback-from-presentation-clipart.png' alt='Your description' className='w-full rounded-md shadow-md' />
+          <img src='https://www.pngkey.com/png/detail/83-839816_in1-solutions-feedback-feedback-from-presentation-clipart.png' alt='Feedback' className='w-full rounded-md shadow-md' />
         </div>
         <div className='w-full md:w-1/2 p-4'>
           {submitted ? (
-            <p className='text-orange-600 text-2xl'>Thank you for your feedback!</p>
+            <motion.p 
+              className='text-orange-600 text-2xl text-center'
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              Thank you for your feedback!
+            </motion.p>
           ) : (
-            <form onSubmit={handleSubmit} className='space-y-4'>
-              <h1 className='text-4xl font-bold mb-6 text-orange-600 dark:text-gray-100' style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)' }}>Feedback</h1>
+            <motion.form 
+              onSubmit={handleSubmit} 
+              className='space-y-4'
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <h1 className='text-4xl font-bold mb-6 text-orange-600 dark:text-gray-100'>Feedback</h1>
               <input
                 type='text'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder='Your name...'
                 required
-                className='w-full p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 dark:bg-gray-800 dark:text-gray-100 hover:border-orange-500 hover:shadow-md focus:shadow-lg transition duration-300'
+                className='input-style'
               />
               <input
                 type='email'
@@ -41,12 +63,12 @@ function FeedbackPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder='Your email...'
                 required
-                className='w-full p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 dark:bg-gray-800 dark:text-gray-100 hover:border-orange-500 hover:shadow-md focus:shadow-lg transition duration-300'
+                className='input-style'
               />
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className='w-full p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 dark:bg-gray-800 dark:text-gray-100 hover:border-orange-500 hover:shadow-md focus:shadow-lg transition duration-300'
+                className='input-style'
               >
                 <option value='general'>General</option>
                 <option value='bug'>Bug Report</option>
@@ -57,7 +79,7 @@ function FeedbackPage() {
                 onChange={(e) => setFeedback(e.target.value)}
                 placeholder='Your feedback...'
                 required
-                className='w-full p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 dark:bg-gray-800 dark:text-gray-100 hover:border-orange-500 hover:shadow-md focus:shadow-lg transition duration-300'
+                className='input-style'
               />
               <div className='flex items-center space-x-4'>
                 <span className='text-gray-900 dark:text-gray-100'>Rating:</span>
@@ -69,20 +91,41 @@ function FeedbackPage() {
                   max='5'
                   placeholder='1-5'
                   required
-                  className='w-full p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 dark:bg-gray-800 dark:text-gray-100 hover:border-orange-500 hover:shadow-md focus:shadow-lg transition duration-300'
+                  className='input-style'
                 />
               </div>
-              <button
+              <motion.button
                 type='submit'
-                className='btn-shadow w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500'
+                className='w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 shadow-md'
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 Submit
-              </button>
-            </form>
+              </motion.button>
+            </motion.form>
           )}
         </div>
-      </div>
-    </div>
+      </motion.div>
+      <style jsx>{`
+        .input-style {
+          width: 100%;
+          padding: 16px;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          background-color: #f9f9f9;
+          transition: all 0.3s ease-in-out;
+        }
+        .input-style:focus {
+          outline: none;
+          border-color: #ff7f50;
+          box-shadow: 0px 0px 10px rgba(255, 127, 80, 0.5);
+        }
+        .input-style:hover {
+          border-color: #ff7f50;
+          box-shadow: 0px 0px 5px rgba(255, 127, 80, 0.3);
+        }
+      `}</style>
+    </motion.div>
   );
 }
 
