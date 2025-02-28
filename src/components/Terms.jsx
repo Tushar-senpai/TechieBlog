@@ -1,77 +1,77 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { FaBook, FaExclamationCircle, FaBan, FaCheckCircle, FaLink, FaEdit, FaGavel } from 'react-icons/fa';
+import termImg from '../assets/term.svg';
 
 function Terms() {
+  const tableOfContents = [
+    { id: "terms", text: "Terms", icon: <FaBook /> },
+    { id: "disclaimer", text: "Disclaimer", icon: <FaExclamationCircle /> },
+    { id: "limitations", text: "Limitations", icon: <FaBan /> },
+    { id: "accuracy", text: "Accuracy of Materials", icon: <FaCheckCircle /> },
+    { id: "links", text: "Links", icon: <FaLink /> },
+    { id: "modifications", text: "Modifications", icon: <FaEdit /> },
+    { id: "governing-law", text: "Governing Law", icon: <FaGavel /> }
+  ];
   return (
-    <div className="container mx-auto p-10 bg-gray-50 dark:bg-gray-900 rounded-lg shadow-lg">
-      <div className="lg:grid lg:grid-cols-3 gap-1">
-        {/* Left Section: Image */}
-        <div className="lg:col-span-1 mb-8 lg:mb-1">
-          <img 
-            src="https://cdni.iconscout.com/illustration/premium/thumb/man-checking-form-and-agree-with-terms-conditions-illustration-download-in-svg-png-gif-file-formats--business-agreement-pack-illustrations-7458228.png" // Replace with your image URL
-            alt="Terms Illustration"
-            className="w-96 h-auto rounded-lg shadow-lg mt-80"
-          />
-        </div>
+    <div className="container mx-auto p-6 lg:p-10">
+      <h1 className='text-5xl font-extrabold mb-6 text-orange-600 dark:text-gray-100 text-center'>Terms & Conditions</h1>
+      <p className="mb-8 text-lg text-gray-700 dark:text-gray-300 text-center max-w-3xl mx-auto">
+        Welcome to TechieBlog, accessible at techieblog.com. By accessing and using this Blog, you agree to comply with and be bound by the following terms and conditions. Please read them carefully.
+      </p>
 
-        {/* Right Section: Text Content */}
-        <div className="lg:col-span-2">
-        <h1 className='text-4xl font-bold mb-6 text-orange-600 dark:text-gray-100'>Terms and Conditions</h1>
+      {/* First Row: Image and Table of Contents */}
+      <div className="lg:grid lg:grid-cols-2 gap-10 mb-10 ">
+        <motion.div 
+          className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg flex justify-center items-center"
+          whileHover={{ scale: 1.03 }}
+          transition={{ duration: 0.3 }}
+        >
+          <img src={termImg} alt="Terms Illustration" className="w-96 h-auto rounded-lg" />
+        </motion.div>
 
-
-
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-700 dark:text-gray-200">Table of Contents</h2>
-            <ul className="list-none pl-5 space-y-2">
-              <li><a href="#terms" className="text-primary dark:text-orange-400 hover:underline text-lg">Terms</a></li>
-              <li><a href="#disclaimer" className="text-primary dark:text-orange-400 hover:underline text-lg">Disclaimer</a></li>
-              <li><a href="#limitations" className="text-primary dark:text-orange-400 hover:underline text-lg">Limitations</a></li>
-              <li><a href="#accuracy" className="text-primary dark:text-orange-400 hover:underline text-lg">Accuracy of Materials</a></li>
-              <li><a href="#links" className="text-primary dark:text-orange-400 hover:underline text-lg">Links</a></li>
-              <li><a href="#modifications" className="text-primary dark:text-orange-400 hover:underline text-lg">Modifications</a></li>
-              <li><a href="#governing-law" className="text-primary dark:text-orange-400 hover:underline text-lg">Governing Law</a></li>
-            </ul>
-          </div>
-
-          <p className="mb-8 text-gray-700 dark:text-gray-300">Welcome to TechieBlog, accessible at techieblog.com. By accessing and using this Blog, you agree to comply with and be bound by the following Terms and conditions. Please read them carefully.</p>
-
-          {/* Sections */}
-          <div id="terms" className="mb-8 bg-white dark:bg-gray-800 p-5 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-            <h2 className="text-2xl font-bold mb-3 text-gray-800 dark:text-gray-100">1. Terms</h2>
-            <p className="text-gray-700 dark:text-gray-300">By accessing this website, you agree to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing this site.</p>
-          </div>
-
-          <div id="disclaimer" className="mb-8 bg-white dark:bg-gray-800 p-5 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-            <h2 className="text-2xl font-bold mb-3 text-gray-800 dark:text-gray-100">2. Disclaimer</h2>
-            <p className="text-gray-700 dark:text-gray-300">The materials on TechieBlog's website are provided on an 'as is' basis. TechieBlog makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.</p>
-            <p className="text-gray-700 dark:text-gray-300">Further, TechieBlog does not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on its website or otherwise relating to such materials or on any sites linked to this site.</p>
-          </div>
-
-          <div id="limitations" className="mb-8 bg-white dark:bg-gray-800 p-5 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-            <h2 className="text-2xl font-bold mb-3 text-gray-800 dark:text-gray-100">3. Limitations</h2>
-            <p className="text-gray-700 dark:text-gray-300">In no event shall TechieBlog or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on TechieBlog's website, even if TechieBlog or a TechieBlog authorized representative has been notified orally or in writing of the possibility of such damage.</p>
-          </div>
-
-          <div id="accuracy" className="mb-8 bg-white dark:bg-gray-800 p-5 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-            <h2 className="text-2xl font-bold mb-3 text-gray-800 dark:text-gray-100">4. Accuracy of Materials</h2>
-            <p className="text-gray-700 dark:text-gray-300">The materials appearing on TechieBlog's website could include technical, typographical, or photographic errors. TechieBlog does not warrant that any of the materials on its website are accurate, complete or current. TechieBlog may make changes to the materials contained on its website at any time without notice. However, TechieBlog does not make any commitment to update the materials.</p>
-          </div>
-
-          <div id="links" className="mb-8 bg-white dark:bg-gray-800 p-5 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-            <h2 className="text-2xl font-bold mb-3 text-gray-800 dark:text-gray-100">5. Links</h2>
-            <p className="text-gray-700 dark:text-gray-300">TechieBlog has not reviewed all of the sites linked to its website and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by TechieBlog of the site. Use of any such linked website is at the user's own risk.</p>
-          </div>
-
-          <div id="modifications" className="mb-8 bg-white dark:bg-gray-800 p-5 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-            <h2 className="text-2xl font-bold mb-3 text-gray-800 dark:text-gray-100">6. Modifications</h2>
-            <p className="text-gray-700 dark:text-gray-300">TechieBlog may revise these terms of service for its website at any time without notice. By using this website you are agreeing to be bound by the then current version of these terms of service.</p>
-          </div>
-
-          <div id="governing-law" className="mb-8 bg-white dark:bg-gray-800 p-5 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-            <h2 className="text-2xl font-bold mb-3 text-gray-800 dark:text-gray-100">7. Governing Law</h2>
-            <p className="text-gray-700 dark:text-gray-300">These terms and conditions are governed by and construed in accordance with the laws of our country and you irrevocably submit to the exclusive jurisdiction of the courts in that State or location.</p>
-          </div>
-        </div>
+        <motion.div 
+          className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg"
+          whileHover={{ scale: 1.03 }}
+          transition={{ duration: 0.3 }}
+        >
+          <h2 className="text-3xl font-bold text-gray-700 dark:text-gray-200 mb-5">Table of Contents</h2>
+          <ul className="list-none space-y-4">
+            {tableOfContents.map((item) => (
+              <li key={item.id} className="flex items-center space-x-3">
+                <span className="text-orange-500 dark:text-orange-400 text-2xl">{item.icon}</span>
+                <a href={`#${item.id}`} className="text-lg text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                  {item.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
       </div>
+
+      {/* Full Width Content */}
+      <motion.div className="bg-white dark:bg-gray-800 p-10 rounded-2xl shadow-xl space-y-8">
+        {[
+          { id: "terms", title: "1. Terms", text: "By accessing this website, you agree to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws." },
+          { id: "disclaimer", title: "2. Disclaimer", text: "The materials on TechieBlog's website are provided on an 'as is' basis. TechieBlog makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties." },
+          { id: "limitations", title: "3. Limitations", text: "In no event shall TechieBlog or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption)." },
+          { id: "accuracy", title: "4. Accuracy of Materials", text: "The materials appearing on TechieBlog's website could include technical, typographical, or photographic errors. TechieBlog does not warrant that any of the materials on its website are accurate, complete or current." },
+          { id: "links", title: "5. Links", text: "TechieBlog has not reviewed all of the sites linked to its website and is not responsible for the contents of any such linked site." },
+          { id: "modifications", title: "6. Modifications", text: "TechieBlog may revise these terms of service for its website at any time without notice." },
+          { id: "governing-law", title: "7. Governing Law", text: "These terms and conditions are governed by and construed in accordance with the laws of our country and you irrevocably submit to the exclusive jurisdiction of the courts in that State or location." }
+        ].map((section) => (
+          <motion.div 
+            key={section.id} 
+            id={section.id} 
+            className="bg-gray-100 dark:bg-gray-900 p-6 rounded-xl shadow-md"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+          >
+            <h2 className="text-3xl font-bold mb-3 text-gray-800 dark:text-gray-100">{section.title}</h2>
+            <p className="text-lg text-gray-700 dark:text-gray-300">{section.text}</p>
+          </motion.div>
+        ))}
+      </motion.div>
     </div>
   );
 }

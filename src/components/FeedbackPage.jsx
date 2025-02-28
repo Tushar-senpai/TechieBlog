@@ -1,131 +1,114 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import feedbackImg from "../assets/feedback.svg";
+import { FaStar } from "react-icons/fa";
 
 function FeedbackPage() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [category, setCategory] = useState('general');
-  const [feedback, setFeedback] = useState('');
-  const [rating, setRating] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    category: 'general',
+    feedback: '',
+    rating: 0,
+  });
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const validateForm = () => {
+    let newErrors = {};
+    if (!formData.name.trim()) newErrors.name = "Name is required.";
+    if (!formData.email.includes('@')) newErrors.email = "Enter a valid email.";
+    if (!formData.feedback.trim()) newErrors.feedback = "Feedback cannot be empty.";
+    if (formData.rating < 1) newErrors.rating = "Please provide a rating.";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setSubmitted(true);
+    if (validateForm()) {
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        setFormData({ name: '', email: '', category: 'general', feedback: '', rating: 0 });
+      }, 3000);
+    }
   };
 
   return (
-    <motion.div 
-      className='flex flex-col items-center justify-center min-h-screen p-6 bg-gray-100 dark:bg-gray-900'
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <motion.div 
-        className='w-full max-w-4xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white p-8 rounded-lg shadow-lg flex flex-col md:flex-row'
-        initial={{ scale: 0.9 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.3 }}
-        whileHover={{ scale: 1.02 }}
-      >
-        <div className='w-full md:w-1/2 flex items-center justify-center p-4'>
-          <img src='https://www.pngkey.com/png/detail/83-839816_in1-solutions-feedback-feedback-from-presentation-clipart.png' alt='Feedback' className='w-full rounded-md shadow-md' />
+    <div className='flex flex-col items-center justify-center min-h-screen p-3'>
+      <h1 className='md:text-5xl sm:text-2xl font-bold text-center text-orange-600 dark:text-gray-200'>Feedback Form</h1>
+      <div className='w-full max-w-5xl bg-orange-200 dark:bg-gray-700 shadow-lg rounded-xl p-8'>
+        <div className='flex flex-col md:flex-row items-center'>
+          <div className='w-full md:w-1/2 p-4'>
+            <img src={feedbackImg} alt='Feedback' className='w-full' />
+          </div>
+          <div className='w-full md:w-1/2 p-4'>
+            {submitted ? (
+              <p className='text-green-600 text-2xl text-center font-bold'>Thank you for your feedback!</p>
+            ) : (
+              <form onSubmit={handleSubmit} className='space-y-4'>
+                {/* <h1 className='text-3xl font-bold text-center bg-gradient-to-r from-orange-500 to-amber-500 text-transparent bg-clip-text'>Feedback</h1> */}
+                
+                <input type='text' name='name' value={formData.name} onChange={handleChange} placeholder='Your name...' className='input-style' />
+                {errors.name && <p className='text-red-500 text-sm'>{errors.name}</p>}
+                
+                <input type='email' name='email' value={formData.email} onChange={handleChange} placeholder='Your email...' className='input-style' />
+                {errors.email && <p className='text-red-500 text-sm'>{errors.email}</p>}
+                
+                <select name='category' value={formData.category} onChange={handleChange} className='input-style dark:text-gray-800'>
+                  <option value='general'>General</option>
+                  <option value='bug'>Bug Report</option>
+                  <option value='feature'>Feature Request</option>
+                </select>
+                
+                <textarea name='feedback' value={formData.feedback} onChange={handleChange} placeholder='Your feedback...' className='input-style' />
+                {errors.feedback && <p className='text-red-500 text-sm'>{errors.feedback}</p>}
+
+                <div className='flex items-center space-x-2'>
+                  <span className='text-gray-900 dark:text-gray-100'>Rating:</span>
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <FaStar
+                      key={star}
+                      className={`cursor-pointer ${formData.rating >= star ? 'text-orange-500' : 'text-gray-300'}`}
+                      onClick={() => setFormData({ ...formData, rating: star })}
+                    />
+                  ))}
+                </div>
+                {errors.rating && <p className='text-red-500 text-sm'>{errors.rating}</p>}
+
+                <button type='submit' className='w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400 shadow-md'>
+                  Submit
+                </button>
+              </form>
+            )}
+          </div>
         </div>
-        <div className='w-full md:w-1/2 p-4'>
-          {submitted ? (
-            <motion.p 
-              className='text-orange-600 text-2xl text-center'
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-            >
-              Thank you for your feedback!
-            </motion.p>
-          ) : (
-            <motion.form 
-              onSubmit={handleSubmit} 
-              className='space-y-4'
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <h1 className='text-4xl font-bold mb-6 text-orange-600 dark:text-gray-100'>Feedback</h1>
-              <input
-                type='text'
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder='Your name...'
-                required
-                className='input-style'
-              />
-              <input
-                type='email'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder='Your email...'
-                required
-                className='input-style'
-              />
-              <select
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                className='input-style'
-              >
-                <option value='general'>General</option>
-                <option value='bug'>Bug Report</option>
-                <option value='feature'>Feature Request</option>
-              </select>
-              <textarea
-                value={feedback}
-                onChange={(e) => setFeedback(e.target.value)}
-                placeholder='Your feedback...'
-                required
-                className='input-style'
-              />
-              <div className='flex items-center space-x-4'>
-                <span className='text-gray-900 dark:text-gray-100'>Rating:</span>
-                <input
-                  type='number'
-                  value={rating}
-                  onChange={(e) => setRating(e.target.value)}
-                  min='1'
-                  max='5'
-                  placeholder='1-5'
-                  required
-                  className='input-style'
-                />
-              </div>
-              <motion.button
-                type='submit'
-                className='w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 shadow-md'
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Submit
-              </motion.button>
-            </motion.form>
-          )}
-        </div>
-      </motion.div>
+      </div>
       <style jsx>{`
         .input-style {
           width: 100%;
-          padding: 16px;
-          border: 1px solid #ccc;
-          border-radius: 8px;
-          background-color: #f9f9f9;
+          padding: 12px;
+          border: 2px solid #e5a663;
+          color: black;
+          border-radius: 10px;
+          background-color: #fff7eb;
           transition: all 0.3s ease-in-out;
         }
         .input-style:focus {
           outline: none;
-          border-color: #ff7f50;
-          box-shadow: 0px 0px 10px rgba(255, 127, 80, 0.5);
+          border-color: #ff9800;
+          box-shadow: 0px 0px 10px rgba(255, 152, 0, 0.5);
         }
         .input-style:hover {
-          border-color: #ff7f50;
-          box-shadow: 0px 0px 5px rgba(255, 127, 80, 0.3);
+          border-color: #ff9800;
+          box-shadow: 0px 0px 5px rgba(255, 152, 0, 0.3);
         }
       `}</style>
-    </motion.div>
+    </div>
   );
 }
 
