@@ -50,14 +50,25 @@ const FAQ = () => {
         </p>
       </div>
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12">
-        <div className="w-full lg:w-1/3 flex justify-center lg:self-start">
+        <motion.div
+          initial={{ x: -100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="w-full lg:w-1/3 flex justify-center lg:self-start"
+        >
           <img src={faqImage} alt="FAQ" className="w-full h-auto" />
-        </div>
+        </motion.div>
 
         <div className="w-full lg:w-2/3">
-          <motion.div className="space-y-4">
+          <motion.div className="space-y-6">
             {faqItems.map((item, index) => (
-              <div key={index} className="border-b border-gray-200 dark:border-gray-700 pb-4">
+              <motion.div
+                key={index}
+                initial={{ x: 100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
+                className="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 hover:bg-orange-100 dark:hover:bg-gray-700 transition-colors duration-300"
+              >
                 <div
                   className="flex items-center justify-between gap-4 cursor-pointer"
                   onClick={() => toggleAnswer(index)}
@@ -81,16 +92,16 @@ const FAQ = () => {
                   transition={{ duration: 0.4, ease: "easeInOut" }}
                   className="overflow-hidden"
                 >
-                  <div className="mt-3 bg-amber-50 dark:bg-amber-900/30 p-3 rounded-2xl rounded-tr-none shadow-sm border border-amber-100 dark:border-amber-800">
+                  <div className="mt-3 bg-amber-50 dark:bg-amber-900/30 p-4 rounded-lg shadow-sm border border-amber-100 dark:border-amber-800">
                     <div className="flex items-center gap-4">
-                      <p className="text-gray-700 dark:text-gray-200 text-lg font-semibold">
+                      <FaUserTie className="w-8 h-8 text-amber-500 dark:text-amber-400" />
+                      <p className="text-gray-700 dark:text-gray-200 text-lg font-medium">
                         {item.answer}
                       </p>
-                      <FaUserTie className="w-8 h-8 text-amber-500 dark:text-amber-400" />
                     </div>
                   </div>
                 </motion.div>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </div>
