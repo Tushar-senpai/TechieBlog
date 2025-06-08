@@ -37,16 +37,16 @@ const Footer = () => {
             </p>
             <div className="flex justify-center md:justify-start space-x-4">
               <a href="#" className="group">
-                <div className="bg-white p-2 rounded-lg shadow-md border border-gray-300 group-hover:border-[#1876f2] group-hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1 dark:bg-gray-800 dark:border-gray-700">
-                  <Facebook className="w-5 h-5 text-gray-600 group-hover:text-[#1876f2] dark:text-gray-400" />
+                <div className="bg-white p-2 rounded-lg shadow-md border border-gray-300 group-hover:border-[#1876f2] group-hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1 group-hover:scale-105 dark:bg-gray-800 dark:border-gray-700">
+                  <Facebook className="w-5 h-5 text-gray-600 group-hover:text-[#1876f2] dark:text-gray-400 transition-colors duration-300" />
                 </div>
               </a>
               <a href="#" className="group">
-                <div className="bg-white p-2 rounded-lg shadow-md border border-gray-300 group-hover:border-[#0F1419] group-hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1 dark:bg-gray-800 dark:border-gray-700">
+                <div className="bg-white p-2 rounded-lg shadow-md border border-gray-300 group-hover:border-[#0F1419] group-hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1 group-hover:scale-105 dark:bg-gray-800 dark:border-gray-700">
                   {/* Updated Twitter (X) Icon */}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5 text-gray-600 group-hover:text-[#0F1419]"
+                    className="w-5 h-5 text-gray-600 group-hover:text-[#0F1419] transition-colors duration-300"
                     viewBox="0 0 24 24"
                     fill="currentColor"
                   >
@@ -55,14 +55,14 @@ const Footer = () => {
                 </div>
               </a>
               <a href="#" className="group">
-                <div className="bg-white p-2 rounded-lg shadow-md border  border-gray-300 group-hover:border-[#0077B5] group-hover:shadow-lg 
-                transition-all duration-300 transform group-hover:-translate-y-1 dark:border-gray-700 dark:bg-gray-800">
-                  <Linkedin className="w-5 h-5 text-gray-600 group-hover:text-[#0077B5] dark:text-gray-400" />
+                <div className="bg-white p-2 rounded-lg shadow-md border border-gray-300 group-hover:border-[#0077B5] group-hover:shadow-lg 
+                transition-all duration-300 transform group-hover:-translate-y-1 group-hover:scale-105 dark:border-gray-700 dark:bg-gray-800">
+                  <Linkedin className="w-5 h-5 text-gray-600 group-hover:text-[#0077B5] dark:text-gray-400 transition-colors duration-300" />
                 </div>
               </a>
               <a href="#" className="group">
-                <div className="bg-white p-2 rounded-lg shadow-md border border-gray-300 group-hover:border-[#E1306C] group-hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1 dark:bg-gray-800 dark:border-gray-700">
-                  <Instagram className="w-5 h-5 text-gray-600 group-hover:text-[#E1306C] dark:text-gray-400" />
+                <div className="bg-white p-2 rounded-lg shadow-md border border-gray-300 group-hover:border-[#E1306C] group-hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1 group-hover:scale-105 dark:bg-gray-800 dark:border-gray-700">
+                  <Instagram className="w-5 h-5 text-gray-600 group-hover:text-[#E1306C] dark:text-gray-400 transition-colors duration-300" />
                 </div>
               </a>
             </div>
@@ -76,10 +76,13 @@ const Footer = () => {
                 <li key={item}>
                   <Link
                     to={`/${item.toLowerCase().replace(' ', '-')}`}
-                    className="group dark:hover:text-gray-200 dark:text-gray-400 flex items-center text-gray-600 hover:text-gray-900"
+                    className="group dark:hover:text-gray-200 dark:text-gray-400 flex items-center text-gray-600 hover:text-gray-900 relative"
                   >
-                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    {item}
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-125" />
+                    <span className="relative">
+                      {item}
+                      <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-full transition-all duration-300 ease-out"></span>
+                    </span>
                   </Link>
                 </li>
               ))}
@@ -94,10 +97,13 @@ const Footer = () => {
                 <li key={item}>
                   <Link
                     to={`/${item.toLowerCase().replace(' ', '-')}`}
-                    className="group flex items-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
+                    className="group flex items-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 relative"
                   >
-                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    {item}
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-125" />
+                    <span className="relative">
+                      {item}
+                      <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-full transition-all duration-300 ease-out"></span>
+                    </span>
                   </Link>
                 </li>
               ))}
@@ -108,22 +114,33 @@ const Footer = () => {
           <div className="space-y-6">
             <h3 className="text-lg dark:text-gray-200 font-bold">Contact Info</h3>
             <ul className="space-y-4">
-              <li className="flex items-center justify-center md:justify-start space-x-3 text-gray-600 dark:text-gray-400">
-                <MapPin className="w-5 h-5 text-blue-500 dark:text-blue-400" />
-                <span>123 Tech Street, Digital City</span>
+              <li className="group flex items-center justify-center md:justify-start space-x-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors duration-300 cursor-pointer">
+                <MapPin className="w-5 h-5 text-blue-500 dark:text-blue-400 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
+                <span className="relative">
+                  123 Tech Street, Digital City
+                  <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-full transition-all duration-300 ease-out"></span>
+                </span>
               </li>
-              <li className="flex items-center justify-center md:justify-start space-x-3 text-gray-600 dark:text-gray-400">
-                <Phone className="w-5 h-5 text-blue-500 dark:text-blue-400" />
-                <span>+1 (555) 123-4567</span>
+              <li className="group flex items-center justify-center md:justify-start space-x-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors duration-300 cursor-pointer">
+                <Phone className="w-5 h-5 text-blue-500 dark:text-blue-400 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
+                <span className="relative">
+                  +1 (555) 123-4567
+                  <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-full transition-all duration-300 ease-out"></span>
+                </span>
               </li>
-              <li className="flex items-center justify-center md:justify-start space-x-3 text-gray-600 dark:text-gray-400">
-                <Mail className="w-5 h-5 text-blue-500 dark:text-blue-400" />
-                <span><a href="mailto:support@techieblog.com" className="hover:underline">support@techieblog.com</a></span>
+              <li className="group flex items-center justify-center md:justify-start space-x-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors duration-300">
+                <Mail className="w-5 h-5 text-blue-500 dark:text-blue-400 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
+                <span className="relative">
+                  <a href="mailto:support@techieblog.com" className="hover:underline">
+                    support@techieblog.com
+                    <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-full transition-all duration-300 ease-out"></span>
+                  </a>
+                </span>
               </li>
             </ul>
             <div className="mt-3">
               <h3 className="text-lg font-bold dark:text-gray-200">Contributors</h3>
-              <ContributorsLink classes="w-10 h-10" />
+              <ContributorsLink classes="w-10 h-10 hover:scale-110 transition-transform duration-300" />
             </div>
           </div>
         </div>
@@ -131,19 +148,23 @@ const Footer = () => {
         {/* Divider with Animation */}
         <div className="relative mt-2">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-400  dark:border-gray-400"></div>
+            <div className="w-full border-t border-gray-400 dark:border-gray-400"></div>
           </div>
           <div className="relative flex justify-center">
             <div className="bg-gradient-to-r from-yellow-200 via-orange-200 to-red-200 px-4 dark:from-gray-800">
-              <Logo className="h-8 w-auto" />
+              <Logo className="h-8 w-auto hover:scale-105 transition-transform duration-300" />
             </div>
           </div>
         </div>
 
         {/* Copyright Section */}
         <div className="mt-5">
-          <p className="text-center text-gray-600 dark:text-gray-400">
-            © Copyright {new Date().getFullYear()}. All Rights Reserved by TechieBlog.
+          <p className="text-center text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors duration-300">
+            © Copyright {new Date().getFullYear()}. All Rights Reserved by 
+            <span className="relative ml-1 font-semibold group cursor-pointer">
+              TechieBlog
+              <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 group-hover:w-full transition-all duration-300 ease-out"></span>
+            </span>.
           </p>
         </div>
       </div>
@@ -151,7 +172,7 @@ const Footer = () => {
       {/* Enhanced Scroll to Top Button */}
       <div
         id="scrollButton"
-        className={`fixed bottom-6 right-6 w-14 h-14 flex items-center justify-center z-50 cursor-pointer transition-opacity duration-500 ${isVisible ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+        className={`fixed bottom-6 right-6 w-14 h-14 flex items-center justify-center z-50 cursor-pointer transition-all duration-500 hover:scale-110 ${isVisible ? "opacity-100" : "opacity-0 pointer-events-none"}`}
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       >
         <div
@@ -160,8 +181,8 @@ const Footer = () => {
             background: `conic-gradient(orange 0deg, orange ${scrollProgress}deg, transparent ${scrollProgress}deg, transparent 360deg)`,
           }}
         >
-          <div className="w-11 h-11 bg-white rounded-full flex items-center justify-center shadow-lg">
-            <FontAwesomeIcon icon={faArrowUp} className="text-orange-500 text-2xl" />
+          <div className="w-11 h-11 bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <FontAwesomeIcon icon={faArrowUp} className="text-orange-500 text-2xl hover:scale-110 transition-transform duration-300" />
           </div>
         </div>
       </div>
