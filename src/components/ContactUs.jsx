@@ -38,7 +38,7 @@ const ContactUs = () => {
 
             <ul class="flex mt-4 space-x-4">
               <li class="bg-[#e6e6e6cf] h-10 w-10 rounded-full flex items-center justify-center shrink-0">
-                <a href="javascript:void(0)">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill='#007bff'
                     viewBox="0 0 24 24">
                     <path
@@ -48,7 +48,7 @@ const ContactUs = () => {
                 </a>
               </li>
               <li class="bg-[#e6e6e6cf] h-10 w-10 rounded-full flex items-center justify-center shrink-0">
-                <a href="javascript:void(0)">
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill='#007bff'
                     viewBox="0 0 511 512">
                     <path
@@ -58,7 +58,7 @@ const ContactUs = () => {
                 </a>
               </li>
               <li class="bg-[#e6e6e6cf] h-10 w-10 rounded-full flex items-center justify-center shrink-0">
-                <a href="javascript:void(0)">
+                <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill='#007bff'
                     viewBox="0 0 24 24">
                     <path
