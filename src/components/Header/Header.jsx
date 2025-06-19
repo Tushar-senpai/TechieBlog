@@ -188,9 +188,9 @@ function Header() {
     >
       <NavLink
         className={({ isActive }) =>
-          `${isActive ? "bg-orange-300" : ""} 
-          w-full inline-flex items-center gap-2 px-6 py-2 text-orange-800 
-          font-semibold hover:bg-orange-200 rounded-lg transition-colors`
+          `${isActive ? "bg-orange-300" : "border-transparent"} 
+          w-full inline-flex items-center gap-2 px-6 py-2 text-orange-400
+          font-semibold border hover:border-orange-500 rounded-lg transition-colors`
         }
         to={item.slug}
         onClick={() => handleNavigation()}
