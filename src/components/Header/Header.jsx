@@ -188,7 +188,7 @@ function Header() {
     >
       <NavLink
         className={({ isActive }) =>
-          `${isActive ? "bg-orange-300" : "border-transparent"} 
+          `${isActive ? "bg-transparent border-orange-600" : "border-transparent"} 
           w-full inline-flex items-center gap-2 px-6 py-2 text-orange-400
           font-semibold border hover:border-orange-500 rounded-lg transition-colors`
         }
