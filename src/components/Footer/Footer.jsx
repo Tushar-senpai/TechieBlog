@@ -131,7 +131,7 @@ const Footer = () => {
               <li className="group flex items-center justify-center md:justify-start space-x-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors duration-300">
                 <Mail className="w-5 h-5 text-blue-500 dark:text-blue-400 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
                 <span className="relative">
-                  <a href="mailto:support@techieblog.com" className="hover:underline">
+                  <a href="mailto:support@techieblog.com" >
                     support@techieblog.com
                     <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-full transition-all duration-300 ease-out"></span>
                   </a>
