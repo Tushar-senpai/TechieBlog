@@ -1,61 +1,39 @@
-# 🔐 Security Policy
+# Security Policy
 
-## ✅ Supported Versions
+## Supported Versions
 
-We actively maintain and release security patches for the following versions:
+We release patches for security vulnerabilities in the following versions:
 
-| Version         | Supported |
-|-----------------|-----------|
-| `latest`        | ✅        |
-| Older versions  | ❌        |
+| Version | Supported          |
+|---------|-------------------|
+| latest  | ✅                  |
+| older versions | ❌            |
 
-> **Note:** If you're using an unsupported version, we strongly recommend upgrading to the latest release to stay protected.
-
----
-
-## 🛡️ Reporting a Vulnerability
-
-If you discover a security vulnerability in **TechieBlog**, we appreciate your help in responsibly disclosing it.
-
-### How to Report
-
-Please use one of the following methods:
-
-- 📧 **Email:** [security@techieblog.org](mailto:security@techieblog.org) *(replace with a valid email address)*
-- 🔐 **GitHub Security Advisory:** [Submit here](https://github.com/SumitGorai01/TechieBlog/security/advisories)
-
-> 🚫 **Do not open public issues or pull requests for security concerns.**
+If you are using an older version, please upgrade to the latest version to ensure you have all security updates.
 
 ---
 
-## ⏱️ Response Timeline
+## Reporting a Vulnerability
 
-We commit to the following response timeline:
+If you discover a security vulnerability in **TechieBlog**, please report it responsibly.
 
-- **Acknowledgement:** Within 48 hours
-- **Initial response and remediation plan:** Within 5 business days
-- **Patch release:** As soon as reasonably possible, depending on severity
+👉 **How to report:**
+- **Email us:** [security@techieblog.org](mailto:security@techieblog.org) (replace with actual email)
+- Or open a **GitHub Security Advisory** (https://github.com/SumitGorai01/TechieBlog/security/advisories)
 
----
-## 🔔 Stay Updated
-
-For major security announcements:
-- Watch the repository
-- Subscribe to releases
+Please **do not open a public issue** for security vulnerabilities.
 
 ---
 
-## 🤝 Responsible Disclosure
+## Response Timeline
 
-We follow responsible disclosure practices and request that you do too. We appreciate your help in keeping this project safe for everyone.
-
----
-## 📚 Additional Resources
-
-- [GitHub: Adding a Security Policy](https://docs.github.com/en/code-security/getting-started/adding-a-security-policy-to-your-repository)
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
-- [GitHub Security Advisories](https://docs.github.com/en/code-security/security-advisories)
+We aim to:
+- Acknowledge your report within **48 hours**
+- Provide an initial response and plan within **5 working days**
+- Work on a fix promptly, depending on severity
 
 ---
 
-🙏 Thank you for helping make **TechieBlog** more secure! 💙
+## Additional Resources
+
+- [GitHub Security Best Practices](https://docs.github.com/en/code-security/getting-started/adding-a-security-policy-to-your-repository)
