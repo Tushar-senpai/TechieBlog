@@ -9,7 +9,7 @@ TechieBlog is a blogging platform that allows users to create, read, update, and
 
 - [👀 Table of Contents](#-table-of-contents)
 - [🦾 Features](#-features)
-- [🛠 Technologies Used](#-technologies-used)
+- [🛠 Technologies Used:-](#-technologies-used-)
 - [🧩 Installation](#-installation)
   - [1. Prerequisites](#1-prerequisites)
   - [2. Steps](#2-steps)
@@ -31,7 +31,8 @@ TechieBlog is a blogging platform that allows users to create, read, update, and
 
 ---
 
-## 🛠 Technologies Used
+
+## 🛠 Technologies Used:-
 
 - **Frontend**: HTML, CSS, JavaScript, Tailwind css , React
 - **Backend**: Appwrite for user authentication, database, and file storage
