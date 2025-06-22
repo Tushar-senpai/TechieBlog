@@ -94,8 +94,6 @@ function Signup() {
                 </p>
               </div>
 
-              <motion.div whileFocus={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-                <label className="text-gray-800 text-sm mb-2 block">Name</label>
                 <Input
                   name="name"
                   type="text"
@@ -106,8 +104,6 @@ function Signup() {
                 />
               </motion.div>
 
-              <motion.div whileFocus={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-                <label className="text-gray-800 text-sm mb-2 block">Email</label>
                 <Input
                   name="email"
                   type="email"
@@ -118,8 +114,6 @@ function Signup() {
                 />
               </motion.div>
 
-              <motion.div whileFocus={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-                <label className="text-gray-800 text-sm mb-2 block">Password</label>
                 <div className="relative">
                   <Input
                     name="password"
@@ -163,7 +157,7 @@ function Signup() {
                   className="h-4 w-4 shrink-0 border-gray-300 rounded"
                   required
                 />
-                <label htmlFor="remember-me" className="ml-3 block text-sm text-gray-800">
+
                   I accept the{" "}
                   <Link
                     to="/terms"
@@ -183,7 +177,6 @@ function Signup() {
                 </Button>
               </motion.div>
 
-              <p className="text-sm text-gray-800 mt-6">
                 Already have an account?{" "}
                 <Link to="/login" className="text-blue-600 font-semibold hover:underline ml-1">
                   Sign In
