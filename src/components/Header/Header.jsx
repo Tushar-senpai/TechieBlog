@@ -95,7 +95,7 @@ function Header() {
   return (
     <>
       <header
-        className="py-4 transition duration-300 rounded-md shadow-md backdrop-blur-md bg-gradient-to-r from-yellow-100 via-orange-100 to-red-100 dark:bg-gradient-to-r dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 dark:backdrop-blur-xl dark:border dark:border-white/10 dark:shadow-xl animate-slide-down dark:md:rounded-none dark:md:mx-0 dark:md:my-0 dark:py-4"
+        className="py-5 transition duration-300 rounded-md shadow-md backdrop-blur-md bg-gradient-to-r from-yellow-100 via-orange-100 to-red-100 dark:bg-gradient-to-r dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 dark:backdrop-blur-xl dark:border dark:border-white/10 dark:shadow-xl animate-slide-down dark:md:rounded-none dark:md:mx-0 dark:md:my-0 dark:py-4"
       >
         <Container>
           <nav className="flex justify-between gap-2 items-left">
