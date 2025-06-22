@@ -10,4 +10,4 @@ const conf = {
     appwriteUserCollectionId: String(import.meta.env.VITE_APPWRITE_USER_COLLECTION_ID)
 }
 
-export default conf
+export default conf;
