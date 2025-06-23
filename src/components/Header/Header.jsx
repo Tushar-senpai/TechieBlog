@@ -10,7 +10,6 @@ import {
   HelpCircle,
   MessageSquare,
   Info,
-  Mail,
   Phone,
   Calendar,
 } from "lucide-react";
@@ -32,17 +31,11 @@ function Header() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const navItems = [
-    {
-      name: "Login",
-      slug: "/login",
-      active: !authStatus,
-      icon: LogIn,
-    },
-    {
-      name: "Signup",
-      slug: "/signup",
-      active: !authStatus,
-      icon: UserPlus,
+        {
+      name: "About Us",
+      slug: "/about-us",
+      active: true,
+      icon: Info,
     },
     {
       name: "All Posts",
@@ -69,12 +62,6 @@ function Header() {
       icon: MessageSquare,
     },
     {
-      name: "About Us",
-      slug: "/about-us",
-      active: true,
-      icon: Info,
-    },
-    {
       name: "Events",
       slug: "/events",
       active: true,
@@ -85,6 +72,18 @@ function Header() {
       slug: "/contact-us",
       active: true,
       icon: Phone,
+    },
+     {
+      name: "Login",
+      slug: "/login",
+      active: !authStatus,
+      icon: LogIn,
+    },
+    {
+      name: "Signup",
+      slug: "/signup",
+      active: !authStatus,
+      icon: UserPlus,
     },
   ];
 
@@ -196,7 +195,7 @@ function Header() {
                   <li className="animate-fade-in-delayed">
                     <button
                       onClick={() => dispatch(toggleTheme())}
-                      className="inline-block px-2 py-2 mr-3 font-semibold text-orange-600 transition-transform duration-300 bg-yellow-100 rounded-full shadow-md dark:text-white dark:bg-white/10 dark:backdrop-blur-md dark:border dark:border-white/20 hover:bg-orange-200 dark:hover:bg-white/20 dark:hover:border-white/30 dark:hover:text-orange-500 hover:scale-105"
+                      className="inline-block px-3 py-2 mr-3 font-semibold text-orange-600 transition-transform duration-300 bg-yellow-100 rounded-full shadow-md dark:text-white dark:bg-white/10 dark:backdrop-blur-md dark:border dark:border-white/20 hover:bg-orange-200 dark:hover:bg-white/20 dark:hover:border-white/30 dark:hover:text-orange-500 hover:scale-105"
                     >
                       {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
                     </button>
