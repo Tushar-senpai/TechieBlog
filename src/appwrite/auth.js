@@ -20,41 +20,42 @@ export class AuthService {
     }
 
     async createAccount({ email, password, name }) {
-        try {
-            const userAccount = await this.account.create(ID.unique(), email, password, name);
-            console.log("User Account Created:", userAccount);
+    try {
+        const userAccount = await this.account.create(ID.unique(), email, password, name);
+        console.log("User Account Created:", userAccount);
 
-            const session = await this.account.createEmailPasswordSession(email, password);
-            console.log("Temporary Session Created:", session);
+        // ⚠️ Step 1: Create a session *BEFORE* sending verification
+        const session = await this.account.createEmailPasswordSession(email, password);
+        console.log("Temporary Session Created:", session);
 
-            // ✅ Save user info in DB (new `users` collection)
-            await this.databases.createDocument(
-                conf.appwriteDatabaseId,
-                conf.appwriteUserCollectionId,
-                ID.unique(),
-                {
-                    userId: userAccount.$id,
-                    name,
-                    email,
-                    createdAt: new Date().toISOString()
-                }
-            );
+        // Step 2: Send verification email (now session is active)
+        await this.account.createVerification(`${baseLink}/verify-email`);
 
-            await this.account.createVerification(`${baseLink}/verify-email`);
-            // Optionally log user out after sending email
-            await this.account.deleteSessions();
-
-            return userAccount;
-        } catch (error) {
-            console.error("Error during account creation:", error);
-            try {
-                await this.account.deleteSessions();
-            } catch (sessionError) {
-                console.error("Error cleaning up session:", sessionError);
+        // Step 3: Store user in DB (optional, but safe to do after session)
+        await this.databases.createDocument(
+            conf.appwriteDatabaseId,
+            conf.appwriteCollectionId,
+            ID.unique(),
+            {
+                userId: userAccount.$id,
+                name: name,
             }
-            throw error;
+        );
+
+        // Step 4: Clean up session
+        await this.account.deleteSessions();
+
+        return userAccount;
+    } catch (error) {
+        console.error("Error during account creation:", error);
+        try {
+            await this.account.deleteSessions();
+        } catch (sessionError) {
+            console.log("Error cleaning up session:", sessionError);
         }
+        throw error;
     }
+}
 
     async login({ email, password }) {
         try {
